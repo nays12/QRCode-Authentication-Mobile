@@ -5,7 +5,7 @@ using System.Linq;
 using Foundation;
 using UIKit;
 
-namespace QRCodeAuth_Mobile.iOS
+namespace QRCodeAuthMobile.iOS
 {
     public class Application
     {

@@ -2,7 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace QRCodeAuth_Mobile
+namespace QRCodeAuthMobile
 {
 	public partial class App : Application
 	{

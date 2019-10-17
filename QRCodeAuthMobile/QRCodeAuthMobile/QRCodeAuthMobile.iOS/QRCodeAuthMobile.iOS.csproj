@@ -5,13 +5,13 @@
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{1448208D-D532-4F92-8EF6-F72CD17C807D}</ProjectGuid>
+    <ProjectGuid>{881C8E13-D66F-4FAB-833C-08AA61F058AF}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{6143fdea-f3c2-4a09-aafa-6e230626515e}</TemplateGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>QRCodeAuth_Mobile.iOS</RootNamespace>
+    <RootNamespace>QRCodeAuthMobile.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>QRCodeAuth-Mobile.iOS</AssemblyName>
+    <AssemblyName>QRCodeAuthMobile.iOS</AssemblyName>
     <MtouchEnableSGenConc>true</MtouchEnableSGenConc>
     <MtouchHttpClientHandler>NSUrlSessionHandler</MtouchHttpClientHandler>
   </PropertyGroup>
@@ -125,9 +125,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
-    <ProjectReference Include="..\QRCodeAuth_Mobile\QRCodeAuth_Mobile.csproj">
-      <Project>{1AB3A52E-BDEA-4E0A-8A04-B719E938D305}</Project>
-      <Name>QRCodeAuth_Mobile</Name>
+    <ProjectReference Include="..\QRCodeAuthMobile\QRCodeAuthMobile.csproj">
+      <Project>{7C40929D-27F4-44BC-A5E1-2FFEC6291656}</Project>
+      <Name>QRCodeAuthMobile</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

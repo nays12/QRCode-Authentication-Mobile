@@ -1,14 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CF55D628-4F7C-48B1-A3C8-6DB9AE773C2C}</ProjectGuid>
+    <ProjectGuid>{7923D483-16BF-40FD-914D-00119F3B8FEC}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TemplateGuid>{c9e5eea5-ca05-42a1-839b-61506e0a37df}</TemplateGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>QRCodeAuth_Mobile.Droid</RootNamespace>
-    <AssemblyName>QRCodeAuth-Mobile.Android</AssemblyName>
+    <RootNamespace>QRCodeAuthMobile.Droid</RootNamespace>
+    <AssemblyName>QRCodeAuthMobile.Android</AssemblyName>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -89,10 +89,10 @@
     <Folder Include="Resources\drawable\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\QRCodeAuth_Mobile\QRCodeAuth_Mobile.csproj">
-      <Project>{1AB3A52E-BDEA-4E0A-8A04-B719E938D305}</Project>
-      <Name>QRCodeAuth_Mobile</Name>
+    <ProjectReference Include="..\QRCodeAuthMobile\QRCodeAuthMobile.csproj">
+      <Project>{7C40929D-27F4-44BC-A5E1-2FFEC6291656}</Project>
+      <Name>QRCodeAuthMobile</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+ <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
