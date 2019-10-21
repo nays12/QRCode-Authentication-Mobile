@@ -6,11 +6,18 @@
              mc:Ignorable="d"
              x:Class="QRCodeAuthMobile.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+
+    <StackLayout Padding="0,0,0,80 " >
+
+
+        <Image Source="C:\QRCode-Authentication-Mobile-master\QRCodeAuthMobile\QRCodeAuthMobile\QRCodeAuthMobile\Images\title.JPG" />
+
+        <Label Text="Set up Desired Authentication method" 
+              VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        <Button Text="Face ID"/>
+        <Button Text="Finger Print ID"/>
     </StackLayout>
+
 
 </ContentPage>

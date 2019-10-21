@@ -7,9 +7,33 @@
              x:Class="QRCodeAuthMobile.Home">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="0"  />
+                    <RowDefinition Height="20" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="50" />
+
+                </Grid.RowDefinitions>
+
+
+
+                <Image Source="C:\QRCode-Authentication-Mobile-master\QRCodeAuthMobile\QRCodeAuthMobile\QRCodeAuthMobile\Images\QR\geneatedQR.bmp" 
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand" Grid.Row="0"/>
+                <Label Text="What would you like to do?"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" Grid.Row="2"/>
+
+                <Button Text="Share Credentials" Grid.Row="3"/>
+                <Button Text="Record Attendance" Grid.Row="4"/>
+                <Button Text="Update Credentials" Grid.Row="5"/>
+                <Button Text="Web App Login"      Grid.Row="6"/>
+
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

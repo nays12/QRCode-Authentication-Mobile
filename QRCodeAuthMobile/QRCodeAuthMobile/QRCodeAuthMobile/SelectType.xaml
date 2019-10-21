@@ -6,10 +6,35 @@
              mc:Ignorable="d"
              x:Class="QRCodeAuthMobile.SelectType">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+
+
+
+        <StackLayout Padding="0,100,0,0">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+
+
+                </Grid.RowDefinitions>
+
+
+                <Label Text="Welcome to the Authenticator!"
                 VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                HorizontalOptions="CenterAndExpand" Grid.Row="1" />
+
+                <Label Text="Select Registration Type" 
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" Grid.Row="2" />
+
+                <Button Text="Student" Grid.Row="4"/>
+                <Button Text="Faculty" Grid.Row="5"/>
+                <Button Text="Staff"   Grid.Row="6"/>
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
