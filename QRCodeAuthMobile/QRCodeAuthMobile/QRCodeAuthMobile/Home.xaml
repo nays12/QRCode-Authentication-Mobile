@@ -5,35 +5,32 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="QRCodeAuthMobile.Home">
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="0"  />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="50" />
+        <StackLayout BackgroundColor="#005073" Padding="40">
 
-                </Grid.RowDefinitions>
+            <Label Text="The Authenticator!"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
 
+            <Image Source="logo.jpg"/>
 
+            <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
-                <Image Source="C:\QRCode-Authentication-Mobile-master\QRCodeAuthMobile\QRCodeAuthMobile\QRCodeAuthMobile\Images\QR\geneatedQR.bmp" 
-                VerticalOptions="FillAndExpand" 
-                HorizontalOptions="FillAndExpand" Grid.Row="0"/>
                 <Label Text="What would you like to do?"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" Grid.Row="2"/>
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
 
-                <Button Text="Share Credentials" Grid.Row="3"/>
-                <Button Text="Record Attendance" Grid.Row="4"/>
-                <Button Text="Update Credentials" Grid.Row="5"/>
-                <Button Text="Web App Login"      Grid.Row="6"/>
+                <Button Text="Share Credentials"
+                        Style="{StaticResource buttonStyle}"/>
+                <Button Text="Record Attendance"
+                        Style="{StaticResource buttonStyle}"/>
+                <Button Text="Update Credentials"                        
+                        Style="{StaticResource buttonStyle}"/>
+                <Button Text="Web App Login"
+                        Style="{StaticResource buttonStyle}"/>
 
-            </Grid>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
