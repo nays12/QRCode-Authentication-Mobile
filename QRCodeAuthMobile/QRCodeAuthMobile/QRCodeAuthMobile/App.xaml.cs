@@ -10,9 +10,8 @@ namespace QRCodeAuthMobile
 		{
 			InitializeComponent();
 
-			MainPage = new MainPage();
+			//MainPage = new MainPage();
             //  MainPage = new SelectType();
-            //  MainPage = MainPage();
             //  MainPage = new Home();
             //  MainPage = new ConfirmCredentials();
             //  MainPage = new ConfirmMessage();

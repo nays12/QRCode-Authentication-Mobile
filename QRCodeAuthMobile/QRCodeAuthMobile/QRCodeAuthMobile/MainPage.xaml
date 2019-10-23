@@ -7,16 +7,27 @@
              x:Class="QRCodeAuthMobile.MainPage">
 
 
-    <StackLayout Padding="0,0,0,80 " >
+    <StackLayout BackgroundColor="#005073" Padding="40">
 
+        <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
-        <Image Source="C:\QRCode-Authentication-Mobile-master\QRCodeAuthMobile\QRCodeAuthMobile\QRCodeAuthMobile\Images\title.JPG" />
+            <Label Text="The Authenticator!"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
 
-        <Label Text="Set up Desired Authentication method" 
-              VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        <Button Text="Face ID"/>
-        <Button Text="Finger Print ID"/>
+            <Image Source="logo.jpg"/>
+
+            <Label Text="Set Up Desired Authentication Method"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
+
+            <Button Text="Face ID"
+                    Style="{StaticResource buttonStyle}"/>
+            <Button Text="Finger Print ID"
+                    Style="{StaticResource buttonStyle}"/>
+
+        </StackLayout>
+
     </StackLayout>
 
 
