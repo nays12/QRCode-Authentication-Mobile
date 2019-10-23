@@ -8,7 +8,7 @@
     
     <ContentPage.Content>
         
-        <StackLayout BackgroundColor="#005073" Padding="30">
+        <StackLayout BackgroundColor="#005073" Padding="40">
 
             <Label Text="Welcome To The Authenticator!"
                    HorizontalOptions="CenterAndExpand"
@@ -16,7 +16,7 @@
 
             <Image Source="logo.jpg"/>
 
-            <StackLayout BackgroundColor="Transparent">
+            <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
                 <Label Text="Select Registration Type"
                        HorizontalOptions="CenterAndExpand"

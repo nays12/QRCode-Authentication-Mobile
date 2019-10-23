@@ -10,11 +10,9 @@
         <Style x:Key="buttonStyle" TargetType="Button">
             <Setter Property="BackgroundColor" Value="LimeGreen"/>
             <Setter Property="TextColor" Value="White"/>
-            <Setter Property="FontSize" Value="Small"/>
-            <Setter Property="HeightRequest" Value="25"/>
-            <Setter Property="BorderRadius" Value="8"/>
-            <Setter Property="Margin" Value="4"/>
-            <Setter Property="Padding" Value="0"/>
+            <Setter Property="FontSize" Value="Medium"/>
+            <Setter Property="BorderRadius" Value="10"/>
+            <Setter Property="Margin" Value="10"/>
             <Setter Property="BorderColor" Value="#107dac"/>
             <Setter Property="BorderWidth" Value="1"/>
         </Style>
@@ -23,6 +21,7 @@
             <Setter Property="TextColor" Value="White"/>
             <Setter Property="HorizontalTextAlignment" Value="Center"/>
             <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="FontSize" Value="Medium"/>
         </Style>
 
     </Application.Resources>

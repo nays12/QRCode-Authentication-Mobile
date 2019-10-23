@@ -7,36 +7,27 @@
              x:Class="QRCodeAuthMobile.WebAppLogin">
 
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="LabelStyle" TargetType="Label">
-                <Setter Property="TextColor" Value="Red"/>
-                <Setter Property="FontSize" Value="20"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
-
 
     <ContentPage.Content>
 
-        <StackLayout Padding="0,300,0,10">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="30"  />
-                    <RowDefinition Height="0" />
-                    <RowDefinition Height="30" />
-                </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="#005073" Padding="50">
+
+            <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
                 <Label Text=" Enter The Security Code Below To Access The Website:"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" Grid.Row="1"/>
+                       Style="{StaticResource lblStyle}"
+                       HorizontalOptions="CenterAndExpand"/>
 
-                <Label Text="25Jkl3" Style="{StaticResource LabelStyle}"
-            VerticalOptions="CenterAndExpand" 
-            HorizontalOptions="CenterAndExpand" Grid.Row="3"/>
-            </Grid>
+                <Frame OutlineColor="LimeGreen" BackgroundColor="Transparent" Padding="2" Margin="80,20,80,20">
+
+                    <Label Text="25Jkl3" 
+                           HorizontalOptions="Center"
+                           FontSize="30"
+                           TextColor="LimeGreen"/>
+                </Frame>
+
+            </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
