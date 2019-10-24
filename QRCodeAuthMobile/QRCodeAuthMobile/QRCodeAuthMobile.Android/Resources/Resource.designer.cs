@@ -26,6 +26,13 @@ namespace QRCodeAuthMobile.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Plugin.Fingerprint.Resource.Drawable.fingerprint_white = global::QRCodeAuthMobile.Droid.Resource.Drawable.fingerprint_white;
+			global::Plugin.Fingerprint.Resource.Id.fingerprint_btnCancel = global::QRCodeAuthMobile.Droid.Resource.Id.fingerprint_btnCancel;
+			global::Plugin.Fingerprint.Resource.Id.fingerprint_btnFallback = global::QRCodeAuthMobile.Droid.Resource.Id.fingerprint_btnFallback;
+			global::Plugin.Fingerprint.Resource.Id.fingerprint_imgFingerprint = global::QRCodeAuthMobile.Droid.Resource.Id.fingerprint_imgFingerprint;
+			global::Plugin.Fingerprint.Resource.Id.fingerprint_txtHelp = global::QRCodeAuthMobile.Droid.Resource.Id.fingerprint_txtHelp;
+			global::Plugin.Fingerprint.Resource.Id.fingerprint_txtReason = global::QRCodeAuthMobile.Droid.Resource.Id.fingerprint_txtReason;
+			global::Plugin.Fingerprint.Resource.Layout.FingerprintDialog = global::QRCodeAuthMobile.Droid.Resource.Layout.FingerprintDialog;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::QRCodeAuthMobile.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::QRCodeAuthMobile.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::QRCodeAuthMobile.Droid.Resource.Attribute.font;
@@ -5718,26 +5725,26 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f020054
 			public const int avd_hide_password = 2130837588;
 			
-			// aapt resource value: 0x7f020070
-			public const int avd_hide_password_1 = 2130837616;
-			
 			// aapt resource value: 0x7f020071
-			public const int avd_hide_password_2 = 2130837617;
+			public const int avd_hide_password_1 = 2130837617;
 			
 			// aapt resource value: 0x7f020072
-			public const int avd_hide_password_3 = 2130837618;
+			public const int avd_hide_password_2 = 2130837618;
+			
+			// aapt resource value: 0x7f020073
+			public const int avd_hide_password_3 = 2130837619;
 			
 			// aapt resource value: 0x7f020055
 			public const int avd_show_password = 2130837589;
 			
-			// aapt resource value: 0x7f020073
-			public const int avd_show_password_1 = 2130837619;
-			
 			// aapt resource value: 0x7f020074
-			public const int avd_show_password_2 = 2130837620;
+			public const int avd_show_password_1 = 2130837620;
 			
 			// aapt resource value: 0x7f020075
-			public const int avd_show_password_3 = 2130837621;
+			public const int avd_show_password_2 = 2130837621;
+			
+			// aapt resource value: 0x7f020076
+			public const int avd_show_password_3 = 2130837622;
 			
 			// aapt resource value: 0x7f020056
 			public const int design_bottom_navigation_item_background = 2130837590;
@@ -5758,64 +5765,67 @@ namespace QRCodeAuthMobile.Droid
 			public const int design_snackbar_background = 2130837595;
 			
 			// aapt resource value: 0x7f02005c
-			public const int ic_mtrl_chip_checked_black = 2130837596;
+			public const int fingerprint_white = 2130837596;
 			
 			// aapt resource value: 0x7f02005d
-			public const int ic_mtrl_chip_checked_circle = 2130837597;
+			public const int ic_mtrl_chip_checked_black = 2130837597;
 			
 			// aapt resource value: 0x7f02005e
-			public const int ic_mtrl_chip_close_circle = 2130837598;
+			public const int ic_mtrl_chip_checked_circle = 2130837598;
 			
 			// aapt resource value: 0x7f02005f
-			public const int mtrl_snackbar_background = 2130837599;
+			public const int ic_mtrl_chip_close_circle = 2130837599;
 			
 			// aapt resource value: 0x7f020060
-			public const int mtrl_tabs_default_indicator = 2130837600;
+			public const int mtrl_snackbar_background = 2130837600;
 			
 			// aapt resource value: 0x7f020061
-			public const int navigation_empty_icon = 2130837601;
+			public const int mtrl_tabs_default_indicator = 2130837601;
 			
 			// aapt resource value: 0x7f020062
-			public const int notification_action_background = 2130837602;
+			public const int navigation_empty_icon = 2130837602;
 			
 			// aapt resource value: 0x7f020063
-			public const int notification_bg = 2130837603;
+			public const int notification_action_background = 2130837603;
 			
 			// aapt resource value: 0x7f020064
-			public const int notification_bg_low = 2130837604;
+			public const int notification_bg = 2130837604;
 			
 			// aapt resource value: 0x7f020065
-			public const int notification_bg_low_normal = 2130837605;
+			public const int notification_bg_low = 2130837605;
 			
 			// aapt resource value: 0x7f020066
-			public const int notification_bg_low_pressed = 2130837606;
+			public const int notification_bg_low_normal = 2130837606;
 			
 			// aapt resource value: 0x7f020067
-			public const int notification_bg_normal = 2130837607;
+			public const int notification_bg_low_pressed = 2130837607;
 			
 			// aapt resource value: 0x7f020068
-			public const int notification_bg_normal_pressed = 2130837608;
+			public const int notification_bg_normal = 2130837608;
 			
 			// aapt resource value: 0x7f020069
-			public const int notification_icon_background = 2130837609;
-			
-			// aapt resource value: 0x7f02006e
-			public const int notification_template_icon_bg = 2130837614;
-			
-			// aapt resource value: 0x7f02006f
-			public const int notification_template_icon_low_bg = 2130837615;
+			public const int notification_bg_normal_pressed = 2130837609;
 			
 			// aapt resource value: 0x7f02006a
-			public const int notification_tile_bg = 2130837610;
+			public const int notification_icon_background = 2130837610;
+			
+			// aapt resource value: 0x7f02006f
+			public const int notification_template_icon_bg = 2130837615;
+			
+			// aapt resource value: 0x7f020070
+			public const int notification_template_icon_low_bg = 2130837616;
 			
 			// aapt resource value: 0x7f02006b
-			public const int notify_panel_notification_icon_bg = 2130837611;
+			public const int notification_tile_bg = 2130837611;
 			
 			// aapt resource value: 0x7f02006c
-			public const int tooltip_frame_dark = 2130837612;
+			public const int notify_panel_notification_icon_bg = 2130837612;
 			
 			// aapt resource value: 0x7f02006d
-			public const int tooltip_frame_light = 2130837613;
+			public const int tooltip_frame_dark = 2130837613;
+			
+			// aapt resource value: 0x7f02006e
+			public const int tooltip_frame_light = 2130837614;
 			
 			static Drawable()
 			{
@@ -5848,8 +5858,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b003e
 			public const int SYM = 2131427390;
 			
-			// aapt resource value: 0x7f0b00b5
-			public const int action0 = 2131427509;
+			// aapt resource value: 0x7f0b00ba
+			public const int action0 = 2131427514;
 			
 			// aapt resource value: 0x7f0b008d
 			public const int action_bar = 2131427469;
@@ -5872,17 +5882,17 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b0069
 			public const int action_bar_title = 2131427433;
 			
-			// aapt resource value: 0x7f0b00b2
-			public const int action_container = 2131427506;
+			// aapt resource value: 0x7f0b00b7
+			public const int action_container = 2131427511;
 			
 			// aapt resource value: 0x7f0b008e
 			public const int action_context_bar = 2131427470;
 			
-			// aapt resource value: 0x7f0b00b9
-			public const int action_divider = 2131427513;
+			// aapt resource value: 0x7f0b00be
+			public const int action_divider = 2131427518;
 			
-			// aapt resource value: 0x7f0b00b3
-			public const int action_image = 2131427507;
+			// aapt resource value: 0x7f0b00b8
+			public const int action_image = 2131427512;
 			
 			// aapt resource value: 0x7f0b0003
 			public const int action_menu_divider = 2131427331;
@@ -5899,11 +5909,11 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b006b
 			public const int action_mode_close_button = 2131427435;
 			
-			// aapt resource value: 0x7f0b00b4
-			public const int action_text = 2131427508;
+			// aapt resource value: 0x7f0b00b9
+			public const int action_text = 2131427513;
 			
-			// aapt resource value: 0x7f0b00c2
-			public const int actions = 2131427522;
+			// aapt resource value: 0x7f0b00c7
+			public const int actions = 2131427527;
 			
 			// aapt resource value: 0x7f0b006c
 			public const int activity_chooser_view_content = 2131427436;
@@ -5959,8 +5969,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b0072
 			public const int buttonPanel = 2131427442;
 			
-			// aapt resource value: 0x7f0b00b6
-			public const int cancel_action = 2131427510;
+			// aapt resource value: 0x7f0b00bb
+			public const int cancel_action = 2131427515;
 			
 			// aapt resource value: 0x7f0b004c
 			public const int center = 2131427404;
@@ -5974,8 +5984,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b0086
 			public const int checkbox = 2131427462;
 			
-			// aapt resource value: 0x7f0b00be
-			public const int chronometer = 2131427518;
+			// aapt resource value: 0x7f0b00c3
+			public const int chronometer = 2131427523;
 			
 			// aapt resource value: 0x7f0b0061
 			public const int clip_horizontal = 2131427425;
@@ -6034,8 +6044,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b0037
 			public const int end = 2131427383;
 			
-			// aapt resource value: 0x7f0b00c4
-			public const int end_padder = 2131427524;
+			// aapt resource value: 0x7f0b00c9
+			public const int end_padder = 2131427529;
 			
 			// aapt resource value: 0x7f0b0046
 			public const int enterAlways = 2131427398;
@@ -6064,14 +6074,29 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b005f
 			public const int filled = 2131427423;
 			
+			// aapt resource value: 0x7f0b00b3
+			public const int fingerprint_btnCancel = 2131427507;
+			
+			// aapt resource value: 0x7f0b00b4
+			public const int fingerprint_btnFallback = 2131427508;
+			
+			// aapt resource value: 0x7f0b00b0
+			public const int fingerprint_imgFingerprint = 2131427504;
+			
+			// aapt resource value: 0x7f0b00b1
+			public const int fingerprint_txtHelp = 2131427505;
+			
+			// aapt resource value: 0x7f0b00b2
+			public const int fingerprint_txtReason = 2131427506;
+			
 			// aapt resource value: 0x7f0b005c
 			public const int @fixed = 2131427420;
 			
-			// aapt resource value: 0x7f0b00b0
-			public const int flyoutcontent_appbar = 2131427504;
+			// aapt resource value: 0x7f0b00b5
+			public const int flyoutcontent_appbar = 2131427509;
 			
-			// aapt resource value: 0x7f0b00b1
-			public const int flyoutcontent_recycler = 2131427505;
+			// aapt resource value: 0x7f0b00b6
+			public const int flyoutcontent_recycler = 2131427510;
 			
 			// aapt resource value: 0x7f0b0067
 			public const int forever = 2131427431;
@@ -6091,8 +6116,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b0071
 			public const int icon = 2131427441;
 			
-			// aapt resource value: 0x7f0b00c3
-			public const int icon_group = 2131427523;
+			// aapt resource value: 0x7f0b00c8
+			public const int icon_group = 2131427528;
 			
 			// aapt resource value: 0x7f0b0041
 			public const int ifRoom = 2131427393;
@@ -6100,8 +6125,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b006e
 			public const int image = 2131427438;
 			
-			// aapt resource value: 0x7f0b00bf
-			public const int info = 2131427519;
+			// aapt resource value: 0x7f0b00c4
+			public const int info = 2131427524;
 			
 			// aapt resource value: 0x7f0b0068
 			public const int italic = 2131427432;
@@ -6130,23 +6155,23 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b0070
 			public const int list_item = 2131427440;
 			
-			// aapt resource value: 0x7f0b00c5
-			public const int main_appbar = 2131427525;
+			// aapt resource value: 0x7f0b00ca
+			public const int main_appbar = 2131427530;
 			
-			// aapt resource value: 0x7f0b00c7
-			public const int main_tablayout = 2131427527;
+			// aapt resource value: 0x7f0b00cc
+			public const int main_tablayout = 2131427532;
 			
-			// aapt resource value: 0x7f0b00c6
-			public const int main_toolbar = 2131427526;
+			// aapt resource value: 0x7f0b00cb
+			public const int main_toolbar = 2131427531;
 			
-			// aapt resource value: 0x7f0b00c8
-			public const int main_viewpager = 2131427528;
+			// aapt resource value: 0x7f0b00cd
+			public const int main_viewpager = 2131427533;
 			
-			// aapt resource value: 0x7f0b00ce
-			public const int masked = 2131427534;
+			// aapt resource value: 0x7f0b00d3
+			public const int masked = 2131427539;
 			
-			// aapt resource value: 0x7f0b00b8
-			public const int media_actions = 2131427512;
+			// aapt resource value: 0x7f0b00bd
+			public const int media_actions = 2131427517;
 			
 			// aapt resource value: 0x7f0b009c
 			public const int message = 2131427484;
@@ -6178,14 +6203,14 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b0025
 			public const int normal = 2131427365;
 			
-			// aapt resource value: 0x7f0b00c1
-			public const int notification_background = 2131427521;
+			// aapt resource value: 0x7f0b00c6
+			public const int notification_background = 2131427526;
 			
-			// aapt resource value: 0x7f0b00bb
-			public const int notification_main_column = 2131427515;
+			// aapt resource value: 0x7f0b00c0
+			public const int notification_main_column = 2131427520;
 			
-			// aapt resource value: 0x7f0b00ba
-			public const int notification_main_column_container = 2131427514;
+			// aapt resource value: 0x7f0b00bf
+			public const int notification_main_column_container = 2131427519;
 			
 			// aapt resource value: 0x7f0b0060
 			public const int outline = 2131427424;
@@ -6214,11 +6239,11 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b0055
 			public const int right = 2131427413;
 			
-			// aapt resource value: 0x7f0b00c0
-			public const int right_icon = 2131427520;
+			// aapt resource value: 0x7f0b00c5
+			public const int right_icon = 2131427525;
 			
-			// aapt resource value: 0x7f0b00bc
-			public const int right_side = 2131427516;
+			// aapt resource value: 0x7f0b00c1
+			public const int right_side = 2131427521;
 			
 			// aapt resource value: 0x7f0b000c
 			public const int save_image_matrix = 2131427340;
@@ -6283,11 +6308,11 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b004f
 			public const int selected = 2131427407;
 			
-			// aapt resource value: 0x7f0b00c9
-			public const int shellcontent_appbar = 2131427529;
+			// aapt resource value: 0x7f0b00ce
+			public const int shellcontent_appbar = 2131427534;
 			
-			// aapt resource value: 0x7f0b00ca
-			public const int shellcontent_toolbar = 2131427530;
+			// aapt resource value: 0x7f0b00cf
+			public const int shellcontent_toolbar = 2131427535;
 			
 			// aapt resource value: 0x7f0b0083
 			public const int shortcut = 2131427459;
@@ -6301,8 +6326,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b002c
 			public const int showTitle = 2131427372;
 			
-			// aapt resource value: 0x7f0b00cb
-			public const int sliding_tabs = 2131427531;
+			// aapt resource value: 0x7f0b00d0
+			public const int sliding_tabs = 2131427536;
 			
 			// aapt resource value: 0x7f0b00a4
 			public const int smallLabel = 2131427492;
@@ -6337,8 +6362,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b0056
 			public const int start = 2131427414;
 			
-			// aapt resource value: 0x7f0b00b7
-			public const int status_bar_latest_event_content = 2131427511;
+			// aapt resource value: 0x7f0b00bc
+			public const int status_bar_latest_event_content = 2131427516;
 			
 			// aapt resource value: 0x7f0b005b
 			public const int stretch = 2131427419;
@@ -6388,8 +6413,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b001a
 			public const int textinput_helper_text = 2131427354;
 			
-			// aapt resource value: 0x7f0b00bd
-			public const int time = 2131427517;
+			// aapt resource value: 0x7f0b00c2
+			public const int time = 2131427522;
 			
 			// aapt resource value: 0x7f0b0023
 			public const int title = 2131427363;
@@ -6400,8 +6425,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b007e
 			public const int title_template = 2131427454;
 			
-			// aapt resource value: 0x7f0b00cc
-			public const int toolbar = 2131427532;
+			// aapt resource value: 0x7f0b00d1
+			public const int toolbar = 2131427537;
 			
 			// aapt resource value: 0x7f0b0045
 			public const int top = 2131427397;
@@ -6442,8 +6467,8 @@ namespace QRCodeAuthMobile.Droid
 			// aapt resource value: 0x7f0b001b
 			public const int view_offset_helper = 2131427355;
 			
-			// aapt resource value: 0x7f0b00cd
-			public const int visible = 2131427533;
+			// aapt resource value: 0x7f0b00d2
+			public const int visible = 2131427538;
 			
 			// aapt resource value: 0x7f0b0043
 			public const int withText = 2131427395;
@@ -6683,82 +6708,85 @@ namespace QRCodeAuthMobile.Droid
 			public const int design_text_input_password_icon = 2130968620;
 			
 			// aapt resource value: 0x7f04002d
-			public const int FlyoutContent = 2130968621;
+			public const int FingerprintDialog = 2130968621;
 			
 			// aapt resource value: 0x7f04002e
-			public const int mtrl_layout_snackbar = 2130968622;
+			public const int FlyoutContent = 2130968622;
 			
 			// aapt resource value: 0x7f04002f
-			public const int mtrl_layout_snackbar_include = 2130968623;
+			public const int mtrl_layout_snackbar = 2130968623;
 			
 			// aapt resource value: 0x7f040030
-			public const int notification_action = 2130968624;
+			public const int mtrl_layout_snackbar_include = 2130968624;
 			
 			// aapt resource value: 0x7f040031
-			public const int notification_action_tombstone = 2130968625;
+			public const int notification_action = 2130968625;
 			
 			// aapt resource value: 0x7f040032
-			public const int notification_media_action = 2130968626;
+			public const int notification_action_tombstone = 2130968626;
 			
 			// aapt resource value: 0x7f040033
-			public const int notification_media_cancel_action = 2130968627;
+			public const int notification_media_action = 2130968627;
 			
 			// aapt resource value: 0x7f040034
-			public const int notification_template_big_media = 2130968628;
+			public const int notification_media_cancel_action = 2130968628;
 			
 			// aapt resource value: 0x7f040035
-			public const int notification_template_big_media_custom = 2130968629;
+			public const int notification_template_big_media = 2130968629;
 			
 			// aapt resource value: 0x7f040036
-			public const int notification_template_big_media_narrow = 2130968630;
+			public const int notification_template_big_media_custom = 2130968630;
 			
 			// aapt resource value: 0x7f040037
-			public const int notification_template_big_media_narrow_custom = 2130968631;
+			public const int notification_template_big_media_narrow = 2130968631;
 			
 			// aapt resource value: 0x7f040038
-			public const int notification_template_custom_big = 2130968632;
+			public const int notification_template_big_media_narrow_custom = 2130968632;
 			
 			// aapt resource value: 0x7f040039
-			public const int notification_template_icon_group = 2130968633;
+			public const int notification_template_custom_big = 2130968633;
 			
 			// aapt resource value: 0x7f04003a
-			public const int notification_template_lines_media = 2130968634;
+			public const int notification_template_icon_group = 2130968634;
 			
 			// aapt resource value: 0x7f04003b
-			public const int notification_template_media = 2130968635;
+			public const int notification_template_lines_media = 2130968635;
 			
 			// aapt resource value: 0x7f04003c
-			public const int notification_template_media_custom = 2130968636;
+			public const int notification_template_media = 2130968636;
 			
 			// aapt resource value: 0x7f04003d
-			public const int notification_template_part_chronometer = 2130968637;
+			public const int notification_template_media_custom = 2130968637;
 			
 			// aapt resource value: 0x7f04003e
-			public const int notification_template_part_time = 2130968638;
+			public const int notification_template_part_chronometer = 2130968638;
 			
 			// aapt resource value: 0x7f04003f
-			public const int RootLayout = 2130968639;
+			public const int notification_template_part_time = 2130968639;
 			
 			// aapt resource value: 0x7f040040
-			public const int select_dialog_item_material = 2130968640;
+			public const int RootLayout = 2130968640;
 			
 			// aapt resource value: 0x7f040041
-			public const int select_dialog_multichoice_material = 2130968641;
+			public const int select_dialog_item_material = 2130968641;
 			
 			// aapt resource value: 0x7f040042
-			public const int select_dialog_singlechoice_material = 2130968642;
+			public const int select_dialog_multichoice_material = 2130968642;
 			
 			// aapt resource value: 0x7f040043
-			public const int ShellContent = 2130968643;
+			public const int select_dialog_singlechoice_material = 2130968643;
 			
 			// aapt resource value: 0x7f040044
-			public const int support_simple_spinner_dropdown_item = 2130968644;
+			public const int ShellContent = 2130968644;
 			
 			// aapt resource value: 0x7f040045
-			public const int Tabbar = 2130968645;
+			public const int support_simple_spinner_dropdown_item = 2130968645;
 			
 			// aapt resource value: 0x7f040046
-			public const int Toolbar = 2130968646;
+			public const int Tabbar = 2130968646;
+			
+			// aapt resource value: 0x7f040047
+			public const int Toolbar = 2130968647;
 			
 			static Layout()
 			{

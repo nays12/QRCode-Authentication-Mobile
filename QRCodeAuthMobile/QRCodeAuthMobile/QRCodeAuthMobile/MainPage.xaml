@@ -23,7 +23,8 @@
             <Button Text="Face ID"
                     Style="{StaticResource buttonStyle}"/>
             <Button Text="Finger Print ID"
-                    Style="{StaticResource buttonStyle}"/>
+                    Style="{StaticResource buttonStyle}"
+                    Clicked="BtnFingerPrint_Clicked"/>
 
         </StackLayout>
 

@@ -12,8 +12,7 @@ namespace QRCodeAuthMobile
 
 			MainPage = new MainPage();
             //MainPage = new SelectType();
-            //MainPage = new MainPage();
-            //MainPage = new MainPage();
+
         }
 
 		protected override void OnStart()

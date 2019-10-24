@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
 
 namespace QRCodeAuthMobile
 {
@@ -17,5 +19,15 @@ namespace QRCodeAuthMobile
 		{
 			InitializeComponent();
 		}
-	}
+
+        private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
+        {
+            FingerprintAuthenticationResult result = await CrossFingerprint.Current.AuthenticateAsync("Provide fingerprint to sign in.");
+
+            if (result.Authenticated)
+            {
+                App.Current.MainPage = new SelectType();
+            }
+        }
+    }
 }
