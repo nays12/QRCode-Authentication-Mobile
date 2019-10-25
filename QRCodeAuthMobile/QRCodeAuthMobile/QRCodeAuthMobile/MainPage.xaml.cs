@@ -22,12 +22,20 @@ namespace QRCodeAuthMobile
 
         private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
         {
-            FingerprintAuthenticationResult result = await CrossFingerprint.Current.AuthenticateAsync("Provide fingerprint to sign in.");
-
-            if (result.Authenticated)
+            if (await CrossFingerprint.Current.IsAvailableAsync())
             {
-                App.Current.MainPage = new SelectType();
+                FingerprintAuthenticationResult result = await CrossFingerprint.Current.AuthenticateAsync("Provide fingerprint to sign in.");
+                if (result.Authenticated)
+                {
+                    App.Current.MainPage = new SelectType();
+                }
             }
+            else
+            {
+                await DisplayAlert("Alert", "No Fingerprint feature set up", "OK");
+            }
+
+
         }
     }
 }
