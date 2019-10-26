@@ -34,5 +34,7 @@
     <string>QRCodeAuthMobile</string>
     <key>XSAppIconAssets</key>
     <string>Assets.xcassets/AppIcon.appiconset</string>
+    <key>NSFaceIDUsageDescription</key>
+    <string>FaceID</string>
 </dict>
 </plist>

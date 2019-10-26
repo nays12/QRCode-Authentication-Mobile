@@ -32,7 +32,7 @@ namespace QRCodeAuthMobile
             }
             else
             {
-                await DisplayAlert("Alert", "No Fingerprint feature set up", "OK");
+                await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
             }
 
 
