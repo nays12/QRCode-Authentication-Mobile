@@ -5,11 +5,29 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="QRCodeAuthMobile.WebAppLogin">
+
+
+
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+        <StackLayout BackgroundColor="#005073" Padding="50">
+
+            <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
+
+                <Label Text=" Enter The Security Code Below To Access The Website:"
+                       Style="{StaticResource lblStyle}"
+                       HorizontalOptions="CenterAndExpand"/>
+
+                <Frame OutlineColor="LimeGreen" BackgroundColor="Transparent" Padding="2" Margin="80,20,80,20">
+
+                    <Label Text="25Jkl3" 
+                           HorizontalOptions="Center"
+                           FontSize="30"
+                           TextColor="LimeGreen"/>
+                </Frame>
+
+            </StackLayout>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
