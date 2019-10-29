@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
+using QRCodeAuthMobile.Interfaces;
 
 namespace QRCodeAuthMobile
 {
@@ -36,11 +37,10 @@ namespace QRCodeAuthMobile
             }
         }
 
-		private async void BtnFaceID_Clicked(object sender, EventArgs e)
+		private void BtnFaceID_Clicked(object sender, EventArgs e)
 		{
-
-
-		}
+            DependencyService.Get<IFaceAuth>().FaceAuthentication();
+        }
 		
 	}
 }
