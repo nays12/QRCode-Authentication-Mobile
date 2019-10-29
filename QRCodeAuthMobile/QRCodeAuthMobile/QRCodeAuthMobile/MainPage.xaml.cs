@@ -34,8 +34,13 @@ namespace QRCodeAuthMobile
             {
                 await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
             }
-
-
         }
-    }
+
+		private async void BtnFaceID_Clicked(object sender, EventArgs e)
+		{
+
+
+		}
+		
+	}
 }
