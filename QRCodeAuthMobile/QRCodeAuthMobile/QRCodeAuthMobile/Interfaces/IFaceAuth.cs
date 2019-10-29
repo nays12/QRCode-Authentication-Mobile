@@ -4,7 +4,7 @@ using System.Text;
 
 namespace QRCodeAuthMobile.Interfaces
 {
-    interface IFaceAuth
+    public interface IFaceAuth
     {
         void FaceAuthentication();
     }
