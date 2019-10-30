@@ -5,7 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="QRCodeAuthMobile.SelectType">
+    
     <ContentPage.Content>
+
         <StackLayout BackgroundColor="#005073" Padding="40">
 
             <Label Text="Welcome To The Authenticator!"
@@ -30,5 +32,6 @@
             </StackLayout>
 
         </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
