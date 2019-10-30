@@ -7,6 +7,10 @@
              x:Class="QRCodeAuthMobile.Home">
     
     <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!!!!!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
         <StackLayout BackgroundColor="#005073" Padding="40">
 
             <Label Text="The Authenticator!"

@@ -6,6 +6,11 @@
              mc:Ignorable="d"
              x:Class="QRCodeAuthMobile.MainPage">
 
+    <StackLayout>
+        <!-- Place new controls here -->
+        <Label Text="Welcome to Xamarin.Forms!!!!" 
+           HorizontalOptions="Center"
+           VerticalOptions="CenterAndExpand" />
     <StackLayout BackgroundColor="#005073" Padding="40">
 
         <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">

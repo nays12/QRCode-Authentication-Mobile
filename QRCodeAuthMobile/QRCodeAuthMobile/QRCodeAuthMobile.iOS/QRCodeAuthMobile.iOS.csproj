@@ -123,6 +123,8 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>4.0.1.5</Version>
     <PackageReference Include="Plugin.Fingerprint">
       <Version>1.4.9</Version>
     </PackageReference>

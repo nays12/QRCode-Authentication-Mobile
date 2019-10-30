@@ -8,6 +8,8 @@ using Android.Widget;
 using Android.OS;
 using Plugin.Fingerprint;
 
+using Plugin.CurrentActivity;
+
 namespace QRCodeAuthMobile.Droid
 {
     [Activity(Label = "QRCodeAuthMobile", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -26,12 +28,16 @@ namespace QRCodeAuthMobile.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             LoadApplication(new App());
-        }
+
+			CrossCurrentActivity.Current.Init(this, savedInstanceState);
+		}
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
-            base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+			Plugin.Permissions.PermissionsImplementation.Current.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+
+			base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
     }
 }
