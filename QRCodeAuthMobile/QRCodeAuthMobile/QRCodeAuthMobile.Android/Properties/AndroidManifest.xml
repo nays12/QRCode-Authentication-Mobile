@@ -12,4 +12,6 @@
 				android:resource="@xml/file_paths"></meta-data>
     </provider>
   </application>
+  <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+  <uses-permission android:name="com.samsung.android.providers.context.permission.WRITE_USE_APP_FEATURE_SURVEY" />
 </manifest>

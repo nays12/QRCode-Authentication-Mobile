@@ -5,11 +5,36 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="QRCodeAuthMobile.Home">
+    
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!!!!!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="#005073" Padding="40">
+
+            <Label Text="The Authenticator!"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
+
+            <Image Source="logo.jpg"/>
+
+            <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
+
+                <Label Text="What would you like to do?"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
+
+                <Button Text="Share Credentials"
+                        Style="{StaticResource buttonStyle}"/>
+                <Button Text="Record Attendance"
+                        Style="{StaticResource buttonStyle}"/>
+                <Button Text="Update Credentials"                        
+                        Style="{StaticResource buttonStyle}"/>
+                <Button Text="Web App Login"
+                        Style="{StaticResource buttonStyle}"/>
+
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

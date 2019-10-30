@@ -6,6 +6,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using Plugin.Fingerprint;
 
 using Plugin.CurrentActivity;
 
@@ -21,8 +22,11 @@ namespace QRCodeAuthMobile.Droid
 
             base.OnCreate(savedInstanceState);
 
+            CrossFingerprint.SetCurrentActivityResolver(() => this);
+
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
             LoadApplication(new App());
 
 			CrossCurrentActivity.Current.Init(this, savedInstanceState);

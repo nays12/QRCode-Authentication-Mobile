@@ -11,6 +11,29 @@
         <Label Text="Welcome to Xamarin.Forms!!!!" 
            HorizontalOptions="Center"
            VerticalOptions="CenterAndExpand" />
+    <StackLayout BackgroundColor="#005073" Padding="40">
+
+        <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
+
+            <Label Text="The Authenticator!"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
+
+            <Image Source="logo.jpg"/>
+
+            <Label Text="Set Up Desired Authentication Method"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
+
+            <Button Text="Face ID"
+                    Style="{StaticResource buttonStyle}"
+					Clicked="BtnFaceID_Clicked"/>
+            <Button Text="Finger Print ID"
+                    Style="{StaticResource buttonStyle}"
+                    Clicked="BtnFingerPrint_Clicked"/>
+
+        </StackLayout>
+
     </StackLayout>
 
 </ContentPage>
