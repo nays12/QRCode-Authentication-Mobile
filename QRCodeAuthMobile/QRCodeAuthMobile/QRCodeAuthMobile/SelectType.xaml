@@ -7,7 +7,7 @@
              x:Class="QRCodeAuthMobile.SelectType">
     
     <ContentPage.Content>
-        
+
         <StackLayout BackgroundColor="#005073" Padding="40">
 
             <Label Text="Welcome To The Authenticator!"
