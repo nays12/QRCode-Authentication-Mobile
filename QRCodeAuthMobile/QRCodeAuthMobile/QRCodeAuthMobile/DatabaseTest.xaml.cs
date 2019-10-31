@@ -23,7 +23,7 @@ namespace QRCodeAuthMobile
 			statusMessage.Text = "";
 			
 			Credential cred1 = new Credential {
-					name = "student email",
+					name = "Email",
 					issuer = "UHCL UCT",
 					issue_date = Convert.ToDateTime("01/15/2016"),
 					expiration_date = Convert.ToDateTime("12/21/2019"),

@@ -8,24 +8,23 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to the database test!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                VerticalOptions="FillAndExpand" 
+                HorizontalOptions="FillAndExpand" />
 
 			<Button Text="Add Credential"
             Clicked="OnNewButtonClicked" />
 
-			<Label x:Name="statusMessage" />
-
 			<Button Text="Get All Credentials"
             Clicked="OnGetButtonClicked" />
 
-			<ListView x:Name="credentialsList">
+			<Label x:Name="statusMessage" />
+
+			<ListView x:Name="credentialsList" HasUnevenRows="True">
 				<ListView.ItemTemplate>
 					<DataTemplate>
-						<ViewCell Height="30">
+						<ViewCell Height="50">
 							<StackLayout Padding="5">
 								<Label Text="{Binding name}" />
-								<Label Text="{Binding issuer}" />
 								<Label Text="{Binding value}" />
 						</StackLayout>
 						</ViewCell>
