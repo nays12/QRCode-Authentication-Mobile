@@ -1,11 +1,14 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Linq;
 
 namespace QRCodeAuthMobile
 {
 	public partial class App : Application
 	{
+
+		string dbPath => FileAccessHelper.GetLocalFilePath("mobiledb.db3");
 		public App()
 		{
 			InitializeComponent();
