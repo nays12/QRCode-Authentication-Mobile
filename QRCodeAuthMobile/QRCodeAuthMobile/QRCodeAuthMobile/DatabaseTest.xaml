@@ -7,9 +7,33 @@
              x:Class="QRCodeAuthMobile.DatabaseTest">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
+            <Label Text="Welcome to the database test!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+
+			<Button Text="Add Credential"
+            Clicked="OnNewButtonClicked" />
+
+			<Label x:Name="statusMessage" />
+
+			<Button Text="Get All Credentials"
+            Clicked="OnGetButtonClicked" />
+
+			<ListView x:Name="credentialsList">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<ViewCell Height="30">
+							<StackLayout Padding="5">
+								<Label Text="{Binding name}" />
+								<Label Text="{Binding issuer}" />
+								<Label Text="{Binding value}" />
+						</StackLayout>
+						</ViewCell>
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
+
+
+		</StackLayout>
     </ContentPage.Content>
 </ContentPage>
