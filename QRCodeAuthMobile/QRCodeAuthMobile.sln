@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRCodeAuthMobile.Android", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRCodeAuthMobile.iOS", "QRCodeAuthMobile\QRCodeAuthMobile.iOS\QRCodeAuthMobile.iOS.csproj", "{881C8E13-D66F-4FAB-833C-08AA61F058AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRCodeAuthMobile", "QRCodeAuthMobile\QRCodeAuthMobile\QRCodeAuthMobile.csproj", "{7030F193-AE69-49C0-8158-285FE9DC2DB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QRCodeAuthMobile", "QRCodeAuthMobile\QRCodeAuthMobile\QRCodeAuthMobile.csproj", "{7030F193-AE69-49C0-8158-285FE9DC2DB1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileAPI", "MobileAPI\MobileAPI.csproj", "{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +75,18 @@ Global
 		{7030F193-AE69-49C0-8158-285FE9DC2DB1}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{7030F193-AE69-49C0-8158-285FE9DC2DB1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{7030F193-AE69-49C0-8158-285FE9DC2DB1}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Release|iPhone.Build.0 = Release|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{BE6E8198-4C41-4EBE-86F3-91C72D3C5C2D}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
