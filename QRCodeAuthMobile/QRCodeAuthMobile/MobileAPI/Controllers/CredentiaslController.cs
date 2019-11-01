@@ -15,7 +15,7 @@ namespace MobileAPI.Controllers
     {
         // GET: api/Credentiasl
         [HttpGet]
-		[Route("api/Events/GetAllCredentials")]
+		[Route("api/Credentials/GetAllCredentials")]
 		public async Task<List<Credential>> Get()
         {
 			List<Credential> credentials = await App.CredentialRepo.GetAllCredentialsAsync();
