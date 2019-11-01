@@ -2,6 +2,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Linq;
+using QRCodeAuthMobile.Data;
 
 namespace QRCodeAuthMobile
 {
