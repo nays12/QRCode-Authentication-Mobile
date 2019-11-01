@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xamarin.Essentials;
 
-namespace QRCodeAuthMobile
+namespace QRCodeAuthMobile.Data
 {
 	public class FileAccessHelper
 	{
