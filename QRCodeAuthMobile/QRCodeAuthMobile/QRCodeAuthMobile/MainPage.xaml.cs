@@ -31,11 +31,11 @@ namespace QRCodeAuthMobile
 					App.Current.MainPage = new SelectType();
 				}
 			}
-			else
-			{
-				await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
-			}
-		}
+            else
+            {
+                await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
+            }
+        }
 
 		private void BtnFaceID_Clicked(object sender, EventArgs e)
 		{
