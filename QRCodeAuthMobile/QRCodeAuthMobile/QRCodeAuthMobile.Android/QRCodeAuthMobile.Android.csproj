@@ -61,6 +61,7 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implementation\FaceAuthImp.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

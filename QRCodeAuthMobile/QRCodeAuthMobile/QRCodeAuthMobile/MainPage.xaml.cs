@@ -23,22 +23,30 @@ namespace QRCodeAuthMobile
 
 		private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
 		{
+            //Check if Fingerprint ID is available on mobile device. 
 			if (await CrossFingerprint.Current.IsAvailableAsync())
 			{
-				FingerprintAuthenticationResult result = await CrossFingerprint.Current.AuthenticateAsync("Provide fingerprint to sign in.");
-				if (result.Authenticated)
+                //If avaialbe authenticate by Fingerprint ID. 
+                FingerprintAuthenticationResult result = await CrossFingerprint.Current.AuthenticateAsync("Provide fingerprint to sign in.");
+
+                //If authentication is successful continue to next page. 
+                if (result.Authenticated)
 				{
+                    //If is authenticated successfully navigate to the Select type page. 
 					App.Current.MainPage = new SelectType();
 				}
 			}
             else
             {
+                //If FingerprintID is NOT availabe on mobile device, display appropriate error message. 
                 await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
             }
         }
 
 		private void BtnFaceID_Clicked(object sender, EventArgs e)
 		{
+            //If face ID authentification is selected handle the action with platform specific code. 
+            //See Android and IOS project implementation folders for code. 
 			DependencyService.Get<IFaceAuth>().FaceAuthentication();
 		}
 	}
