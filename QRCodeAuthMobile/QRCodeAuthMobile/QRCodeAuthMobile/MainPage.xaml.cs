@@ -33,7 +33,7 @@ namespace QRCodeAuthMobile
                 if (result.Authenticated)
 				{
                     //If is authenticated successfully navigate to the Select type page. 
-					App.Current.MainPage = new SelectType();
+					App.Current.MainPage = new Home();
 				}
 			}
             else

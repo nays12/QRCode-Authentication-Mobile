@@ -30,7 +30,7 @@ namespace QRCodeAuthMobile.iOS.Implementations
                         //If authetification is successfull navigate to Select Type page. 
                         if (success)
                         {
-                            Xamarin.Forms.Application.Current.MainPage = new SelectType();
+                            Xamarin.Forms.Application.Current.MainPage = new Home();
                         }
                     });
                 });
