@@ -18,12 +18,11 @@
 
 			<StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
-				<Label Text="It looks like this is your first time using the app."
+				<Label Text="Please enter some iformation below to setup your account."
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
-				<Label Text="Enter some information about yourself so your credential authority can help you set up your mobile account."
-                       HorizontalOptions="CenterAndExpand"
-                       Style="{StaticResource lblStyle}"/>
+
+				<Label x:Name="statusMessage" />
 
 				<Label Text="Enter your School ID Number:" 
 					   Style="{StaticResource lblStyle}" />
@@ -48,7 +47,10 @@
 						<x:String>Staff</x:String>
 					</Picker.Items>
 				</Picker>
-
+				
+				<Button Text="Submit"
+					Clicked="SubmitButtonClicked" 
+					Style="{StaticResource buttonStyle}"/>
 			</StackLayout>
 
 		</StackLayout>
