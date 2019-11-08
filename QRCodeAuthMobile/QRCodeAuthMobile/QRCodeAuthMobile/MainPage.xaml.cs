@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 using QRCodeAuthMobile.Interfaces;
+using QRCodeAuthMobile.Models;
 
 namespace QRCodeAuthMobile
 {
@@ -32,8 +33,17 @@ namespace QRCodeAuthMobile
                 //If authentication is successful continue to next page. 
                 if (result.Authenticated)
 				{
-                    //If is authenticated successfully navigate to the Select type page. 
-					App.Current.MainPage = new Home();
+					//If is authenticated successfully and has an account, navigate to the Select type page. 
+					if (await App.UserRepo.GetUserbyId("test") != null) // I will add logic to get current user if they exist here
+					{
+						App.Current.MainPage = new Home();
+					}
+					else
+					{
+						App.Current.MainPage = new SelectType();
+					}
+
+					
 				}
 			}
             else

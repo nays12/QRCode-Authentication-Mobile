@@ -23,8 +23,6 @@ namespace QRCodeAuthMobile
 
 			statusMessage.Text = "";
 
-
-
 			User mobileUser = new User
 			{
 				userId = schoolId.Text,
@@ -35,6 +33,17 @@ namespace QRCodeAuthMobile
 
 			await App.UserRepo.AddUserAsync(mobileUser);
 			statusMessage.Text = App.UserRepo.StatusMessage;
+
+			// add logic to display popup about credential authority
+			if (mobileUser.group == "Student")
+			{
+				await DisplayAlert("Complete Setup", "Please go to the Office of Admissions to add credentials to your account", "OK");
+			}
+			else
+			{
+				await DisplayAlert("Complete Setup", "Please go to the Human Resources Office to add credentials to your account", "OK");
+			}
+			
 		}
 	}
 }
