@@ -38,5 +38,26 @@ namespace QRCodeAuthMobile.Data
 				StatusMessage = string.Format("Sorry we could not add you, {0}. Error: {1}", mobileUser.first_name, ex.Message);
 			}
 		}
+
+		public async Task<User> GetUserbyId(string id)
+		{
+			return await dbconn.Table<User>()
+								.Where(i => i.userId == id)
+								.FirstOrDefaultAsync();
+		}
+
+		public async Task<List<User>> GetAllUsersAsync()
+		{
+			try
+			{
+				return await dbconn.Table<User>().ToListAsync();
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failed to get users. {0}", ex.Message);
+			}
+
+			return new List<User>();
+		}
 	}
 }

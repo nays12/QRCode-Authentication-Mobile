@@ -21,12 +21,12 @@ namespace QRCodeAuthMobile
 			EventRepo = new EventRepository(dbPath);
 
 			//  MainPage = new MainPage();
-			  MainPage = new SelectType();
+			// MainPage = new SelectType();
 			//  MainPage = new Home();
 			//  MainPage = new ConfirmCredentials();
 			//  MainPage = new ConfirmMessage();
 			//  MainPage = new ConfirmAttendance();
-			//MainPage = new DatabaseTest();
+			  MainPage = new DatabaseTest();
             // MainPage = new WebAppLogin();
         }
 

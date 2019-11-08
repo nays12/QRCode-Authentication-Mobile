@@ -23,6 +23,8 @@ namespace QRCodeAuthMobile
 
 			statusMessage.Text = "";
 
+
+
 			User mobileUser = new User
 			{
 				userId = schoolId.Text,

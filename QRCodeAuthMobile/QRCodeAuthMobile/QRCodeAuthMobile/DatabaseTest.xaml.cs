@@ -41,6 +41,9 @@ namespace QRCodeAuthMobile
 
 			//List<Credential> credentials = await App.CredentialRepo.GetAllCredentialsAsync();
 			//credentialsList.ItemsSource = credentials;
+
+			List<User> users = await App.UserRepo.GetAllUsersAsync();
+			credentialsList.ItemsSource = users;
 		}
 
 

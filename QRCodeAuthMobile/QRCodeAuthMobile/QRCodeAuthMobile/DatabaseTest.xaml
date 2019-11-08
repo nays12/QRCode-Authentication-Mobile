@@ -24,8 +24,9 @@
 					<DataTemplate>
 						<ViewCell Height="50">
 							<StackLayout Padding="5">
-								<Label Text="{Binding name}" />
-								<Label Text="{Binding value}" />
+								<Label Text="{Binding userId}" />
+								<Label Text="{Binding first_name}" />
+								<Label Text="{Binding group}" />
 						</StackLayout>
 						</ViewCell>
 					</DataTemplate>

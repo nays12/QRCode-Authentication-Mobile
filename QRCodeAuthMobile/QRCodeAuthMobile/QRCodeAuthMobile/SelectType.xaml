@@ -22,7 +22,8 @@
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
 
-				<Label x:Name="statusMessage" />
+				<Label x:Name="statusMessage"
+					   Style="{StaticResource lblStyle}"/>
 
 				<Label Text="Enter your School ID Number:" 
 					   Style="{StaticResource lblStyle}" />
