@@ -10,12 +10,13 @@ namespace QRCodeAuthMobile
 	{
 
 		string dbPath => FileAccessHelper.GetLocalFilePath("UserData.db3");
+		public static UserRepository UserRepo { get; private set; }
 		public static CredentialRepository CredentialRepo { get; private set; }
 		public static EventRepository EventRepo { get; private set; }
 		public App()
 		{
 			InitializeComponent();
-
+			UserRepo = new UserRepository(dbPath);
 			CredentialRepo = new CredentialRepository(dbPath);
 			EventRepo = new EventRepository(dbPath);
 

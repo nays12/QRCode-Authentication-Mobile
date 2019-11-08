@@ -22,25 +22,25 @@ namespace QRCodeAuthMobile
 		{
 			statusMessage.Text = "";
 			
-			Credential cred1 = new Credential {
-					name = "Email",
-					issuer = "UHCL UCT",
-					issue_date = Convert.ToDateTime("01/15/2016"),
-					expiration_date = Convert.ToDateTime("12/21/2019"),
-					value = "WigginsN7499@uhcl.edu",
-					is_valid = true
-				};
+			//Credential cred1 = new Credential {
+			//		name = "Email",
+			//		issuer = "UHCL UCT",
+			//		issue_date = Convert.ToDateTime("01/15/2016"),
+			//		expiration_date = Convert.ToDateTime("12/21/2019"),
+			//		value = "WigginsN7499@uhcl.edu",
+			//		is_valid = true
+			//	};
 
-			await App.CredentialRepo.AddCredentialAsync(cred1);
-			statusMessage.Text = App.CredentialRepo.StatusMessage;
+			//await App.CredentialRepo.AddCredentialAsync(cred1);
+			//statusMessage.Text = App.CredentialRepo.StatusMessage;
 		}
 
 		public async void OnGetButtonClicked(object sender, EventArgs args)
 		{
 			statusMessage.Text = "";
 
-			List<Credential> credentials = await App.CredentialRepo.GetAllCredentialsAsync();
-			credentialsList.ItemsSource = credentials;
+			//List<Credential> credentials = await App.CredentialRepo.GetAllCredentialsAsync();
+			//credentialsList.ItemsSource = credentials;
 		}
 
 
