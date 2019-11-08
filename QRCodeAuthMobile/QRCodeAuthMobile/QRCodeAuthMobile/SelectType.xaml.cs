@@ -14,6 +14,7 @@ namespace QRCodeAuthMobile
 	{
 		public SelectType()
 		{
+			string userGroup;
 			InitializeComponent();
 		}
 	}

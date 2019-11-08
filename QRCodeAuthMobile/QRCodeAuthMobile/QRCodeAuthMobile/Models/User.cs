@@ -6,7 +6,7 @@ using System.Text;
 namespace QRCodeAuthMobile.Models
 {
 	[Table("users")]
-	class User
+	public class User
 	{
 		[PrimaryKey, AutoIncrement]
 		public int id { get; set; }
