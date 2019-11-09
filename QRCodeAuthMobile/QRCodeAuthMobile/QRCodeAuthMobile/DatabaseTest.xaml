@@ -18,6 +18,7 @@
             Clicked="OnGetButtonClicked" />
 
 			<Label x:Name="statusMessage" />
+			<Label x:Name="RowCount" />
 
 			<ListView x:Name="credentialsList" HasUnevenRows="True">
 				<ListView.ItemTemplate>

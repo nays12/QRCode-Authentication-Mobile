@@ -44,6 +44,8 @@ namespace QRCodeAuthMobile
 
 			List<User> users = await App.UserRepo.GetAllUsersAsync();
 			credentialsList.ItemsSource = users;
+
+			RowCount.Text = App.UserRepo.GetRowCount().ToString();
 		}
 
 

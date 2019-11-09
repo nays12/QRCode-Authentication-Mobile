@@ -46,6 +46,13 @@ namespace QRCodeAuthMobile.Data
 								.FirstOrDefaultAsync();
 		}
 
+		public async Task<int> GetRowCount()
+		{
+			StatusMessage = "Success";
+			return await dbconn.Table<User>().CountAsync();			
+		}
+
+
 		public async Task<List<User>> GetAllUsersAsync()
 		{
 			try
