@@ -18,6 +18,15 @@ namespace QRCodeAuthMobile
 			InitializeComponent();
 		}
 
+
+		public void OnDeleteButtonClicked(object sender, EventArgs args)
+		{
+			string userId = deleteUser.Text;
+
+			App.UserRepo.DeleteUserbyId(userId);
+			statusMessage.Text = App.UserRepo.StatusMessage;
+		}
+		
 		public async void OnNewButtonClicked(object sender, EventArgs args)
 		{
 			statusMessage.Text = "";
@@ -45,6 +54,7 @@ namespace QRCodeAuthMobile
 			List<User> users = await App.UserRepo.GetAllUsersAsync();
 			credentialsList.ItemsSource = users;
 
+			statusMessage.Text = App.UserRepo.StatusMessage;
 			RowCount.Text = App.UserRepo.GetRowCount().ToString();
 		}
 

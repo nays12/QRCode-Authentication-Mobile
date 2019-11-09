@@ -29,7 +29,7 @@ namespace QRCodeAuthMobile.Data
 					last_name = mobileUser.last_name,
 					first_name = mobileUser.first_name,
 					group = mobileUser.group
-				}) ;
+				});
 
 				StatusMessage = string.Format("Welcome to the mobile token app, {0}!", mobileUser.first_name);
 			}
@@ -41,17 +41,13 @@ namespace QRCodeAuthMobile.Data
 
 		public async Task<User> GetUserbyId(string id)
 		{
-			return await dbconn.Table<User>()
-								.Where(i => i.userId == id)
-								.FirstOrDefaultAsync();
+			return await dbconn.Table<User>().Where(i => i.userId == id).FirstOrDefaultAsync();
 		}
 
 		public async Task<int> GetRowCount()
 		{
-			StatusMessage = "Success";
 			return await dbconn.Table<User>().CountAsync();			
 		}
-
 
 		public async Task<List<User>> GetAllUsersAsync()
 		{
@@ -65,6 +61,21 @@ namespace QRCodeAuthMobile.Data
 			}
 
 			return new List<User>();
+		}
+
+		public async void DeleteUserbyId(string id)
+		{
+			int result = 0;
+			try
+			{
+				result = await dbconn.DeleteAsync<User>(id);
+
+				StatusMessage = string.Format("Successfully deleted {0}!", id);
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failed to delete student with id {0}. Error: {1}", id, ex.Message);
+			}
 		}
 	}
 }
