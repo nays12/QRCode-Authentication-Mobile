@@ -16,22 +16,45 @@
 
             <Image Source="logo.jpg"/>
 
-            <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
+			<StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
-                <Label Text="Select Registration Type"
+				<Label Text="Please enter some iformation below to setup your account."
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
 
-                <Button Text="Student"
-                        Style="{StaticResource buttonStyle}"/>
-                <Button Text="Faculty"
-                        Style="{StaticResource buttonStyle}"/>
-                <Button Text="Staff"
-                        Style="{StaticResource buttonStyle}"/>
+				<Label x:Name="statusMessage"
+					   Style="{StaticResource lblStyle}"/>
 
-            </StackLayout>
+				<Label Text="Enter your School ID Number:" 
+					   Style="{StaticResource lblStyle}" />
+				<Entry x:Name="schoolId" />
 
-        </StackLayout>
+				<Label Text="Enter your first name:" 
+					   Style="{StaticResource lblStyle}"/>
+				<Entry x:Name="firstName" />
+
+				<Label Text="Enter your last name: "
+					   Style="{StaticResource lblStyle}"/>
+				<Entry x:Name="lastName" />
+
+				<Label Text="Select your role here at UHCL" 
+					   Style="{StaticResource lblStyle}"/>
+				<Picker Grid.Row="3" Grid.Column="1"
+						x:Name="group"
+						Title="Select your role">
+					<Picker.Items>
+						<x:String>Student</x:String>
+						<x:String>Faculty</x:String>
+						<x:String>Staff</x:String>
+					</Picker.Items>
+				</Picker>
+				
+				<Button Text="Submit"
+					Clicked="SubmitButtonClicked" 
+					Style="{StaticResource buttonStyle}"/>
+			</StackLayout>
+
+		</StackLayout>
         
     </ContentPage.Content>
 </ContentPage>

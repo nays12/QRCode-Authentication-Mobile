@@ -11,6 +11,7 @@ using Xamarin.Forms;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 using QRCodeAuthMobile.Interfaces;
+using QRCodeAuthMobile.Models;
 
 namespace QRCodeAuthMobile
 {
@@ -26,7 +27,9 @@ namespace QRCodeAuthMobile
 
 		private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
 		{
-            //Check if Fingerprint ID is available on mobile device. 
+			int count = 0;
+			count = await App.UserRepo.GetRowCount();
+			//Check if Fingerprint ID is available on mobile device. 
 			if (await CrossFingerprint.Current.IsAvailableAsync())
 			{
                 //If avaialbe authenticate by Fingerprint ID. 
@@ -35,8 +38,14 @@ namespace QRCodeAuthMobile
                 //If authentication is successful continue to next page. 
                 if (result.Authenticated)
 				{
-                    //If is authenticated successfully navigate to the Select type page. 
-					App.Current.MainPage = new Home();
+					if (count > 0) // If record count for User table is > 0 then an account exist
+					{
+						App.Current.MainPage = new Home();
+					}
+					else // If the record count is 0 then no User account exist
+					{
+						App.Current.MainPage = new SelectType();
+					}
 				}
 			}
             else

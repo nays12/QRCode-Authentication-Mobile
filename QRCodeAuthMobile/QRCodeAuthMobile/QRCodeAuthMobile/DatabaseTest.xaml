@@ -7,26 +7,30 @@
              x:Class="QRCodeAuthMobile.DatabaseTest">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to the database test!"
+			<Label Text="Welcome to the database test!"
                 VerticalOptions="FillAndExpand" 
                 HorizontalOptions="FillAndExpand" />
 
-			<Button Text="Add Credential"
-            Clicked="OnNewButtonClicked" />
-
-			<Button Text="Get All Credentials"
+			<Button Text="Get All Users"
             Clicked="OnGetButtonClicked" />
+			
+			<Label Text="Enter the id of a user you want to delete" />
+			<Entry x:Name="deleteUser" />
+
+			<Button Text="Delete User"
+            Clicked="OnDeleteButtonClicked" />
 
 			<Label x:Name="statusMessage" />
+			<Label x:Name="RowCount" />
 
 			<ListView x:Name="credentialsList" HasUnevenRows="True">
 				<ListView.ItemTemplate>
 					<DataTemplate>
 						<ViewCell Height="50">
 							<StackLayout Padding="5">
-								<Label Text="{Binding name}" />
-								<Label Text="{Binding value}" />
-						</StackLayout>
+								<Label Text="{Binding userId}" />
+								<Label Text="{Binding first_name}" />
+							</StackLayout>
 						</ViewCell>
 					</DataTemplate>
 				</ListView.ItemTemplate>
