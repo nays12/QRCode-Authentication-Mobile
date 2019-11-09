@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * Purpose: Displays page requesting comfirmation to share credentials
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

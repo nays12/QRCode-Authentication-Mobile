@@ -1,9 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿/*
+ * Purpose: Authenticates User and sends them to the appropiate screen once authenticated
+ * 
+ * Algorithm:
+ * 
+ */
+
+using System;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
@@ -46,7 +49,7 @@ namespace QRCodeAuthMobile
 		private void BtnFaceID_Clicked(object sender, EventArgs e)
 		{
             //If face ID authentification is selected handle the action with platform specific code. 
-            //See Android and IOS project implementation folders for code. 
+            // See Android and iOS project implementation folders for code. 
 			DependencyService.Get<IFaceAuth>().FaceAuthentication();
 		}
 	}

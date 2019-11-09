@@ -1,6 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Purpose: Used to map and create filepath for the SQLite database on a user's mobile device
+ * 
+ * Algorithm: 
+ * Get the local file path
+ */
+
 using Xamarin.Essentials;
 
 namespace QRCodeAuthMobile.Data

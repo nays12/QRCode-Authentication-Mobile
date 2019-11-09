@@ -1,7 +1,16 @@
-﻿using System;
+﻿/*
+ * Purpose: Startup class of the application that initializes global variables and
+ * passes them into other classes
+ * 
+ * Fields: 
+ * dbPatn
+ * CredentialRepository
+ * EventRepository
+ * 
+ * 
+ */
+
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using System.Linq;
 using QRCodeAuthMobile.Data;
 
 namespace QRCodeAuthMobile
@@ -12,6 +21,7 @@ namespace QRCodeAuthMobile
 		string dbPath => FileAccessHelper.GetLocalFilePath("UserData.db3");
 		public static CredentialRepository CredentialRepo { get; private set; }
 		public static EventRepository EventRepo { get; private set; }
+
 		public App()
 		{
 			InitializeComponent();

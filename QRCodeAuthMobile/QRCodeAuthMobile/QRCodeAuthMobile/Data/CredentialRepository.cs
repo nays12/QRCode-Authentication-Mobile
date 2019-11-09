@@ -1,7 +1,17 @@
-﻿using SQLite;
+﻿/*
+ * Purpose: Contains all methods needed to perform CRUD operations on the objects in the "credentials" Table
+ * 
+ * Algorithm: 
+ * Construct class and pass in the database path and create an instance of the credentials table
+ * Add a Credential object to the table
+ * Get all Credential objects from the table and convert them to a list
+ * 
+ * Notes: All methods in this class are asynchronous
+ */
+
+using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using QRCodeAuthMobile.Models;
 

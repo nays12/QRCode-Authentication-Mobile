@@ -1,8 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * Purpose: Allows the user to access the camera feature of thier mobile device
+ * in order to scan a QR code
+ */
+
+using System;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
