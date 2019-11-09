@@ -21,12 +21,12 @@ namespace QRCodeAuthMobile
 
 		public void OnDeleteButtonClicked(object sender, EventArgs args)
 		{
-			string userId = deleteUser.Text;
+			//string userId = deleteUser.Text;
 
-			App.UserRepo.DeleteUserbyId(userId);
-			statusMessage.Text = App.UserRepo.StatusMessage;
+			//App.UserRepo.DeleteUserbyId(userId);
+			//statusMessage.Text = App.UserRepo.StatusMessage;
 		}
-		
+
 		public async void OnNewButtonClicked(object sender, EventArgs args)
 		{
 			statusMessage.Text = "";
