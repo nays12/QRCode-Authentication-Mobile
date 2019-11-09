@@ -5,6 +5,7 @@ using System.Text;
 using Foundation;
 using UIKit;
 using QRCodeAuthMobile.Interfaces;
+using QRCodeAuthMobile;
 using QRCodeAuthMobile.iOS.Implementations;
 using Xamarin.Forms;
 using LocalAuthentication;
@@ -15,9 +16,14 @@ namespace QRCodeAuthMobile.iOS.Implementations
 {
     class FaceAuthImp : IFaceAuth
     {
+		int count;
+		public async void GetTableCount()
+		{
+			count = await QRCodeAuthMobile.App.UserRepo.GetRowCount();
+		}
         public void FaceAuthentication()
         {
-            var context = new LAContext();
+			var context = new LAContext();
             var myReason = new NSString("Athenticate");
             NSError AuthError;
 
@@ -27,11 +33,20 @@ namespace QRCodeAuthMobile.iOS.Implementations
                 var replyHandler = new LAContextReplyHandler((success, error) => {
                     Device.BeginInvokeOnMainThread(() => {
 
-                        //If authetification is successfull navigate to Select Type page. 
-                        if (success)
-                        {
-                            Xamarin.Forms.Application.Current.MainPage = new Home();
-                        }
+						//If authetification is successfull navigate to Select Type page. 
+
+						//If authentication is successful continue to next page. 
+						if (success)
+						{
+							if (count > 0) // If record count for User table is > 0 then an account exist
+							{
+								Xamarin.Forms.Application.Current.MainPage = new Home();
+							}
+							else // If the record count is 0 then no User account exist
+							{
+								Xamarin.Forms.Application.Current.MainPage = new SelectType();
+							}
+						}
                     });
                 });
 
@@ -40,8 +55,8 @@ namespace QRCodeAuthMobile.iOS.Implementations
             }
             else
             {
-                //If FaceID NOT available on mobiel device, display appropriate error message. 
-                Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Authentication", "Authentication Failed", "Ok");
+                //If FaceID NOT available on mobile device, display appropriate error message.
+                Xamarin.Forms.Application.Current.MainPage.DisplayAlert("Authentication Failed", "Could not Authenticate with FaceID", "Ok");
             }
         }
     }
