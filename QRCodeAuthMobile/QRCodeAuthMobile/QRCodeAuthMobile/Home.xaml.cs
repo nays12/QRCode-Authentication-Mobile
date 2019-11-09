@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * Purpose: First screen after login that allows user to select which action they would like to take
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

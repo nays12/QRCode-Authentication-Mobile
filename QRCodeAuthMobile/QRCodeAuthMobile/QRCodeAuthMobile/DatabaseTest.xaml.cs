@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Purpose: Test page that allows the developers to test operations on the database as well 
+ * review query syntax.
+ * 
+ * Algorithm: 
+ * OnNewButtonClicked - create new object and save it to database
+ * OnGetButtonClicked - get objects from the database
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

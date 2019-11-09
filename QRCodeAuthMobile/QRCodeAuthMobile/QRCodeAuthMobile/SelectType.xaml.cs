@@ -1,4 +1,8 @@
-﻿using System;
+﻿/*
+ * Purpose: Gathers information from user to create a mobile account for them 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
