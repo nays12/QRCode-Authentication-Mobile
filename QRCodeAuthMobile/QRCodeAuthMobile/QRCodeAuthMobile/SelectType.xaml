@@ -7,8 +7,8 @@
              x:Class="QRCodeAuthMobile.SelectType">
     
     <ContentPage.Content>
-        
-        <StackLayout BackgroundColor="#005073" Padding="40">
+
+        <StackLayout BackgroundColor="#005073" Padding="40" >
 
             <Label Text="Welcome To The Authenticator!"
                    HorizontalOptions="CenterAndExpand"
@@ -16,40 +16,54 @@
 
             <Image Source="logo.jpg"/>
 
-			<StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
+            <Label Text="Please enter some iformation below to setup your account."
+                       HorizontalTextAlignment="Center"
+                       TextColor="White"/>
 
-				<Label Text="Please enter some iformation below to setup your account."
-                       HorizontalOptions="CenterAndExpand"
-                       Style="{StaticResource lblStyle}"/>
 
-				<Label x:Name="statusMessage"
+            <StackLayout Padding="20,0,20,0" BackgroundColor="Transparent" >
+
+                <Label x:Name="statusMessage"
 					   Style="{StaticResource lblStyle}"/>
 
-				<Label Text="Enter your School ID Number:" 
-					   Style="{StaticResource lblStyle}" />
-				<Entry x:Name="schoolId" />
 
-				<Label Text="Enter your first name:" 
-					   Style="{StaticResource lblStyle}"/>
-				<Entry x:Name="firstName" />
+                <Label Text="Enter Your School ID Number:"
+                       Style="{StaticResource lblEntryFieldStyle}" />
+                <Frame Padding="20,0,20,0" CornerRadius="10" BackgroundColor="#ddf6fd" OutlineColor="LimeGreen">
+                    <Entry x:Name="schoolId"
+                           Style="{StaticResource txtEntryStyle}"/>
+                </Frame>
 
-				<Label Text="Enter your last name: "
-					   Style="{StaticResource lblStyle}"/>
-				<Entry x:Name="lastName" />
+                <Label Text="Enter Your First Name:"
+                       Style="{StaticResource lblEntryFieldStyle}"/>
+                <Frame Padding="20,0,20,0" CornerRadius="10" BackgroundColor="#ddf6fd" BorderColor="LimeGreen">
+                    <Entry x:Name="firstName"
+                           Style="{StaticResource txtEntryStyle}"/>
+                </Frame>
 
-				<Label Text="Select your role here at UHCL" 
-					   Style="{StaticResource lblStyle}"/>
-				<Picker Grid.Row="3" Grid.Column="1"
+                <Label Text="Enter Your Last Name: "
+                       Style="{StaticResource lblEntryFieldStyle}"/>
+                <Frame Padding="20,0,20,0" CornerRadius="10" BackgroundColor="#ddf6fd" BorderColor="LimeGreen">
+                    <Entry x:Name="lastName"
+                           Style="{StaticResource txtEntryStyle}"/>
+                </Frame>
+
+                <Label Text="Select Your Role Here At UHCL"
+                       Style="{StaticResource lblEntryFieldStyle}"/>
+                <Frame Padding="20,0,20,0" CornerRadius="10" BackgroundColor="#ddf6fd" BorderColor="LimeGreen">
+                    <Picker Grid.Row="3" Grid.Column="1"
 						x:Name="group"
-						Title="Select your role">
-					<Picker.Items>
-						<x:String>Student</x:String>
-						<x:String>Faculty</x:String>
-						<x:String>Staff</x:String>
-					</Picker.Items>
-				</Picker>
-				
-				<Button Text="Submit"
+						Title="Select Your Role"
+                            FontSize="Small">
+                        <Picker.Items>
+                            <x:String>Student</x:String>
+                            <x:String>Faculty</x:String>
+                            <x:String>Staff</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Frame>
+
+                <Button Text="Submit"
 					Clicked="SubmitButtonClicked" 
 					Style="{StaticResource buttonStyle}"/>
 			</StackLayout>
