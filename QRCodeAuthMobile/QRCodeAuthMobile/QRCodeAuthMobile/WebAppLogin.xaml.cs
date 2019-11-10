@@ -22,21 +22,12 @@ namespace QRCodeAuthMobile
 		{
 			InitializeComponent();
 
-			string result = CallWebCodeService();
+			//string result = DataService.GetWebCode();
 
 //			WebCode.Text = result;
 
 		}
 
-		public static string CallWebCodeService()
-		{
-			string code;
-
-			code = WebLoginCodeService.GetWebCode().ToString();
-			System.Diagnostics.Debug.WriteLine(code);
-			//DisplayAlert("Test", "", "OK");
-			return code;
-		}
 	}
 
 }
