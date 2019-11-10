@@ -12,7 +12,7 @@ using QRCodeAuthMobile.Models;
 
 namespace QRCodeAuthMobile.Services
 {
-	class EventService
+	public class EventService
 	{
 		private async void GetAllEvents()
 		{

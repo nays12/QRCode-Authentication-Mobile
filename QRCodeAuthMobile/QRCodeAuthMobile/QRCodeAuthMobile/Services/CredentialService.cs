@@ -11,7 +11,7 @@ using QRCodeAuthMobile.Models;
 
 namespace QRCodeAuthMobile.Services
 {
-	class CredentialService
+	public class CredentialService
 	{
 	}
 }

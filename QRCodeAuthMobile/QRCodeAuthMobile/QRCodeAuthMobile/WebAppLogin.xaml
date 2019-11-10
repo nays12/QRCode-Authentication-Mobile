@@ -20,7 +20,8 @@
 
                 <Frame OutlineColor="LimeGreen" BackgroundColor="Transparent" Padding="2" Margin="80,20,80,20">
 
-                    <Label Text="25Jkl3" 
+                    <Label x:Name="WebCode"
+						   Text="25Jkl3" 
                            HorizontalOptions="Center"
                            FontSize="30"
                            TextColor="LimeGreen"/>
