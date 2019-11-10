@@ -17,7 +17,6 @@ namespace QRCodeAuthMobile
 {
 	public partial class App : Application
 	{
-
 		string dbPath => FileAccessHelper.GetLocalFilePath("UserData.db3");
 		public static UserRepository UserRepo { get; private set; }
 		public static CredentialRepository CredentialRepo { get; private set; }

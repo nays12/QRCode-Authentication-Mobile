@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using QRCodeAuthMobile.Services;
+using QRCodeAuthMobile.Models;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,11 +23,19 @@ namespace QRCodeAuthMobile
 		{
 			InitializeComponent();
 
-			//string result = DataService.GetWebCode();
+			var result1 = DataService.GetAllEvents();
+			var result2 = DataService.GetWebCode();
 
-//			WebCode.Text = result;
+			WebCode.Text = result2.ToString();
 
 		}
+
+		//public static List<Event> GetEvents()
+		//{
+		//	List<Event> events = DataService.GetAllEvents();
+
+		//	return events;
+		//}
 
 	}
 
