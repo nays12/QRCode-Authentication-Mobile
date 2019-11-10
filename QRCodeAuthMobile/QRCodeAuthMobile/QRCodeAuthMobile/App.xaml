@@ -24,5 +24,16 @@
             <Setter Property="FontSize" Value="Medium"/>
         </Style>
 
+        <Style x:Key="lblEntryFieldStyle" TargetType="Label">
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="FontFamily" Value="Century Gothic"/>
+            <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="txtEntryStyle" TargetType="Entry">
+            <Setter Property="MinimumHeightRequest" Value="35"/>
+            <Setter Property="FontSize" Value="Small"/>
+        </Style>
+
     </Application.Resources>
 </Application>
