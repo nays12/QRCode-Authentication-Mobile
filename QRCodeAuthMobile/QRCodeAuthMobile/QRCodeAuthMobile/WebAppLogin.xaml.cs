@@ -30,7 +30,10 @@ namespace QRCodeAuthMobile
 
 		public async void GetCodeFromService()
 		{
-			var code = await DataService.GetWebCode();
+            //var code = await DataService.GetWebCode();
+            //WebCode.Text = code.ToString();
+
+            var code = await OTPService.GetWebCode();
 			WebCode.Text = code.ToString();
 		}
 
