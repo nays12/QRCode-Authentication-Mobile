@@ -25,8 +25,7 @@ namespace QRCodeAuthMobile
 		{
 			InitializeComponent();
 
-			GetCodeFromService();
-		
+			GetCodeFromService();		
 		}
 
 		public async void GetCodeFromService()

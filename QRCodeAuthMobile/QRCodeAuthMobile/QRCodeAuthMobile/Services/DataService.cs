@@ -14,7 +14,7 @@ namespace QRCodeAuthMobile.Services
 		public static async Task<int> GetWebCode()
 		{
 			HttpClient client = new HttpClient();
-			var response = await client.GetStringAsync("https://qrcodemobileauthenticationweb.azurewebsites.net/api/Events/Test");
+			var response = await client.GetStringAsync("https://qrcodemobileauthenticationweb.azurewebsites.net/api/OPT/RandCode");
 			var code = JsonConvert.DeserializeObject<int>(response);
 
 			return code;
