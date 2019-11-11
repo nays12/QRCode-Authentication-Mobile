@@ -10,21 +10,22 @@ namespace QRCodeAuthMobile.Services
 {
 	public class DataService
 	{
-		public static async Task<string> GetWebCode()
+
+		public static async Task<int> GetWebCode()
 		{
 			HttpClient client = new HttpClient();
-			var response = await client.GetStringAsync("http://localhost:60933/api/Events/Test");
-			var code = JsonConvert.DeserializeObject<string>(response);
+			var response = await client.GetStringAsync("https://qrcodemobileauthenticationweb.azurewebsites.net/api/Events/Test");
+			var code = JsonConvert.DeserializeObject<int>(response);
 
 			return code;
 		}
 
 		public static async Task<List<Event>> GetAllEvents()
 		{
+			HttpClient client = new HttpClient();
 			try
 			{
-				HttpClient client = new HttpClient();
-				var response = await client.GetStringAsync("http://localhost:60933/api/Events/GetAll");
+				var response = await client.GetStringAsync("https://qrcodemobileauthenticationweb.azurewebsites.net/api/Events/GetAll");
 				var eventsList = JsonConvert.DeserializeObject<List<Event>>(response);
 
 				return eventsList;

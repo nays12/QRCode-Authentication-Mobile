@@ -13,6 +13,8 @@ using QRCodeAuthMobile.Models;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace QRCodeAuthMobile
 {
@@ -23,19 +25,15 @@ namespace QRCodeAuthMobile
 		{
 			InitializeComponent();
 
-			var result1 = DataService.GetAllEvents();
-			var result2 = DataService.GetWebCode();
-
-			WebCode.Text = result2.ToString();
-
+			GetCodeFromService();
+		
 		}
 
-		//public static List<Event> GetEvents()
-		//{
-		//	List<Event> events = DataService.GetAllEvents();
-
-		//	return events;
-		//}
+		public async void GetCodeFromService()
+		{
+			var code = await DataService.GetWebCode();
+			WebCode.Text = code.ToString();
+		}
 
 	}
 
