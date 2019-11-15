@@ -8,8 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using QRCodeAuthMobile.Services;
+using QRCodeAuthMobile.Models;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace QRCodeAuthMobile
 {
@@ -19,6 +24,19 @@ namespace QRCodeAuthMobile
 		public WebAppLogin()
 		{
 			InitializeComponent();
+
+			GetCodeFromService();		
 		}
+
+		public async void GetCodeFromService()
+		{
+            //var code = await DataService.GetWebCode();
+            //WebCode.Text = code.ToString();
+
+            var code = await OTPService.GetWebCode();
+			WebCode.Text = code.ToString();
+		}
+
 	}
+
 }
