@@ -39,18 +39,21 @@ namespace QRCodeAuthMobile
 		public async void OnNewButtonClicked(object sender, EventArgs args)
 		{
 			statusMessage.Text = "";
-			
-			//Credential cred1 = new Credential {
-			//		name = "Email",
-			//		issuer = "UHCL UCT",
-			//		issue_date = Convert.ToDateTime("01/15/2016"),
-			//		expiration_date = Convert.ToDateTime("12/21/2019"),
-			//		value = "WigginsN7499@uhcl.edu",
-			//		is_valid = true
-			//	};
 
-			//await App.CredentialRepo.AddCredentialAsync(cred1);
-			//statusMessage.Text = App.CredentialRepo.StatusMessage;
+			Credential cred1 = new Credential
+			{
+				Name = "Email",
+				CredentialType = CredentialType.Email,
+				Issuer = null,
+				Owner = null,
+				IssueDate = Convert.ToDateTime("01/15/2016"),
+				ExpirationDate = Convert.ToDateTime("12/21/2019"),
+				Value = "WigginsN7499@uhcl.edu",
+				IsValid = true
+			};
+
+			await App.CredentialRepo.AddCredentialAsync(cred1);
+			statusMessage.Text = App.CredentialRepo.StatusMessage;
 		}
 
 		public async void OnGetButtonClicked(object sender, EventArgs args)

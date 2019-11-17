@@ -35,20 +35,23 @@ namespace QRCodeAuthMobile.Data
 			{
 				result = await dbconn.InsertAsync(new Event
 				{
-					owner = ev.owner,
-					name = ev.name,
-					type = ev.type,
-					details = ev.details,
-					start_time = ev.start_time,
-					end_time = ev.end_time,
-					credentials_captured = ev.credentials_captured
+					
+					Name = ev.Name,
+					Location = ev.Location,
+					EventType = ev.EventType,
+					Description = ev.Description,
+					StartTime = ev.StartTime,
+					EndTime = ev.EndTime,
+					EventOwner = ev.EventOwner,
+					CredentialsRequired = ev.CredentialsRequired,
+					Attendees = ev.Attendees
 				});
 
-				StatusMessage = string.Format("Success! Added event {0}. You now have {1} past events.", ev.name, result);
+				StatusMessage = string.Format("Success! Added event {0}. You now have {1} past events.", ev.Name, result);
 			}
 			catch (Exception ex)
 			{
-				StatusMessage = string.Format("Failed to add event {0}. Error: {1}", ev.name, ex.Message);
+				StatusMessage = string.Format("Failed to add event {0}. Error: {1}", ev.Name, ex.Message);
 			}
 		}
 

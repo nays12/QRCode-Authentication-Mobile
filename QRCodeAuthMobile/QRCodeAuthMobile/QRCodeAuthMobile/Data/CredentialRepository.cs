@@ -34,19 +34,20 @@ namespace QRCodeAuthMobile.Data
 			try
 			{
 				result = await dbconn.InsertAsync(new Credential
-				{	name = cred.name,
-					issuer = cred.issuer,
-					issue_date = cred.issue_date,
-					expiration_date = cred.expiration_date,
-					value = cred.value,
-					is_valid = cred.is_valid
+				{	Name = cred.Name,
+					Issuer = cred.Issuer,
+					Owner = cred.Owner,
+					IssueDate = cred.IssueDate,
+					ExpirationDate = cred.ExpirationDate,
+					Value = cred.Value,
+					IsValid = cred.IsValid
 				});
 
-				StatusMessage = string.Format("Success! Added credential {0}. You now have {1} credentials.", cred.name, result);
+				StatusMessage = string.Format("Success! Added credential {0}. You now have {1} credentials.", cred.Name, result);
 			}
 			catch (Exception ex)
 			{
-				StatusMessage = string.Format("Failed to add credential {0}. Error: {1}", cred.name, ex.Message);
+				StatusMessage = string.Format("Failed to add credential {0}. Error: {1}", cred.Name, ex.Message);
 			}
 		}
 

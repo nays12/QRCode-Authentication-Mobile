@@ -15,6 +15,7 @@ using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 using QRCodeAuthMobile.Interfaces;
 using QRCodeAuthMobile.Models;
+using SQLite;
 
 namespace QRCodeAuthMobile
 {
@@ -32,6 +33,7 @@ namespace QRCodeAuthMobile
 		{
 			int count = 0;
 			count = await App.UserRepo.GetRowCount();
+
 			//Check if Fingerprint ID is available on mobile device. 
 			if (await CrossFingerprint.Current.IsAvailableAsync())
 			{
@@ -60,9 +62,10 @@ namespace QRCodeAuthMobile
 
 		private void BtnFaceID_Clicked(object sender, EventArgs e)
 		{
-            //If face ID authentification is selected handle the action with platform specific code. 
-            // See Android and iOS project implementation folders for code. 
+			//If face ID authentification is selected handle the action with platform specific code. 
+			// See Android and iOS project implementation folders for code. 
 			DependencyService.Get<IFaceAuth>().FaceAuthentication();
+
 		}
 	}
 }

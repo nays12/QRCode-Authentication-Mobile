@@ -29,17 +29,17 @@ namespace QRCodeAuthMobile
 
 			User mobileUser = new User
 			{
-				userId = schoolId.Text,
-				last_name = lastName.Text,
-				first_name = firstName.Text,
-				group = group.SelectedItem.ToString()
+				UserId = schoolId.Text,
+				LastName = lastName.Text,
+				FirstName = firstName.Text,
+				UserType = (UserType)userType.SelectedIndex
 			};
 
-			await App.UserRepo.AddUserAsync(mobileUser);
+			//await App.UserRepo.AddUserAsync(mobileUser);
 			statusMessage.Text = App.UserRepo.StatusMessage;
 
 			// add logic to display popup about credential authority
-			if (mobileUser.group == "Student")
+			if (mobileUser.UserType == UserType.Student)
 			{
 				await DisplayAlert("Complete Setup", "Please go to the Office of Admissions to add credentials to your account", "OK");
 			}
@@ -47,7 +47,7 @@ namespace QRCodeAuthMobile
 			{
 				await DisplayAlert("Complete Setup", "Please go to the Human Resources Office to add credentials to your account", "OK");
 			}
-			
+
 		}
 	}
 }

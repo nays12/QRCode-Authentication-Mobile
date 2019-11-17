@@ -22,23 +22,23 @@ namespace QRCodeAuthMobile
 			InitializeComponent();
 		}
 
-        private async void BtnUpdateCredentials_Clicked(object sender, EventArgs e)
-        {
-            User user = await App.UserRepo.GetUserbyId("123456");
+		private async void BtnUpdateCredentials_Clicked(object sender, EventArgs e)
+		{
+			User user = await App.UserRepo.GetUserbyId("123456");
 
-            if (user.group == "Student")
-            {
-                await DisplayAlert("Update Credentials", "Please go to the Office of Admissions to update your credentials", "OK");
-            }
-            else
-            {
-                await DisplayAlert("Update Credentials", "Please go to the Human Resources Office to update your credentials", "OK");
-            }
+			//if (user.group == "Student")
+			//{
+			//	await DisplayAlert("Update Credentials", "Please go to the Office of Admissions to update your credentials", "OK");
+			//}
+			//else
+			//{
+			//	await DisplayAlert("Update Credentials", "Please go to the Human Resources Office to update your credentials", "OK");
+			//}
 
 
-        }
+		}
 
-        private void BtnWebLogIn_Clicked(object sender, EventArgs e)
+		private void BtnWebLogIn_Clicked(object sender, EventArgs e)
         {
             App.Current.MainPage = new WebAppLogin();
         }

@@ -31,31 +31,30 @@ namespace QRCodeAuthMobile
             credentialList.ItemsSource = users;
         }
 
-        private async void CredentialList_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            //This is the CREDENTIAL code. Cannot implement yet. 
-            //var cred = e.Item as Credential;
-            //string id = cred.id.ToString();
-            //string name = cred.name;
-            //string credentialType = "Name";
-            //string value =cred.value;
-            //string message = "ID : " + id + "\n" + "Name : " + name + "\n" + "Credential Type : " + credentialType + "\n" + "Vlue : " + value;
-            //await DisplayAlert("Credential", message, "ok");
+		private async void CredentialList_ItemTapped(object sender, ItemTappedEventArgs e)
+		{
+			// This is the CREDENTIAL code.Cannot implement yet.
+			var cred = e.Item as Credential;
+			string name = cred.Name;
+			// string credentialType = "Name";
+			string value = cred.Value;
+			//string message = "ID : " + id + "\n" + "Name : " + name + "\n" + "Credential Type : " + credentialType + "\n" + "Vlue : " + value;
+			//await DisplayAlert("Credential", message, "ok");
 
 
 
-            //Used USER local records instead for testing. Will delete this code once credential class can be implemented. 
-            var user = e.Item as User;
+			//Used USER local records instead for testing. Will delete this code once credential class can be implemented. 
+			var user = e.Item as User;
 
-            string id = user.userId;
-            string firstName = user.first_name;
-            string lastName = user.last_name;
-            string group = user.group;
+			//string id = user.userId;
+			//string firstName = user.first_name;
+			//string lastName = user.last_name;
+			//string group = user.group;
 
-            string message = "ID : " + id + "\n" + "First Name : " + firstName + "\n" + "Last Name : " + lastName + "\n" + "Group : " + group;
+			//string message = "ID : " + id + "\n" + "First Name : " + firstName + "\n" + "Last Name : " + lastName + "\n" + "Group : " + group;
 
-            await DisplayAlert("Credential", message, "ok");
+			//await DisplayAlert("Credential", message, "ok");
 
-        }
-    }
+		}
+	}
 }
