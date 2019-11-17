@@ -31,13 +31,13 @@ namespace QRCodeAuthMobile
 
             // MainPage = new MainPage();
             // MainPage = new SelectType();
-            //  MainPage = new Home();
+              MainPage = new Home();
             //  MainPage = new ConfirmCredentials();
             //  MainPage = new ConfirmMessage();
             //  MainPage = new ConfirmAttendance();
             // MainPage = new DatabaseTest();
             // MainPage = new WebAppLogin();
-            MainPage = new ViewCredentials();
+            //MainPage = new ViewCredentials();
         }
 
         protected override void OnStart()
