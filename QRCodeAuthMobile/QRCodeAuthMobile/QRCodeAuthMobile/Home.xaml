@@ -21,15 +21,17 @@
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
 
+                <Button Text="Update Credentials"
+                        Clicked="BtnUpdateCredentials_Clicked"
+                        Style="{StaticResource buttonStyle}"/>
+
                 <Button Text="Share Credentials"
                         Clicked="BtnShareCredentials_Clicked"
                         Style="{StaticResource buttonStyle}"/>
                 <Button Text="Record Attendance"
                         Clicked="BtnRecordAttendance_Clicked"
                         Style="{StaticResource buttonStyle}"/>
-                <Button Text="Update Credentials"
-                        Clicked="BtnUpdateCredentials_Clicked"
-                        Style="{StaticResource buttonStyle}"/>
+ 
                 <Button Text="Web App Login"
                         Clicked="BtnWebLogIn_Clicked"
                         Style="{StaticResource buttonStyle}"/>
