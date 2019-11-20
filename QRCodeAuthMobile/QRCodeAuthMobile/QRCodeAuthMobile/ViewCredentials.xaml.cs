@@ -34,17 +34,17 @@ namespace QRCodeAuthMobile
 		private async void CredentialList_ItemTapped(object sender, ItemTappedEventArgs e)
 		{
 			// This is the CREDENTIAL code.Cannot implement yet.
-			var cred = e.Item as Credential;
-			string name = cred.Name;
+			//var cred = e.Item as Credential;
+			//string name = cred.Name;
 			// string credentialType = "Name";
-			string value = cred.Value;
+			//string value = cred.Value;
 			//string message = "ID : " + id + "\n" + "Name : " + name + "\n" + "Credential Type : " + credentialType + "\n" + "Vlue : " + value;
 			//await DisplayAlert("Credential", message, "ok");
 
 
 
 			//Used USER local records instead for testing. Will delete this code once credential class can be implemented. 
-			var user = e.Item as User;
+			//var user = e.Item as User;
 
 			//string id = user.userId;
 			//string firstName = user.first_name;

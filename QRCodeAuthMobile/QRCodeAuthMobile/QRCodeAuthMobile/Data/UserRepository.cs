@@ -20,25 +20,25 @@ namespace QRCodeAuthMobile.Data
 
 		public async Task AddUserAsync(User mobileUser)
 		{
-			int result = 0;
-			try
-			{
-				result = await dbconn.InsertAsync(new User
-				{
-					UserId = mobileUser.UserId,
-					LastName = mobileUser.LastName,
-					FirstName = mobileUser.FirstName,
-					UserType = mobileUser.UserType,
-					Accounts = null
-				});
+			//int result = 0;
+			//try
+			//{
+			//	result = await dbconn.InsertAsync(new User
+			//	{
+			//		UserId = mobileUser.UserId,
+			//		LastName = mobileUser.LastName,
+			//		FirstName = mobileUser.FirstName,
+			//		UserType = mobileUser.UserType,
+			//		Accounts = null
+			//	});
 
-				StatusMessage = string.Format("Welcome to the mobile token app, {0}!", mobileUser.FirstName);
-			}
-			catch (Exception ex)
-			{
-				StatusMessage = ex.Message.ToString();
-				//StatusMessage = string.Format("Sorry we could not add you. Error: {1}.", ex.Message);
-			}
+			//	StatusMessage = string.Format("Welcome to the mobile token app, {0}!", mobileUser.FirstName);
+			//}
+			//catch (Exception ex)
+			//{
+			//	StatusMessage = ex.Message.ToString();
+			//	//StatusMessage = string.Format("Sorry we could not add you. Error: {1}.", ex.Message);
+			//}
 		}
 
 		public async Task<User> GetUserbyId(string id)

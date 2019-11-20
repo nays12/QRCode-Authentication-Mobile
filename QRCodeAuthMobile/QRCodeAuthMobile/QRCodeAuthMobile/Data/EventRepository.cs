@@ -30,29 +30,29 @@ namespace QRCodeAuthMobile.Data
 
 		public async Task AddEventAsync(Event ev)
 		{
-			int result = 0;
-			try
-			{
-				result = await dbconn.InsertAsync(new Event
-				{
+			//int result = 0;
+			//try
+			//{
+			//	result = await dbconn.InsertAsync(new Event
+			//	{
 					
-					Name = ev.Name,
-					Location = ev.Location,
-					EventType = ev.EventType,
-					Description = ev.Description,
-					StartTime = ev.StartTime,
-					EndTime = ev.EndTime,
-					EventOwner = ev.EventOwner,
-					CredentialsRequired = ev.CredentialsRequired,
-					Attendees = ev.Attendees
-				});
+			//		Name = ev.Name,
+			//		Location = ev.Location,
+			//		EventType = ev.EventType,
+			//		Description = ev.Description,
+			//		StartTime = ev.StartTime,
+			//		EndTime = ev.EndTime,
+			//		EventOwner = ev.EventOwner,
+			//		CredentialsRequired = ev.CredentialsRequired,
+			//		Attendees = ev.Attendees
+			//	});
 
-				StatusMessage = string.Format("Success! Added event {0}. You now have {1} past events.", ev.Name, result);
-			}
-			catch (Exception ex)
-			{
-				StatusMessage = string.Format("Failed to add event {0}. Error: {1}", ev.Name, ex.Message);
-			}
+			//	StatusMessage = string.Format("Success! Added event {0}. You now have {1} past events.", ev.Name, result);
+			//}
+			//catch (Exception ex)
+			//{
+			//	StatusMessage = string.Format("Failed to add event {0}. Error: {1}", ev.Name, ex.Message);
+			//}
 		}
 
 		public async Task<List<Event>> GetAllEventsAsync()

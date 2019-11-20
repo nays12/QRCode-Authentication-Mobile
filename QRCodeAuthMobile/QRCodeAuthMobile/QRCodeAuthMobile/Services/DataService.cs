@@ -36,19 +36,26 @@ namespace QRCodeAuthMobile.Services
 			}
 		}
 
-        public static async Task<Credential> GetCredential(string id)
+        public static async Task<List<Credential>> GetCredentials(string id)
         {
-            //string url = "http://localhost:60933/api/Credentials/GetOwnerCredentials?id=" + id;
+            string url = "https://qrcodemobileauthenticationweb.azurewebsites.net/api/Credentials/GetOwnerCredentials?id=" + id;
 
             HttpClient client = new HttpClient();
+            try
+            {
+                //var response = await client.GetStringAsync("https://qrcodemobileauthenticationweb.azurewebsites.net/api/Credentials/GetOwnerCredentials?id=1304693");
+                //var response = await client.GetStringAsync("http://localhost:60933/api/Credentials/GetOwnerCredentials?id=1304693");
+                var response = await client.GetStringAsync(url);
+               
+                var credentialList = JsonConvert.DeserializeObject<List<Credential>>(response);
 
-            var response = await client.GetStringAsync("https://qrcodemobileauthenticationweb.azurewebsites.net/api/Credentials/GetOwnerCredentials?id=1304693");
-            var credential = JsonConvert.DeserializeObject<Credential>(response);
+                return credentialList;
+            }
+            catch(Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
 
-            return credential;
         }
-
-
-
     }
 }
