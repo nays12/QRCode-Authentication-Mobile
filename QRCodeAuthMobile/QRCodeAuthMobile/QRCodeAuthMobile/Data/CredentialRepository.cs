@@ -30,6 +30,30 @@ namespace QRCodeAuthMobile.Data
 
 		public async Task AddCredentialAsync(Credential cred)
 		{
+            int result = 0;
+            try
+            {
+                result = await dbconn.InsertAsync(new Credential
+                {
+                    Name = cred.Name,
+                    CredentialType = cred.CredentialType, 
+                    IssueDate = cred.IssueDate, 
+                    ExpirationDate = cred.ExpirationDate, 
+                    Value = cred.Value, 
+                    IsValid = cred.IsValid,
+
+                     // Foreign Keys
+                    CredentialOwner = cred.CredentialOwner,
+                    CredentialIssuer = cred.CredentialIssuer,
+                });
+            }
+            catch(Exception ex)
+            {
+                
+
+            }
+
+
 			//int result = 0;
 			//try
 			//{
@@ -65,5 +89,19 @@ namespace QRCodeAuthMobile.Data
 			return new List<Credential>();
 		}
 
-	}
+        public async Task DeleateAllCredentials()
+        {
+            int result = 0;
+            try
+            {
+                //result = await dbconn.DeleteAsync<User>(id);
+                result = await dbconn.DeleteAllAsync<Credential>();
+            }
+            catch (Exception ex)
+            {
+                
+            }
+        }
+
+    }
 }

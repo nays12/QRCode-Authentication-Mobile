@@ -21,8 +21,8 @@
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
 
-                <Button Text="Update Credentials"
-                        Clicked="BtnUpdateCredentials_Clicked"
+                <Button Text="Manage Credentials"
+                        Clicked="BtnManagedCredentials_Clicked"
                         Style="{StaticResource buttonStyle}"/>
 
                 <Button Text="Share Credentials"
