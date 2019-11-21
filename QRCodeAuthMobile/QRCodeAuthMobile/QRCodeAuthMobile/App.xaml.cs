@@ -38,7 +38,6 @@ namespace QRCodeAuthMobile
             //  MainPage = new ConfirmAttendance();
             // MainPage = new DatabaseTest();
             // MainPage = new WebAppLogin();
-            // MainPage = new ViewCredentials();
             //MainPage = new ManageCredentials();
         }
 
