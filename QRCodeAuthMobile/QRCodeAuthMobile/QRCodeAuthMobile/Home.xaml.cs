@@ -53,6 +53,8 @@ namespace QRCodeAuthMobile
 			Application.Current.Properties["LastName"] = user.LastName;
 			Application.Current.Properties["FirstName"] = user.FirstName;
 			Application.Current.Properties["UserType"] = user.UserType;
+
+			welcomeUser.Text = string.Format("Welcome {0}!", user.FirstName);
 		}
 
 

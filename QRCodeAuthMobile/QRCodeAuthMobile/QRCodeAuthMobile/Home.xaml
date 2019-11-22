@@ -17,7 +17,12 @@
 
             <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
-                <Label Text="What would you like to do?"
+
+				<Label x:Name="welcomeUser" 
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
+				
+				<Label Text="What would you like to do?"
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
 

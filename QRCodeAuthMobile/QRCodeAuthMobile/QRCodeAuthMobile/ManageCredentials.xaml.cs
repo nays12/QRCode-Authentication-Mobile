@@ -58,12 +58,6 @@ namespace QRCodeAuthMobile
 			accountOwner.LastName = Convert.ToString(Application.Current.Properties["LastName"]);
 			accountOwner.FirstName = Convert.ToString(Application.Current.Properties["FirstName"]);
 			accountOwner.UserType = (UserType)Convert.ToInt32(Application.Current.Properties["UserType"]);
-
-			System.Diagnostics.Debug.WriteLine(accountOwner);
-			System.Diagnostics.Debug.WriteLine(accountOwner.LastName);
-			System.Diagnostics.Debug.WriteLine(accountOwner.FirstName);
-			System.Diagnostics.Debug.WriteLine(accountOwner.UserType);
-			System.Diagnostics.Debug.WriteLine(accountOwner.UserId);
 		}
 
 		//     private void generateList() // TESTING -- DELETE LATER
