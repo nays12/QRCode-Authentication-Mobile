@@ -22,7 +22,7 @@
 						Style="{StaticResource buttonStyle}"/>
 
 				<Button Text="Get Users"
-						Clicked="GetUserssButtonClicked" 
+						Clicked="GetUsersButtonClicked" 
 						Style="{StaticResource buttonStyle}"/>
 		</StackLayout>
 			

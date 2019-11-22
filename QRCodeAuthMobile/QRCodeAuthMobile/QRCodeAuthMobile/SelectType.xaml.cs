@@ -25,7 +25,6 @@ namespace QRCodeAuthMobile
 
 		public async void SubmitButtonClicked(object sender, EventArgs args)
 		{
-
 			statusMessage.Text = "";
 
 			User mobileUser = new User
@@ -36,7 +35,7 @@ namespace QRCodeAuthMobile
 				UserType = (UserType)userType.SelectedIndex
 			};
 
-			//await App.UserRepo.AddUserAsync(mobileUser);
+			await UserRepository.AddUserAsync(mobileUser);
 			statusMessage.Text = UserRepository.StatusMessage;
 
 			// add logic to display popup about credential authority
@@ -46,9 +45,9 @@ namespace QRCodeAuthMobile
 			}
 			else
 			{
-				await DisplayAlert("Complete Setup", "Please go to the Human Resources Office to add credentials to your account", "OK");
+				await DisplayAlert("Complete Setup", "Please go to the Human Resources Office to add credentials to your account", "OK");				
 			}
-
+			var page = new Home();
 		}
 	}
 }
