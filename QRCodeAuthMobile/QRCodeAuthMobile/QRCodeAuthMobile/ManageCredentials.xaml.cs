@@ -7,31 +7,27 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using QRCodeAuthMobile.Models;
+using QRCodeAuthMobile.Data;
 
 namespace QRCodeAuthMobile
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ManageCredentials : ContentPage
 	{
-        List<Credential> cList = new List<Credential>(); // TESTING -- DELETE LATER
+        List<Credential> userCredentials = new List<Credential>(); // TESTING -- DELETE LATER
 
 		public ManageCredentials ()
 		{
 			InitializeComponent ();
-
             displayCredentialList();
         }
 
         public void displayCredentialList()
         {
-           generateList(); // TESTING -- DELETE LATER
-            credentialList.ItemsSource = cList; // TESTING -- DELETE LATER
-
-            //This is the CREDENTIAL code. Cannot implement yet. 
-            //List<Credential> credentialList = await App.CredentialRepo.GetAllCredentialsAsync();
-            //credentialList.ItemsSource = credentialList;
-
-        }
+			//userCredentials = await CredentialRepository.GetAllCredentialsAsync();
+			credentialList.ItemsSource = userCredentials;
+			generateList();
+		}
 
 
         private async void BtnSetUpCredentials_Clicked(object sender, EventArgs e)
@@ -67,7 +63,7 @@ namespace QRCodeAuthMobile
             cred1.Value = "Naomi S. Wiggins";
             cred1.Owner = "1304693";
             cred1.Issuer = "Admission";
-            cList.Add(cred1);
+			userCredentials.Add(cred1);
 
             Credential cred2 = new Credential();
             cred2.CredentialId = 2;
@@ -78,7 +74,7 @@ namespace QRCodeAuthMobile
             cred2.Value = "Computer Science";
             cred2.Owner = "1304693";
             cred2.Issuer = "Admission";
-            cList.Add(cred2);
+			userCredentials.Add(cred2);
 
             Credential cred3 = new Credential();
             cred3.CredentialId = 3;
@@ -89,7 +85,7 @@ namespace QRCodeAuthMobile
             cred3.Value = "studentname@uhcl.edu";
             cred3.Owner = "1304693";
             cred3.Issuer = "Admission";
-            cList.Add(cred3);
+			userCredentials.Add(cred3);
 
             Credential cred4 = new Credential();
             cred4.CredentialId = 4;
@@ -100,7 +96,7 @@ namespace QRCodeAuthMobile
             cred4.Value = "1304693";
             cred4.Owner = "1304693";
             cred4.Issuer = "Admission";
-            cList.Add(cred4);
+			userCredentials.Add(cred4);
         }
 
     }
