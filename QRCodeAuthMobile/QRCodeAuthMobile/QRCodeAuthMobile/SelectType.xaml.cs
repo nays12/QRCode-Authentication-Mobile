@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QRCodeAuthMobile.Models;
+using QRCodeAuthMobile.Data;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -36,7 +37,7 @@ namespace QRCodeAuthMobile
 			};
 
 			//await App.UserRepo.AddUserAsync(mobileUser);
-			statusMessage.Text = App.UserRepo.StatusMessage;
+			statusMessage.Text = UserRepository.StatusMessage;
 
 			// add logic to display popup about credential authority
 			if (mobileUser.UserType == UserType.Student)

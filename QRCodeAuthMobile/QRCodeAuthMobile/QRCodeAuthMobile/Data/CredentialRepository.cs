@@ -19,8 +19,8 @@ namespace QRCodeAuthMobile.Data
 {
 	public class CredentialRepository
 	{
-		SQLiteAsyncConnection dbconn;
-		public string StatusMessage { get; set; }
+		protected static SQLiteAsyncConnection dbconn;
+		public static string StatusMessage { get; set; }
 
 		public CredentialRepository(string dbPath)
 		{
@@ -28,54 +28,32 @@ namespace QRCodeAuthMobile.Data
 			dbconn.CreateTableAsync<Credential>();
 		}
 
-		public async Task AddCredentialAsync(Credential cred)
+		public static async Task AddCredentialAsync(Credential cred)
 		{
-            int result = 0;
-            try
-            {
-                result = await dbconn.InsertAsync(new Credential
-                {
-                    Name = cred.Name,
-                    CredentialType = cred.CredentialType, 
-                    IssueDate = cred.IssueDate, 
-                    ExpirationDate = cred.ExpirationDate, 
-                    Value = cred.Value, 
-                    IsValid = cred.IsValid,
+			int result = 0;
+			try
+			{
+				result = await dbconn.InsertAsync(new Credential
+				{
+					Name = cred.Name,
+					CredentialType = cred.CredentialType,
+					IssueDate = cred.IssueDate,
+					ExpirationDate = cred.ExpirationDate,
+					Value = cred.Value,
+					IsValid = cred.IsValid,
+					Issuer = cred.Issuer,
+					Owner = cred.Owner
+				});
 
-                     // Foreign Keys
-                    CredentialOwner = cred.CredentialOwner,
-                    CredentialIssuer = cred.CredentialIssuer,
-                });
-            }
-            catch(Exception ex)
-            {
-                
-
-            }
-
-
-			//int result = 0;
-			//try
-			//{
-			//	result = await dbconn.InsertAsync(new Credential
-			//	{	Name = cred.Name,
-			//		Issuer = cred.Issuer,
-			//		Owner = cred.Owner,
-			//		IssueDate = cred.IssueDate,
-			//		ExpirationDate = cred.ExpirationDate,
-			//		Value = cred.Value,
-			//		IsValid = cred.IsValid
-			//	});
-
-			//	StatusMessage = string.Format("Success! Added credential {0}. You now have {1} credentials.", cred.Name, result);
-			//}
-			//catch (Exception ex)
-			//{
-			//	StatusMessage = string.Format("Failed to add credential {0}. Error: {1}", cred.Name, ex.Message);
-			//}
+				StatusMessage = string.Format("Success! Added credential {0}. You now have {1} credentials.", cred.Name, result);
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failed to add credential {0}. Error: {1}", cred.Name, ex.Message);
+			}
 		}
 
-		public async Task<List<Credential>> GetAllCredentialsAsync()
+		public static async Task<List<Credential>> GetAllCredentialsAsync()
 		{
 			try
 			{
@@ -84,12 +62,11 @@ namespace QRCodeAuthMobile.Data
 			catch (Exception ex)
 			{
 				StatusMessage = string.Format("Failed to get credentials. {0}", ex.Message);
-			}
-
-			return new List<Credential>();
+				return null;
+			}			
 		}
 
-        public async Task DeleateAllCredentials()
+        public static async Task DeleateAllCredentials()
         {
             int result = 0;
             try
@@ -99,8 +76,8 @@ namespace QRCodeAuthMobile.Data
             }
             catch (Exception ex)
             {
-                
-            }
+				StatusMessage = string.Format("Failed to get credentials. {0}", ex.Message);
+			}
         }
 
     }

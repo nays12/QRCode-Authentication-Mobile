@@ -13,6 +13,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QRCodeAuthMobile.Models;
+using QRCodeAuthMobile.Data;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -27,48 +28,48 @@ namespace QRCodeAuthMobile
 			InitializeComponent();
 		}
 
-
-		public void OnDeleteButtonClicked(object sender, EventArgs args)
+		public async void GetEventsButtonClicked(object sender, EventArgs args)
 		{
-			//string userId = deleteUser.Text;
-
-			//App.UserRepo.DeleteUserbyId(userId);
-			//statusMessage.Text = App.UserRepo.StatusMessage;
+			List<Event> events = new List<Event>();
+			events = await EventRepository.GetAllEventsAsync();
+			System.Diagnostics.Debug.WriteLine(events);
 		}
 
-		public async void OnNewButtonClicked(object sender, EventArgs args)
+		public async void GetCredentialsButtonClicked(object sender, EventArgs args)
 		{
-			statusMessage.Text = "";
-
-			//Credential cred1 = new Credential
-			//{
-			//	Name = "Email",
-			//	CredentialType = CredentialType.Email,
-			//	Issuer = null,
-			//	Owner = null,
-			//	IssueDate = Convert.ToDateTime("01/15/2016"),
-			//	ExpirationDate = Convert.ToDateTime("12/21/2019"),
-			//	Value = "WigginsN7499@uhcl.edu",
-			//	IsValid = true
-			//};
-
-			//await App.CredentialRepo.AddCredentialAsync(cred1);
-			//statusMessage.Text = App.CredentialRepo.StatusMessage;
+			List<Credential> credentials = new List<Credential>();
+			credentials = await CredentialRepository.GetAllCredentialsAsync();
+			System.Diagnostics.Debug.WriteLine(credentials);
 		}
 
-		public async void OnGetButtonClicked(object sender, EventArgs args)
+		public async void GetUserssButtonClicked(object sender, EventArgs args)
 		{
-			statusMessage.Text = "";
-
-			//List<Credential> credentials = await App.CredentialRepo.GetAllCredentialsAsync();
-			//credentialsList.ItemsSource = credentials;
-
-			List<User> users = await App.UserRepo.GetAllUsersAsync();
-			credentialsList.ItemsSource = users;
-
-			statusMessage.Text = App.UserRepo.StatusMessage;
-			RowCount.Text = App.UserRepo.GetRowCount().ToString();
+			List<User> users = new List<User>();
+			users = await UserRepository.GetAllUsersAsync();
+			System.Diagnostics.Debug.WriteLine(users);
 		}
+
+		//public void OnDeleteButtonClicked(object sender, EventArgs args)
+		//{
+		//	string userId = deleteUser.Text;
+
+		//	App.UserRepo.DeleteUserbyId(userId);
+		//	statusMessage.Text = App.UserRepo.StatusMessage;
+		//}
+
+		//public async void OnGetButtonClicked(object sender, EventArgs args)
+		//{
+		//	statusMessage.Text = "";
+
+		//	//List<Credential> credentials = await App.CredentialRepo.GetAllCredentialsAsync();
+		//	//credentialsList.ItemsSource = credentials;
+
+		//	List<User> users = await App.UserRepo.GetAllUsersAsync();
+		//	credentialsList.ItemsSource = users;
+
+		//	statusMessage.Text = App.UserRepo.StatusMessage;
+		//	RowCount.Text = App.UserRepo.GetRowCount().ToString();
+		//}
 
 
 	}

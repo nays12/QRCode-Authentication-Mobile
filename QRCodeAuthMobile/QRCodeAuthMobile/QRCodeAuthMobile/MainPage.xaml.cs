@@ -15,6 +15,7 @@ using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 using QRCodeAuthMobile.Interfaces;
 using QRCodeAuthMobile.Models;
+using QRCodeAuthMobile.Data;
 using SQLite;
 
 namespace QRCodeAuthMobile
@@ -32,7 +33,7 @@ namespace QRCodeAuthMobile
 		private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
 		{
 			int count = 0;
-			count = await App.UserRepo.GetRowCount();
+			count = await UserRepository.GetRowCount();
 
 			//Check if Fingerprint ID is available on mobile device. 
 			if (await CrossFingerprint.Current.IsAvailableAsync())

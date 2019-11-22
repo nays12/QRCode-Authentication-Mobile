@@ -21,7 +21,7 @@ namespace QRCodeAuthMobile.Models
 		public bool IsValid { get; set; }
 
 		// Foreign Keys
-		public string CredentialOwner { get; set; }
-		public string CredentialIssuer { get; set; }
+		public string Owner { get; set; }
+		public string Issuer { get; set; }
 	}
 }
