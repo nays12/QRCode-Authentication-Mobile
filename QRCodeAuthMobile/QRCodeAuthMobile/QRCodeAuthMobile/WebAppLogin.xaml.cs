@@ -24,7 +24,6 @@ namespace QRCodeAuthMobile
 		public WebAppLogin()
 		{
 			InitializeComponent();
-
 			GetCodeFromService();		
 		}
 
@@ -35,5 +34,4 @@ namespace QRCodeAuthMobile
 		}
 
 	}
-
 }

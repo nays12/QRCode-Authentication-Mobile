@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using QRCodeAuthMobile.Interfaces;
 using QRCodeAuthMobile;
+using QRCodeAuthMobile.Data;
 using QRCodeAuthMobile.iOS.Implementations;
 using Xamarin.Forms;
 using LocalAuthentication;
@@ -19,7 +20,7 @@ namespace QRCodeAuthMobile.iOS.Implementations
 		int count;
 		public async void GetTableCount()
 		{
-			count = await QRCodeAuthMobile.App.UserRepo.GetRowCount();
+			count = await UserRepository.GetRowCount();
 		}
         public void FaceAuthentication()
         {

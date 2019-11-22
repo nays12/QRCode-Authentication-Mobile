@@ -19,8 +19,8 @@ namespace QRCodeAuthMobile.Data
 {
 	public class EventRepository
 	{
-		SQLiteAsyncConnection dbconn;
-		public string StatusMessage { get; set; }
+		protected static SQLiteAsyncConnection dbconn;
+		public static string StatusMessage { get; set; }
 
 		public EventRepository(string dbPath)
 		{
@@ -28,31 +28,31 @@ namespace QRCodeAuthMobile.Data
 			dbconn.CreateTableAsync<Event>();
 		}
 
-		public async Task AddEventAsync(Event ev)
+		public static async Task AddEventAsync(Event ev)
 		{
 			int result = 0;
 			try
 			{
 				result = await dbconn.InsertAsync(new Event
 				{
-					owner = ev.owner,
-					name = ev.name,
-					type = ev.type,
-					details = ev.details,
-					start_time = ev.start_time,
-					end_time = ev.end_time,
-					credentials_captured = ev.credentials_captured
+					Name = ev.Name,
+					Location = ev.Location,
+					EventType = ev.EventType,
+					Description = ev.Description,
+					StartTime = ev.StartTime,
+					EndTime = ev.EndTime,
+					Owner = ev.Owner,
 				});
 
-				StatusMessage = string.Format("Success! Added event {0}. You now have {1} past events.", ev.name, result);
+				StatusMessage = string.Format("Success! Added event {0}. You now have {1} past events.", ev.Name, result);
 			}
 			catch (Exception ex)
 			{
-				StatusMessage = string.Format("Failed to add event {0}. Error: {1}", ev.name, ex.Message);
+				StatusMessage = string.Format("Failed to add event {0}. Error: {1}", ev.Name, ex.Message);
 			}
 		}
 
-		public async Task<List<Event>> GetAllEventsAsync()
+		public static async Task<List<Event>> GetAllEventsAsync()
 		{
 			try
 			{
@@ -60,10 +60,11 @@ namespace QRCodeAuthMobile.Data
 			}
 			catch (Exception ex)
 			{
-				StatusMessage = string.Format("Failed to get event list. {0}", ex.Message);
-			}
-
-			return new List<Event>();
+				StatusMessage = string.Format("Failed to get event list. Error: {0}", ex.Message);
+				return null;
+			}		
 		}
+
+
 	}
 }

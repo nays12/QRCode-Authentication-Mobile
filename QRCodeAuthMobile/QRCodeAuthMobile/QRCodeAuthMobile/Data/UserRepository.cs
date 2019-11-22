@@ -9,8 +9,8 @@ namespace QRCodeAuthMobile.Data
 {
 	public class UserRepository
 	{
-		SQLiteAsyncConnection dbconn;
-		public string StatusMessage { get; set; }
+		protected static SQLiteAsyncConnection dbconn;
+		public static string StatusMessage { get; set; }
 
 		public UserRepository(string dbPath)
 		{
@@ -18,38 +18,38 @@ namespace QRCodeAuthMobile.Data
 			dbconn.CreateTableAsync<User>();
 		}
 
-		public async Task AddUserAsync(User mobileUser)
+		public static async Task AddUserAsync(User mobileUser)
 		{
-			int result = 0;
-			try
-			{
-				result = await dbconn.InsertAsync(new User
-				{
-					userId = mobileUser.userId,
-					last_name = mobileUser.last_name,
-					first_name = mobileUser.first_name,
-					group = mobileUser.group
-				});
+            int result = 0;
+            try
+            {
+                result = await dbconn.InsertAsync(new User
+                {
+                    UserId = mobileUser.UserId,
+                    LastName = mobileUser.LastName,
+                    FirstName = mobileUser.FirstName,
+                    UserType = mobileUser.UserType,
+                });
 
-				StatusMessage = string.Format("Welcome to the mobile token app, {0}!", mobileUser.first_name);
+                StatusMessage = string.Format("Welcome to the mobile token app, {0}!", mobileUser.FirstName);
+            }
+            catch (Exception ex)
+            {
+				StatusMessage = string.Format("Sorry we could not add you. Error: {0}.", ex.Message);
 			}
-			catch (Exception ex)
-			{
-				StatusMessage = string.Format("Sorry we could not add you, {0}. Error: {1}", mobileUser.first_name, ex.Message);
-			}
 		}
 
-		public async Task<User> GetUserbyId(string id)
+		public static async Task<User> GetUserbyId(string id)
 		{
-			return await dbconn.Table<User>().Where(i => i.userId == id).FirstOrDefaultAsync();
+			return await dbconn.Table<User>().Where(i => i.UserId == id).FirstOrDefaultAsync();
 		}
 
-		public async Task<int> GetRowCount()
+        public static async Task<int> GetRowCount()
 		{
-			return await dbconn.Table<User>().CountAsync();			
+			return await dbconn.Table<User>().CountAsync();	     
 		}
 
-		public async Task<List<User>> GetAllUsersAsync()
+		public static async Task<List<User>> GetAllUsersAsync()
 		{
 			try
 			{
@@ -58,12 +58,24 @@ namespace QRCodeAuthMobile.Data
 			catch (Exception ex)
 			{
 				StatusMessage = string.Format("Failed to get users. {0}", ex.Message);
+				return null;
 			}
-
-			return new List<User>();
 		}
 
-		public async void DeleteUserbyId(string id)
+		public static async Task<User> GetAccountOwnerAsync()
+		{
+			try
+			{
+				return await dbconn.Table<User>().FirstAsync();
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failed to get the User account. {0}", ex.Message);
+				return null;
+			}
+		}
+
+		public static async void DeleteUserbyId(string id)
 		{
 			int result = 0;
 			try
@@ -77,5 +89,10 @@ namespace QRCodeAuthMobile.Data
 				StatusMessage = string.Format("Failed to delete student with id {0}. Error: {1}", id, ex.Message);
 			}
 		}
-	}
+
+        public static async Task<User> GetUserbyIndex()
+        {
+            return await dbconn.Table<User>().FirstAsync();
+        }
+    }
 }

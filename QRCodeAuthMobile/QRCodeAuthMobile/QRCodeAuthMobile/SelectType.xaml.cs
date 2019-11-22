@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QRCodeAuthMobile.Models;
+using QRCodeAuthMobile.Data;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -24,30 +25,29 @@ namespace QRCodeAuthMobile
 
 		public async void SubmitButtonClicked(object sender, EventArgs args)
 		{
-
 			statusMessage.Text = "";
 
 			User mobileUser = new User
 			{
-				userId = schoolId.Text,
-				last_name = lastName.Text,
-				first_name = firstName.Text,
-				group = group.SelectedItem.ToString()
+				UserId = schoolId.Text,
+				LastName = lastName.Text,
+				FirstName = firstName.Text,
+				UserType = (UserType)userType.SelectedIndex
 			};
 
-			await App.UserRepo.AddUserAsync(mobileUser);
-			statusMessage.Text = App.UserRepo.StatusMessage;
+			await UserRepository.AddUserAsync(mobileUser);
+			statusMessage.Text = UserRepository.StatusMessage;
 
 			// add logic to display popup about credential authority
-			if (mobileUser.group == "Student")
+			if (mobileUser.UserType == UserType.Student)
 			{
 				await DisplayAlert("Complete Setup", "Please go to the Office of Admissions to add credentials to your account", "OK");
 			}
 			else
 			{
-				await DisplayAlert("Complete Setup", "Please go to the Human Resources Office to add credentials to your account", "OK");
+				await DisplayAlert("Complete Setup", "Please go to the Human Resources Office to add credentials to your account", "OK");				
 			}
-			
+			var page = new Home();
 		}
 	}
 }

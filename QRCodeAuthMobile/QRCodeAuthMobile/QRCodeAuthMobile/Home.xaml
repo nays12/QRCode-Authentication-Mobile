@@ -17,17 +17,28 @@
 
             <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
-                <Label Text="What would you like to do?"
+
+				<Label x:Name="welcomeUser" 
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
+				
+				<Label Text="What would you like to do?"
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
 
+                <Button Text="Manage Credentials"
+                        Clicked="BtnManagedCredentials_Clicked"
+                        Style="{StaticResource buttonStyle}"/>
+
                 <Button Text="Share Credentials"
+                        Clicked="BtnShareCredentials_Clicked"
                         Style="{StaticResource buttonStyle}"/>
                 <Button Text="Record Attendance"
+                        Clicked="BtnRecordAttendance_Clicked"
                         Style="{StaticResource buttonStyle}"/>
-                <Button Text="Update Credentials"                        
-                        Style="{StaticResource buttonStyle}"/>
+ 
                 <Button Text="Web App Login"
+                        Clicked="BtnWebLogIn_Clicked"
                         Style="{StaticResource buttonStyle}"/>
 
             </StackLayout>
