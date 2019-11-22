@@ -18,10 +18,11 @@ using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
 using SQLite;
 
+using Plugin.Settings.Abstractions;
+
 namespace QRCodeAuthMobile
 {
-	// Learn more about making custom code visible in the Xamarin.Forms previewer
-	// by visiting https://aka.ms/xamarinforms-previewer
+
 	[DesignTimeVisible(false)]
 	public partial class MainPage : ContentPage
 	{
@@ -68,5 +69,6 @@ namespace QRCodeAuthMobile
 			DependencyService.Get<IFaceAuth>().FaceAuthentication();
 
 		}
+
 	}
 }

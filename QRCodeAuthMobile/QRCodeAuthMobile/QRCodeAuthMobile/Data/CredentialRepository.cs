@@ -53,6 +53,34 @@ namespace QRCodeAuthMobile.Data
 			}
 		}
 
+		public static async Task AddMultipleCredentialsAsync(List<Credential> creds)
+		{
+			int result = 0;
+			try
+			{
+				foreach (Credential c in creds)
+				{
+					result = await dbconn.InsertAsync(new Credential
+					{
+						Name = c.Name,
+						CredentialType = c.CredentialType,
+						IssueDate = c.IssueDate,
+						ExpirationDate = c.ExpirationDate,
+						Value = c.Value,
+						IsValid = c.IsValid,
+						Issuer = c.Issuer,
+						Owner = c.Owner
+					});
+
+					StatusMessage = string.Format("Success! Added credential {0}. You now have {1} credentials.", c.Name, result);
+				}
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failed to add credentials. Error: {0}", ex.Message);
+			}
+		}
+
 		public static async Task<List<Credential>> GetAllCredentialsAsync()
 		{
 			try

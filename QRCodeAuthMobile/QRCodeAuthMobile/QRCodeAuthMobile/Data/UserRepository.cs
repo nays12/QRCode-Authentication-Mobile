@@ -62,6 +62,19 @@ namespace QRCodeAuthMobile.Data
 			}
 		}
 
+		public static async Task<User> GetAccountOwnerAsync()
+		{
+			try
+			{
+				return await dbconn.Table<User>().FirstAsync();
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failed to get the User account. {0}", ex.Message);
+				return null;
+			}
+		}
+
 		public static async void DeleteUserbyId(string id)
 		{
 			int result = 0;
