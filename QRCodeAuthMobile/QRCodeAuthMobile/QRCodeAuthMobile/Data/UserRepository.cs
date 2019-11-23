@@ -32,10 +32,12 @@ namespace QRCodeAuthMobile.Data
                 });
 
                 StatusMessage = string.Format("Welcome to the mobile token app, {0}!", mobileUser.FirstName);
-            }
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+			}
             catch (Exception ex)
             {
 				StatusMessage = string.Format("Sorry we could not add you. Error: {0}.", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 		}
 

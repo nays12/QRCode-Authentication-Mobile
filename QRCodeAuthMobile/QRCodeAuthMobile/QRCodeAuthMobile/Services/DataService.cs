@@ -68,6 +68,22 @@ namespace QRCodeAuthMobile.Services
 			}
 		}
 
+		public static async Task<List<Credential>> GetUpdatedCredentials()
+		{
+			try
+			{
+				var response = await client.GetStringAsync(url + "api/Credentials/GetUpdatedCredentials");
+				var credentialList = JsonConvert.DeserializeObject<List<Credential>>(response);
+
+				return credentialList;
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex.Message);
+				return null;
+			}
+		}
+
 
 	}
 }
