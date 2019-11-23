@@ -74,21 +74,14 @@ namespace QRCodeAuthMobile.Data
 			}
 		}
 
-		public static async Task AddMultipleCredentialsAsync(List<Credential> creds)
+		public static async Task AddNewCredentialsAsync(List<Credential> creds)
 		{
 			int result = 0;
-			Credential duplicate = new Credential(); 
-			try
-			{
+
+
 				foreach (Credential c in creds)
 				{
-					duplicate = await dbconn.FindAsync<Credential>(c.CredentialId);
-
-					if (duplicate.CredentialId == c.CredentialId)
-					{
-						result = await dbconn.DeleteAsync(duplicate.CredentialId);
-					}
-					else
+					try
 					{
 						result = await dbconn.InsertAsync(new Credential
 						{
@@ -101,17 +94,49 @@ namespace QRCodeAuthMobile.Data
 							Issuer = c.Issuer,
 							Owner = c.Owner
 						});
-					}
 
-					StatusMessage = string.Format("Success! Added credential {0}. You now have {1} credentials.", c.Name, result);
-					System.Diagnostics.Debug.WriteLine(StatusMessage);
+						StatusMessage = string.Format("Success! Added Credential {0}. You now have {1} credentials.", c.Name, result);
+						System.Diagnostics.Debug.WriteLine(StatusMessage);
+					}
+			
+					catch (Exception ex)
+					{
+						StatusMessage = string.Format("Failed to add Credential {0}. Error: {1}", c.Name, ex.Message);
+						System.Diagnostics.Debug.WriteLine(StatusMessage);
+					}
 				}
-			}
-			catch (Exception ex)
-			{
-				StatusMessage = string.Format("Failed to add credentials. Error: {0}", ex.Message);
-				System.Diagnostics.Debug.WriteLine(StatusMessage);
-			}
+		}
+
+		public static async Task UpdateCredentialsAsync(List<Credential> creds)
+		{
+			Credential oldCredential = new Credential();
+
+				foreach (Credential c in creds)
+				{
+					try
+					{
+						oldCredential = await dbconn.FindAsync<Credential>(c.CredentialId);
+
+						// Update old credential with new credential values
+						oldCredential.CredentialId = c.CredentialId;
+						oldCredential.Name = c.Name;
+						oldCredential.CredentialType = c.CredentialType;
+						oldCredential.IssueDate = c.IssueDate;
+						oldCredential.ExpirationDate = c.ExpirationDate;
+						oldCredential.Value = c.Value;
+						oldCredential.IsValid = c.IsValid;
+						oldCredential.Issuer = c.Issuer;
+						oldCredential.Owner = c.Owner;
+					
+						StatusMessage = string.Format("Success! Updated Credential {0}.", oldCredential.Name);
+						System.Diagnostics.Debug.WriteLine(StatusMessage);
+					}
+					catch (Exception ex)
+					{
+						StatusMessage = string.Format("Failure. Could not update Credential {0}. Error: {0}", oldCredential.Name, ex.Message);
+						System.Diagnostics.Debug.WriteLine(StatusMessage);
+					}
+				}
 		}
 
 		public static async Task<List<Credential>> GetAllCredentialsAsync()
@@ -124,7 +149,7 @@ namespace QRCodeAuthMobile.Data
 			{
 				StatusMessage = string.Format("Failed to get credentials. {0}", ex.Message);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
-				return null;
+				return await dbconn.Table<Credential>().ToListAsync();
 			}			
 		}
 

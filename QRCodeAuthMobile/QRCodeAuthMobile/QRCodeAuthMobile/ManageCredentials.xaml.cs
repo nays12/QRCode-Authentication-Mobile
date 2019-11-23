@@ -20,7 +20,7 @@ namespace QRCodeAuthMobile
 
 		public ManageCredentials ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 			GetLoggedInUserInfo();
 			displayCredentialList();
         }
@@ -28,7 +28,14 @@ namespace QRCodeAuthMobile
         public async void displayCredentialList()
         {
 			userCredentials = await CredentialRepository.GetAllCredentialsAsync();
-			credentialList.ItemsSource = userCredentials;
+			if (userCredentials.Count > 0)
+			{
+				credentialList.ItemsSource = userCredentials;
+			}
+			else
+			{
+				await DisplayAlert("No Credentials Found", "Looks like you don't have any Credential yet. Visit your Credential Authority to add some!", "OK");
+			}
 		}
 
         private async void BtnSetUpCredentials_Clicked(object sender, EventArgs e)
@@ -41,11 +48,16 @@ namespace QRCodeAuthMobile
 
         private void BtnFetchCredentials_Clicked(object sender, EventArgs e)
         {
-
-			//NewCredentialsCheck();
-			UpdatedCredentialsCheck();
-
-			displayCredentialList(); // Update the credential list
+			if (userCredentials.Count > 0)
+			{
+				
+				UpdatedCredentialsCheck();
+				displayCredentialList(); // Update the credential list
+			}
+			else
+			{
+				NewCredentialsCheck();
+			}
 		}
 
 		public void GetLoggedInUserInfo()
@@ -63,7 +75,7 @@ namespace QRCodeAuthMobile
 
 			if (newCredentials.Count > 0)
 			{
-				await CredentialRepository.AddMultipleCredentialsAsync(newCredentials); // Add new Credentials to DB
+				await CredentialRepository.AddNewCredentialsAsync(newCredentials); 
 				await DisplayAlert("New Credentials", "Sucess! Your new Credentials have been added to your account!", "OK");
 			}
 			else
@@ -79,7 +91,7 @@ namespace QRCodeAuthMobile
 
 			if (updatedCredentials.Count > 0)
 			{
-				await CredentialRepository.AddMultipleCredentialsAsync(updatedCredentials); // Add new Credentials to DB
+				await CredentialRepository.UpdateCredentialsAsync(updatedCredentials); 
 				await DisplayAlert("Updated Credentials", "Sucess! Your updated Credentials have been added to your account!", "OK");
 			}
 			else
