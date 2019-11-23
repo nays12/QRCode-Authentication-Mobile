@@ -47,7 +47,43 @@ namespace QRCodeAuthMobile
 			{
 				await DisplayAlert("Complete Setup", "Please go to the Human Resources Office to add credentials to your account", "OK");				
 			}
-			var page = new Home();
+			AddTestData();
 		}
+
+		public  async void AddTestData() // Add test data to get user familiar with system 
+		{
+
+			// Add Test Credential to User Account
+			Credential testCredential = new Credential
+			{
+				CredentialId = 1,
+				Name = "First Name",
+				CredentialType = CredentialType.Name,
+				IssueDate = DateTime.UtcNow,
+				ExpirationDate = DateTime.UtcNow,
+				Value = firstName.Text,
+				IsValid = false,
+				Owner = schoolId.Text,
+				Issuer = "TEST_CA"
+			};
+
+			await CredentialRepository.AddCredentialAsync(testCredential);
+
+
+			// Add test Event to User Account
+			Event testEvent = new Event
+			{
+				EventId = 1,
+				Name = "Test Event",
+				Location = "Credential Authority Office",
+				EventType = EventType.Meeting,
+				StartTime = DateTime.UtcNow,
+				EndTime = DateTime.UtcNow,
+				Description = firstName.Text + "'s meeting with the Credential Authority to Add Credentials",
+				Owner = schoolId.Text
+			};
+			await EventRepository.AddEventAsync(testEvent);
+		}
+	
 	}
 }

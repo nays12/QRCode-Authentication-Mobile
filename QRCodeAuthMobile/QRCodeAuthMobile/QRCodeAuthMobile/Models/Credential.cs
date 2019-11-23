@@ -11,7 +11,7 @@ namespace QRCodeAuthMobile.Models
 		}
 
 		// Primary Key
-		[PrimaryKey, AutoIncrement]
+		[PrimaryKey]
 		public int CredentialId { get; set; }
 		public string Name { get; set; }
 		public CredentialType CredentialType { get; set; }

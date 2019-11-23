@@ -85,6 +85,7 @@ namespace QRCodeAuthMobile.Data
 					{
 						result = await dbconn.InsertAsync(new Credential
 						{
+							CredentialId = c.CredentialId,
 							Name = c.Name,
 							CredentialType = c.CredentialType,
 							IssueDate = c.IssueDate,
@@ -110,7 +111,7 @@ namespace QRCodeAuthMobile.Data
 		public static async Task UpdateCredentialsAsync(List<Credential> creds)
 		{
 			Credential oldCredential = new Credential();
-
+			int result = 0;
 				foreach (Credential c in creds)
 				{
 					try
@@ -127,7 +128,9 @@ namespace QRCodeAuthMobile.Data
 						oldCredential.IsValid = c.IsValid;
 						oldCredential.Issuer = c.Issuer;
 						oldCredential.Owner = c.Owner;
-					
+
+						result = await dbconn.UpdateAsync(oldCredential);
+
 						StatusMessage = string.Format("Success! Updated Credential {0}.", oldCredential.Name);
 						System.Diagnostics.Debug.WriteLine(StatusMessage);
 					}

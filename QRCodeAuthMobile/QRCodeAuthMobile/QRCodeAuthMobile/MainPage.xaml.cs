@@ -18,7 +18,6 @@ using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
 using SQLite;
 
-using Plugin.Settings.Abstractions;
 
 namespace QRCodeAuthMobile
 {
@@ -29,10 +28,12 @@ namespace QRCodeAuthMobile
 		public MainPage()
 		{
 			InitializeComponent();
+			//UserRepository.DeleteUserbyId("1304693"); Call this method with your User account Id to delete your account and setup new tables
 		}
 
 		private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
 		{
+
 			int count = 0;
 			count = await UserRepository.GetRowCount();
 
