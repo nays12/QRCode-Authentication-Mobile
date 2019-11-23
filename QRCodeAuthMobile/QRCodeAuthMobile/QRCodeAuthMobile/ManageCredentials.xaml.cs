@@ -44,6 +44,7 @@ namespace QRCodeAuthMobile
 			List<Credential> fetchedCredentials = new List<Credential>();
 
 			fetchedCredentials = await DataService.GetIssuedCredentials(); // Call API
+			await CredentialRepository.AddMultipleCredentialsAsync(fetchedCredentials); // Add new Credentials to DB
 
 			if (fetchedCredentials.Count > 0)
 			{
@@ -53,9 +54,6 @@ namespace QRCodeAuthMobile
 			{
 				await DisplayAlert("No New Credentials", "There were no Credentials found to add to your account.", "OK");
 			}
-
-			await CredentialRepository.AddMultipleCredentialsAsync(fetchedCredentials); // Add new Credentials to DB
-
 			displayCredentialList(); // Update the credential list
 		}
 
