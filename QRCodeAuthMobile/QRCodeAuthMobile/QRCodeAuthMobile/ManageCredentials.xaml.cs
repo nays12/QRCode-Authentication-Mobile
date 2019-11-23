@@ -20,7 +20,7 @@ namespace QRCodeAuthMobile
 
 		public ManageCredentials ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
 			GetLoggedInUserInfo();
 			displayCredentialList();
         }
@@ -28,7 +28,14 @@ namespace QRCodeAuthMobile
         public async void displayCredentialList()
         {
 			userCredentials = await CredentialRepository.GetAllCredentialsAsync();
-			credentialList.ItemsSource = userCredentials;
+			if (userCredentials.Count > 0)
+			{
+				credentialList.ItemsSource = userCredentials;
+			}
+			else
+			{
+				await DisplayAlert("No Credentials Found", "Looks like you don't have any Credential yet. Visit your Credential Authority to add some!", "OK");
+			}
 		}
 
         private async void BtnSetUpCredentials_Clicked(object sender, EventArgs e)
@@ -39,24 +46,18 @@ namespace QRCodeAuthMobile
 
         }
 
-        private async void BtnFetchCredentials_Clicked(object sender, EventArgs e)
+        private void BtnFetchCredentials_Clicked(object sender, EventArgs e)
         {
-			List<Credential> fetchedCredentials = new List<Credential>();
-
-			fetchedCredentials = await DataService.GetIssuedCredentials(); // Call API
-
-			if (fetchedCredentials.Count > 0)
+			if (userCredentials.Count > 0)
 			{
-				await DisplayAlert("New Credentials", "Sucess! Your new Credentials have been added to your account!", "OK");
+				UpdatedCredentialsCheck();
+				NewCredentialsCheck();
+				displayCredentialList();
 			}
 			else
 			{
-				await DisplayAlert("No New Credentials", "There were no Credentials found to add to your account.", "OK");
+				displayCredentialList();
 			}
-
-			await CredentialRepository.AddMultipleCredentialsAsync(fetchedCredentials); // Add new Credentials to DB
-
-			displayCredentialList(); // Update the credential list
 		}
 
 		public void GetLoggedInUserInfo()
@@ -66,6 +67,39 @@ namespace QRCodeAuthMobile
 			accountOwner.FirstName = Convert.ToString(Application.Current.Properties["FirstName"]);
 			accountOwner.UserType = (UserType)Convert.ToInt32(Application.Current.Properties["UserType"]);
 		}
+
+		private async void NewCredentialsCheck()
+		{
+			List<Credential> newCredentials = new List<Credential>();
+			newCredentials = await DataService.GetIssuedCredentials(); // Call API
+
+			if (newCredentials.Count > 0)
+			{
+				await CredentialRepository.AddNewCredentialsAsync(newCredentials); 
+				await DisplayAlert("New Credentials", "Sucess! Your new Credentials have been added to your account!", "OK");
+			}
+			else
+			{
+				await DisplayAlert("No New Credentials", "There were no Credentials found to add to your account.", "OK");
+			}		
+		}
+
+		private async void UpdatedCredentialsCheck()
+		{
+			List<Credential> updatedCredentials = new List<Credential>();
+			updatedCredentials = await DataService.GetUpdatedCredentials(); // Call API
+
+			if (updatedCredentials.Count > 0)
+			{
+				await CredentialRepository.UpdateCredentialsAsync(updatedCredentials); 
+				await DisplayAlert("Updated Credentials", "Sucess! Your updated Credentials have been added to your account!", "OK");
+			}
+			else
+			{
+				await DisplayAlert("No New Updates", "Looks like none of your credentials were updated.", "OK");
+			}			
+		}
+
 
 	}
 }

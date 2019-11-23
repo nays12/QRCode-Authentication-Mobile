@@ -45,10 +45,12 @@ namespace QRCodeAuthMobile.Data
 				});
 
 				StatusMessage = string.Format("Success! Added event {0}. You now have {1} past events.", ev.Name, result);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 			catch (Exception ex)
 			{
 				StatusMessage = string.Format("Failed to add event {0}. Error: {1}", ev.Name, ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 		}
 
@@ -61,6 +63,7 @@ namespace QRCodeAuthMobile.Data
 			catch (Exception ex)
 			{
 				StatusMessage = string.Format("Failed to get event list. Error: {0}", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
 				return null;
 			}		
 		}
