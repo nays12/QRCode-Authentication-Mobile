@@ -39,22 +39,11 @@ namespace QRCodeAuthMobile
 
         }
 
-        private async void BtnFetchCredentials_Clicked(object sender, EventArgs e)
+        private void BtnFetchCredentials_Clicked(object sender, EventArgs e)
         {
-			List<Credential> fetchedCredentials = new List<Credential>();
 
-			fetchedCredentials = await DataService.GetIssuedCredentials(); // Call API
-
-			if (fetchedCredentials.Count > 0)
-			{
-				await DisplayAlert("New Credentials", "Sucess! Your new Credentials have been added to your account!", "OK");
-			}
-			else
-			{
-				await DisplayAlert("No New Credentials", "There were no Credentials found to add to your account.", "OK");
-			}
-
-			await CredentialRepository.AddMultipleCredentialsAsync(fetchedCredentials); // Add new Credentials to DB
+			//NewCredentialsCheck();
+			UpdatedCredentialsCheck();
 
 			displayCredentialList(); // Update the credential list
 		}
@@ -66,6 +55,39 @@ namespace QRCodeAuthMobile
 			accountOwner.FirstName = Convert.ToString(Application.Current.Properties["FirstName"]);
 			accountOwner.UserType = (UserType)Convert.ToInt32(Application.Current.Properties["UserType"]);
 		}
+
+		private async void NewCredentialsCheck()
+		{
+			List<Credential> newCredentials = new List<Credential>();
+			newCredentials = await DataService.GetIssuedCredentials(); // Call API
+
+			if (newCredentials.Count > 0)
+			{
+				await CredentialRepository.AddMultipleCredentialsAsync(newCredentials); // Add new Credentials to DB
+				await DisplayAlert("New Credentials", "Sucess! Your new Credentials have been added to your account!", "OK");
+			}
+			else
+			{
+				await DisplayAlert("No New Credentials", "There were no Credentials found to add to your account.", "OK");
+			}		
+		}
+
+		private async void UpdatedCredentialsCheck()
+		{
+			List<Credential> updatedCredentials = new List<Credential>();
+			updatedCredentials = await DataService.GetUpdatedCredentials(); // Call API
+
+			if (updatedCredentials.Count > 0)
+			{
+				await CredentialRepository.AddMultipleCredentialsAsync(updatedCredentials); // Add new Credentials to DB
+				await DisplayAlert("Updated Credentials", "Sucess! Your updated Credentials have been added to your account!", "OK");
+			}
+			else
+			{
+				await DisplayAlert("No New Updates", "Looks like none of your credentials were updated.", "OK");
+			}			
+		}
+
 
 	}
 }
