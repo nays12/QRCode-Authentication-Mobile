@@ -51,6 +51,7 @@ namespace QRCodeAuthMobile
 			if (userCredentials.Count > 0)
 			{
 				UpdatedCredentialsCheck();
+				UpdatedCredentialsCheck();
 				NewCredentialsCheck();
 				displayCredentialList();
 			}
@@ -98,6 +99,20 @@ namespace QRCodeAuthMobile
 			{
 				await DisplayAlert("No New Updates", "Looks like none of your credentials were updated.", "OK");
 			}			
+		}
+
+		private async void DeletedCredentialsCheck()
+		{
+			int deletedCredentialId = await DataService.GetCredentialIdToDelete(); // Call API
+			if (deletedCredentialId == 0)
+			{
+				System.Diagnostics.Debug.WriteLine("No credentials were deleted");
+			}
+			else
+			{
+				await CredentialRepository.DeleteCredentialById(deletedCredentialId);
+				await DisplayAlert("Deleted Credential", CredentialRepository.StatusMessage, "OK");
+			}
 		}
 
 

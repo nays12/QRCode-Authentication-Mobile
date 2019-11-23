@@ -84,6 +84,22 @@ namespace QRCodeAuthMobile.Services
 			}
 		}
 
+		public static async Task<int> GetCredentialIdToDelete()
+		{
+			try
+			{
+				var response = await client.GetStringAsync(url + "api/Credentials/GetCredentialIdToDelete");
+				var deletedCredentialId = JsonConvert.DeserializeObject<int>(response);
+
+				return deletedCredentialId;
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex.Message);
+				return 0;
+			}
+		}
+
 
 	}
 }
