@@ -34,9 +34,11 @@ namespace QRCodeAuthMobile
             App.Current.MainPage = new WebAppLogin();
         }
 
-        private void BtnManageAttendance_Clicked(object sender, EventArgs e)
+        private async void BtnManageAttendance_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new ManageAttendance();
+            //App.Current.MainPage = new ManageAttendance();
+            await Navigation.PushAsync(new ManageAttendance());
+            
         }
 
         private void BtnShareCredentials_Clicked(object sender, EventArgs e)

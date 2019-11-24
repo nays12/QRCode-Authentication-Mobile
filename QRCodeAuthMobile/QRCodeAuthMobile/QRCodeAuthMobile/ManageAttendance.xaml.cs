@@ -8,6 +8,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
+using ZXing.Net.Mobile.Forms;
+using Newtonsoft.Json;
 
 namespace QRCodeAuthMobile
 {
@@ -25,6 +27,7 @@ namespace QRCodeAuthMobile
 
         public void GetAttendanceHistory()
         {
+            //CORRECT code
             //attendanceEvents = await EventRepository.GetAllEventsAsync();
             //AttendanceList.ItemsSource = attendanceEvents;
 
@@ -33,11 +36,46 @@ namespace QRCodeAuthMobile
             AttendanceList.ItemsSource = attendanceEvents;
         }
 
-        private void BtnRecordAttendance_Clicked(object sender, EventArgs e)
+
+        private async void BtnRecordAttendance_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new Camera();
+            Event eventObject = new Event();
+
+            //Create a scan page. 
+            var scanPage = new ZXingScannerPage();
+
+            // Navigate to scan page
+            await Navigation.PushAsync(scanPage);
+
+            //Event Handler
+            scanPage.OnScanResult += (result) =>
+            {
+                // Stop scanning
+                scanPage.IsScanning = false;
+
+                // Pop the page and show the result
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    await Navigation.PopAsync();
+
+                    //Save the scanned event object into the eventObject variable. 
+                    eventObject = JsonConvert.DeserializeObject<Event>(result.ToString());
+                    //await DisplayAlert("Scanned Barcode", result.Text, "OK");
+                    ConfirmAttendance(eventObject);
+
+                });
+            };
+
+            //CORRECT code
+            //Add Event to localdatabase 
+            //await EventRepository.AddEventAsync(eventObject);
         }
 
+        public async void ConfirmAttendance(Event e1)
+        {
+            String message = "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description + "\n Owner: " + e1.Owner;
+            await DisplayAlert("Scanned Barcode", message, "OK");
+        }
 
         // TESTING - DELETE LATER 
         public void CreateAttendanceEvents() // TESTING - DELETE LATER 
@@ -72,5 +110,7 @@ namespace QRCodeAuthMobile
             e3.Owner = "646825";
             attendanceEvents.Add(e3);
         }
+
+
     }
 }
