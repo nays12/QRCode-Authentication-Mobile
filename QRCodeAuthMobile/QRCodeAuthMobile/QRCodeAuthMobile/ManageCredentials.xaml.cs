@@ -50,7 +50,7 @@ namespace QRCodeAuthMobile
         {
 			if (userCredentials.Count > 0)
 			{
-				UpdatedCredentialsCheck();
+				DeletedCredentialsCheck();
 				UpdatedCredentialsCheck();
 				NewCredentialsCheck();
 				displayCredentialList();
