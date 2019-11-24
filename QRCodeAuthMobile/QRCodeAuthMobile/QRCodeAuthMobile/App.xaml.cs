@@ -30,7 +30,8 @@ namespace QRCodeAuthMobile
 			CredentialRepo = new CredentialRepository(dbPath);
 			EventRepo = new EventRepository(dbPath);
 
-			MainPage = new MainPage();
+            MainPage = new AESHelper();
+			//MainPage = new MainPage();
 			//MainPage = new SelectType();
 			//MainPage = new Home();
 			//  MainPage = new ConfirmCredentials();
