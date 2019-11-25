@@ -46,7 +46,7 @@ namespace QRCodeAuthMobile
 
         }
 
-        private void BtnFetchCredentials_Clicked(object sender, EventArgs e)
+        private void BtnUpdateCredentials_Clicked(object sender, EventArgs e)
         {
 			if (userCredentials.Count > 0)
 			{
@@ -77,11 +77,11 @@ namespace QRCodeAuthMobile
 			if (newCredentials.Count > 0)
 			{
 				await CredentialRepository.AddNewCredentialsAsync(newCredentials); 
-				await DisplayAlert("New Credentials", "Sucess! Your new Credentials have been added to your account!", "OK");
+				await DisplayAlert("New Credentials", "Success! Your new Credentials have been added to your account! Please restart the app to view them.", "OK");
 			}
 			else
 			{
-				await DisplayAlert("No New Credentials", "There were no Credentials found to add to your account.", "OK");
+				System.Diagnostics.Debug.WriteLine(CredentialRepository.StatusMessage);
 			}		
 		}
 
@@ -93,11 +93,11 @@ namespace QRCodeAuthMobile
 			if (updatedCredentials.Count > 0)
 			{
 				await CredentialRepository.UpdateCredentialsAsync(updatedCredentials); 
-				await DisplayAlert("Updated Credentials", "Sucess! Your updated Credentials have been added to your account!", "OK");
+				await DisplayAlert("Updated Credentials", "Success! Your Credentials have been updated! Please restart the app to see the new values.", "OK");
 			}
 			else
 			{
-				await DisplayAlert("No New Updates", "Looks like none of your credentials were updated.", "OK");
+				System.Diagnostics.Debug.WriteLine(CredentialRepository.StatusMessage);
 			}			
 		}
 
@@ -106,12 +106,12 @@ namespace QRCodeAuthMobile
 			int deletedCredentialId = await DataService.GetCredentialIdToDelete(); // Call API
 			if (deletedCredentialId == 0)
 			{
-				System.Diagnostics.Debug.WriteLine("No credentials were deleted");
+				System.Diagnostics.Debug.WriteLine(CredentialRepository.StatusMessage);
 			}
 			else
 			{
 				await CredentialRepository.DeleteCredentialById(deletedCredentialId);
-				await DisplayAlert("Deleted Credential", CredentialRepository.StatusMessage, "OK");
+				await DisplayAlert("Deleted Credential", CredentialRepository.StatusMessage + "Please restart to application to remove the Credential from your list.", "OK");
 			}
 		}
 
