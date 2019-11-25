@@ -25,20 +25,20 @@ namespace QRCodeAuthMobile
             GetAttendanceHistory();
         }
 
-        public void GetAttendanceHistory()
+        public async void GetAttendanceHistory()
         {
             //CORRECT code
-            //attendanceEvents = await EventRepository.GetAllEventsAsync();
-            //AttendanceList.ItemsSource = attendanceEvents;
-
-            //Testing - DELETE LATER
-            CreateAttendanceEvents();
-            AttendanceList.ItemsSource = attendanceEvents;
+            attendanceEvents = await EventRepository.GetAllEventsAsync();
+            if (attendanceEvents.Count > 0)
+            {
+                AttendanceViewList.ItemsSource = attendanceEvents;
+            }
         }
 
 
         private async void BtnRecordAttendance_Clicked(object sender, EventArgs e)
         {
+
             Event eventObject = new Event();
 
             //Create a scan page. 
@@ -47,6 +47,9 @@ namespace QRCodeAuthMobile
             // Navigate to scan page
             await Navigation.PushAsync(scanPage);
 
+            //Clear the list 
+            AttendanceViewList.ItemsSource = null;
+           
             //Event Handler
             scanPage.OnScanResult += (result) =>
             {
@@ -60,57 +63,46 @@ namespace QRCodeAuthMobile
 
                     //Save the scanned event object into the eventObject variable. 
                     eventObject = JsonConvert.DeserializeObject<Event>(result.ToString());
+
+                    //Add new attendace event to List and database. 
+                    attendanceEvents.Add(eventObject);
+                    await EventRepository.AddEventAsync(eventObject);
+
+                    //Re-Add the list of events to ListView, so it can refresh. 
+                    AttendanceViewList.ItemsSource = attendanceEvents;
+
                     //await DisplayAlert("Scanned Barcode", result.Text, "OK");
                     ConfirmAttendance(eventObject);
 
                 });
             };
-
-            //CORRECT code
-            //Add Event to localdatabase 
-            //await EventRepository.AddEventAsync(eventObject);
         }
+
 
         public async void ConfirmAttendance(Event e1)
         {
-            String message = "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description + "\n Owner: " + e1.Owner;
+            String message = "EventID:  " + e1.EventId + "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description + "\n Owner: " + e1.Owner;
             await DisplayAlert("Scanned Barcode", message, "OK");
         }
 
-        // TESTING - DELETE LATER 
-        public void CreateAttendanceEvents() // TESTING - DELETE LATER 
+
+        //TEsting - DELETE LATER
+        public void debug(List<Event> attendanceEvents)
         {
-            Event e1 = new Event();
-            e1.Name = "Delta Waffle Day";
-            e1.Location = "Delta Building Lobby";
-            e1.EventType = EventType.Campus;
-            e1.StartTime = Convert.ToDateTime("10/30/2019 2:30:00 PM");
-            e1.EndTime = Convert.ToDateTime("10/30/2019 2:30:00 PM");
-            e1.Description = "Free Waffles at the Delta building!";
-            e1.Owner = "8764710";
-            attendanceEvents.Add(e1);
-
-            Event e2 = new Event();
-            e2.Name = "Senior Class";
-            e2.Location = "Delta Building 242";
-            e2.EventType = EventType.Lecture;
-            e2.StartTime = Convert.ToDateTime("10/30/2019 7:00:00 PM");
-            e2.EndTime = Convert.ToDateTime("10/30/2019 9:50:00 PM");
-            e2.Description = "Class";
-            e2.Owner = "8764710";
-            attendanceEvents.Add(e2);
-
-            Event e3 = new Event();
-            e3.Name = "Study PAWS";
-            e3.Location = "Naumann Library Main Floor";
-            e3.EventType = EventType.Campus;
-            e3.StartTime = Convert.ToDateTime("11/20/2019 3:00:00 PM");
-            e3.EndTime = Convert.ToDateTime("11/20/2019 4:30:00 PM");
-            e3.Description = "Pet Away Worry and Stress (PAWS) during your studies for mid-terms at this Neumann Library fall event.";
-            e3.Owner = "646825";
-            attendanceEvents.Add(e3);
+            foreach(Event ev in attendanceEvents)
+            {
+                System.Diagnostics.Debug.WriteLine("AFTER ADD");
+                System.Diagnostics.Debug.WriteLine("Event ID Number: " + ev.EventId);
+                System.Diagnostics.Debug.WriteLine("Name: " + ev.Name);
+                System.Diagnostics.Debug.WriteLine("Location: " + ev.Location);
+                System.Diagnostics.Debug.WriteLine("Type: " + ev.EventType);
+                System.Diagnostics.Debug.WriteLine("Start Time: " + ev.StartTime);
+                System.Diagnostics.Debug.WriteLine("End Time: " + ev.EndTime);
+                System.Diagnostics.Debug.WriteLine("Description: " + ev.Description);
+                System.Diagnostics.Debug.WriteLine("Owner: " + ev.Owner);
+                System.Diagnostics.Debug.WriteLine("-----------------------");
+            }
         }
-
 
     }
 }

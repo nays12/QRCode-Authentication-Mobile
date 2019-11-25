@@ -41,6 +41,7 @@ namespace QRCodeAuthMobile
             //MainPage = new ManageCredentials();
             //MainPage = new ManageAttendance();
             MainPage = new NavigationPage(new Home());
+            //MainPage = new DatabaseTest();
         }
 
         protected override void OnStart()

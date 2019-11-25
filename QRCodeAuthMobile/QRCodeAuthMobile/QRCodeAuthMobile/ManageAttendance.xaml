@@ -12,7 +12,7 @@
 
             <Frame CornerRadius="10" Padding="10,10,10,10" Margin="10,0,10,0"  BorderColor="#051e3e" BackgroundColor="#bdeaee">
                 <StackLayout>
-                    <ListView x:Name="AttendanceList" ItemsSource="{Binding Credentials}"
+                    <ListView x:Name="AttendanceViewList" ItemsSource="{Binding Event}"
                               HasUnevenRows="True"            
                               SeparatorVisibility="None">
                         <ListView.ItemTemplate>
