@@ -49,14 +49,10 @@ namespace QRCodeAuthMobile
 			User user = new User();
 			user = await UserRepository.GetAccountOwnerAsync();
 
-			Application.Current.Properties["UserId"] = user.UserId;
-			Application.Current.Properties["LastName"] = user.LastName;
-			Application.Current.Properties["FirstName"] = user.FirstName;
-			Application.Current.Properties["UserType"] = user.UserType;
+			Application.Current.Properties["LoggedInUser"] = user;
 
 			welcomeUser.Text = string.Format("Welcome {0}!", user.FirstName);
 		}
-
 
 	}
 }

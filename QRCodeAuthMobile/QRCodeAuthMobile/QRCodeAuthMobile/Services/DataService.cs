@@ -20,6 +20,12 @@ namespace QRCodeAuthMobile.Services
 			return code;
 		}
 
+		public static async Task<HttpResponseMessage> SendAccountId(string id)
+		{
+			var content = new StringContent("This is a test", Encoding.UTF8, "application/json");
+			return await client.PostAsync(url + "api/Data/RecieveAccountId", content);
+		}
+
 		public static async Task<List<Event>> GetAllEvents()
 		{
 			try

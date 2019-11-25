@@ -63,10 +63,7 @@ namespace QRCodeAuthMobile
 
 		public void GetLoggedInUserInfo()
 		{
-			accountOwner.UserId = Convert.ToString(Application.Current.Properties["UserId"]);
-			accountOwner.LastName = Convert.ToString(Application.Current.Properties["LastName"]);
-			accountOwner.FirstName = Convert.ToString(Application.Current.Properties["FirstName"]);
-			accountOwner.UserType = (UserType)Convert.ToInt32(Application.Current.Properties["UserType"]);
+			accountOwner = (User)(Application.Current.Properties["LoggedInUser"]);
 		}
 
 		private async void NewCredentialsCheck()
