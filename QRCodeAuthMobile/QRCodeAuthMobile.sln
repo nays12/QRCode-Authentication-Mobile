@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRCodeAuthMobile.iOS", "QRC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QRCodeAuthMobile", "QRCodeAuthMobile\QRCodeAuthMobile\QRCodeAuthMobile.csproj", "{7030F193-AE69-49C0-8158-285FE9DC2DB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileAPI", "QRCodeAuthMobile\MobileAPI\MobileAPI.csproj", "{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,18 +73,6 @@ Global
 		{7030F193-AE69-49C0-8158-285FE9DC2DB1}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{7030F193-AE69-49C0-8158-285FE9DC2DB1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 		{7030F193-AE69-49C0-8158-285FE9DC2DB1}.Release|iPhoneSimulator.Deploy.0 = Release|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Release|iPhone.Build.0 = Release|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{CAD28C86-D2D5-4375-8192-7A08D56A0DBF}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

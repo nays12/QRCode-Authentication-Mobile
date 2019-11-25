@@ -10,6 +10,8 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using QRCodeAuthMobile.Models;
+using QRCodeAuthMobile.Data;
 
 namespace QRCodeAuthMobile
 {
@@ -19,6 +21,42 @@ namespace QRCodeAuthMobile
 		public Home()
 		{
 			InitializeComponent();
+			PutUserinSessionState();
 		}
+
+        private void BtnManagedCredentials_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new ManageCredentials();
+        }
+
+		private void BtnWebLogIn_Clicked(object sender, EventArgs e)
+        {
+            App.Current.MainPage = new WebAppLogin();
+        }
+
+        private void BtnRecordAttendance_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void BtnShareCredentials_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+
+		private async void PutUserinSessionState()
+		{
+			User user = new User();
+			user = await UserRepository.GetAccountOwnerAsync();
+
+			Application.Current.Properties["UserId"] = user.UserId;
+			Application.Current.Properties["LastName"] = user.LastName;
+			Application.Current.Properties["FirstName"] = user.FirstName;
+			Application.Current.Properties["UserType"] = user.UserType;
+
+			welcomeUser.Text = string.Format("Welcome {0}!", user.FirstName);
+		}
+
+
 	}
 }

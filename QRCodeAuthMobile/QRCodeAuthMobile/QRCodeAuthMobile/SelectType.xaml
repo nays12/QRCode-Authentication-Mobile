@@ -52,7 +52,7 @@
                        Style="{StaticResource lblEntryFieldStyle}"/>
                 <Frame Padding="20,0,20,0" CornerRadius="10" BackgroundColor="#ddf6fd" BorderColor="LimeGreen">
                     <Picker Grid.Row="3" Grid.Column="1"
-						x:Name="group"
+						x:Name="userType"
 						Title="Select Your Role"
                             FontSize="Small">
                         <Picker.Items>
