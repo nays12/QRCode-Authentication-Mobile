@@ -11,6 +11,7 @@ namespace QRCodeAuthMobile.Services
 	public class DataService
 	{
 		protected static string url = "https://qrcodemobileauthenticationweb.azurewebsites.net/";
+		protected static string url2 = "https://localhost:44312/";
 		protected static HttpClient client = new HttpClient();
 		public static async Task<int> GetWebCode()
 		{
@@ -20,12 +21,12 @@ namespace QRCodeAuthMobile.Services
 			return code;
 		}
 
-		public static async Task<HttpResponseMessage> SendAccountId(string id)
+		public static async Task<HttpResponseMessage> SendAccountId(User user)
 		{
 			try
 			{
-				StringContent content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application /json");				
-				var response = await client.PostAsync(url + "api/Data/RecieveAccountId", content);
+				var content = JsonConvert.SerializeObject(user);			
+				var response = await client.PostAsync(url + "api/Data/RecieveAccountId", new StringContent(content));
 				System.Diagnostics.Debug.WriteLine(response);
 				return response;
 			}

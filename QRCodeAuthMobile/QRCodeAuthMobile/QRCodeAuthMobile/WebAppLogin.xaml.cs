@@ -25,6 +25,7 @@ namespace QRCodeAuthMobile
 		public WebAppLogin()
 		{
 			InitializeComponent();
+			GetLoggedInUserInfo();
 			GetCodeFromService();
 			SendUserInfo();
 		}
@@ -37,8 +38,8 @@ namespace QRCodeAuthMobile
 
 		public async void SendUserInfo()
 		{
-			GetLoggedInUserInfo();
-			var response = await DataService.SendAccountId(accountOwner.UserId);
+			await DataService.SendAccountId(accountOwner);
+			//await DataService.SendAccountId(accountOwner.UserId);
 		}
 
 		public void GetLoggedInUserInfo()
