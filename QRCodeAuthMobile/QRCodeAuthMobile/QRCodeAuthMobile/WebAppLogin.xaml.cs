@@ -39,7 +39,6 @@ namespace QRCodeAuthMobile
 		{
 			GetLoggedInUserInfo();
 			var response = await DataService.SendAccountId(accountOwner.UserId);
-			System.Diagnostics.Debug.WriteLine(response);
 		}
 
 		public void GetLoggedInUserInfo()

@@ -22,8 +22,18 @@ namespace QRCodeAuthMobile.Services
 
 		public static async Task<HttpResponseMessage> SendAccountId(string id)
 		{
-			var content = new StringContent("This is a test", Encoding.UTF8, "application/json");
-			return await client.PostAsync(url + "api/Data/RecieveAccountId", content);
+			try
+			{
+				StringContent content = new StringContent(JsonConvert.SerializeObject(id), Encoding.UTF8, "application /json");				
+				var response = await client.PostAsync(url + "api/Data/RecieveAccountId", content);
+				System.Diagnostics.Debug.WriteLine(response);
+				return response;
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex.Message);
+				return null;
+			}
 		}
 
 		public static async Task<List<Event>> GetAllEvents()
