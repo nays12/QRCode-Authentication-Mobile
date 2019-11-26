@@ -21,7 +21,7 @@ namespace QRCodeAuthMobile
 
         public ManageAttendance ()
 		{
-			InitializeComponent ();
+			InitializeComponent();
             GetAttendanceHistory();
         }
 
@@ -29,10 +29,14 @@ namespace QRCodeAuthMobile
         {
             //CORRECT code
             attendanceEvents = await EventRepository.GetAllEventsAsync();
-            if (attendanceEvents.Count > 0)
-            {
-                AttendanceViewList.ItemsSource = attendanceEvents;
-            }
+			if (attendanceEvents.Count > 0)
+			{
+				AttendanceViewList.ItemsSource = attendanceEvents;
+			}
+			else
+			{
+				await DisplayAlert("No Events Found", "Looks like you haven't attended any events yet. Find a QR Code and hit the Record Attendance button to add some!", "OK");
+			}
         }
 
 
@@ -64,27 +68,31 @@ namespace QRCodeAuthMobile
                     //Save the scanned event object into the eventObject variable. 
                     eventObject = JsonConvert.DeserializeObject<Event>(result.ToString());
 
-                    //Add new attendace event to List and database. 
-                    attendanceEvents.Add(eventObject);
-                    await EventRepository.AddEventAsync(eventObject);
-
-                    //Re-Add the list of events to ListView, so it can refresh. 
-                    AttendanceViewList.ItemsSource = attendanceEvents;
-
-                    //await DisplayAlert("Scanned Barcode", result.Text, "OK");
                     ConfirmAttendance(eventObject);
-
                 });
             };
         }
 
-
         public async void ConfirmAttendance(Event e1)
         {
-            String message = "EventID:  " + e1.EventId + "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description + "\n Owner: " + e1.Owner;
-            await DisplayAlert("Scanned Barcode", message, "OK");
-        }
+			// Show user event details
+            var message = "EventID:  " + e1.EventId + "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description;
+            bool answer = await DisplayAlert("Attend Event?", message, "Yes", "No");
 
+			// Add event to database if user chooses to attend
+			if (answer)
+			{
+				//Add new attendace event to List and database and refresh ListView. 
+				await EventRepository.AddEventAsync(e1);
+				attendanceEvents.Add(e1);				
+				AttendanceViewList.ItemsSource = attendanceEvents;
+			}
+			else
+			{
+				await DisplayAlert("Declined Attendance", "You have decided not to attend this event", "OK");
+			}
+
+		}
 
         //TEsting - DELETE LATER
         public void debug(List<Event> attendanceEvents)

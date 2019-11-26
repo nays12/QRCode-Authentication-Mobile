@@ -28,12 +28,10 @@ namespace QRCodeAuthMobile
 		public MainPage()
 		{
 			InitializeComponent();
-			//UserRepository.DeleteUserbyId("1304693"); Call this method with your User account Id to delete your account and setup new tables
 		}
 
 		private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
 		{
-
 			int count = 0;
 			count = await UserRepository.GetRowCount();
 
@@ -58,17 +56,16 @@ namespace QRCodeAuthMobile
 			}
             else
             {
-                //If FingerprintID is NOT availabe on mobile device, display appropriate error message. 
+                // If FingerprintID is NOT availabe on mobile device, display appropriate error message. 
                 await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
             }
         }
 
 		private void BtnFaceID_Clicked(object sender, EventArgs e)
 		{
-			//If face ID authentification is selected handle the action with platform specific code. 
+			// If face ID authentification is selected handle the action with platform specific code. 
 			// See Android and iOS project implementation folders for code. 
 			DependencyService.Get<IFaceAuth>().FaceAuthentication();
-
 		}
 
 	}

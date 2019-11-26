@@ -21,7 +21,7 @@ namespace QRCodeAuthMobile
 		public Home()
 		{
 			InitializeComponent();
-			//PutUserinSessionState();
+			PutUserinSessionState();
 		}
 
         private void BtnManagedCredentials_Clicked(object sender, EventArgs e)

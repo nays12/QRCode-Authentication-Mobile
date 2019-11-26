@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
+using QRCodeAuthMobile.Services;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -26,27 +27,52 @@ namespace QRCodeAuthMobile
 		public async void SubmitButtonClicked(object sender, EventArgs args)
 		{
 			statusMessage.Text = "";
+			User systemUser = new User();
 
-			User mobileUser = new User
+			systemUser = await DataService.GetUserAccount(schoolId.Text);
+
+			if (systemUser != null)
 			{
-				UserId = schoolId.Text,
-				LastName = lastName.Text,
-				FirstName = firstName.Text,
-				UserType = (UserType)userType.SelectedIndex
-			};
+				string userComfirmMsg = string.Format("Are you {0} {1}?", systemUser.FirstName, systemUser.LastName);
 
-			await UserRepository.AddUserAsync(mobileUser);
-			statusMessage.Text = UserRepository.StatusMessage;
+				bool answer = await DisplayAlert("Account Found.", userComfirmMsg, "Yes", "No");
 
-			// add logic to display popup about credential authority
-			if (mobileUser.UserType == UserType.Student)
-			{
-				await DisplayAlert("Complete Setup", "Please go to the Office of Admissions to add credentials to your account", "OK");
+				if (answer)
+				{
+					// Add user information to their local database
+					await UserRepository.AddUserAsync(systemUser);
+					System.Diagnostics.Debug.WriteLine(UserRepository.StatusMessage);
+
+					// Create a Mobile Account for the User
+					MobileAccount account = new MobileAccount()
+					{
+						MobileId = systemUser.UserId,
+						IsActive = true
+					};
+					await MobileAccountRepository.AddAccountAsync(account);
+					await DisplayAlert("Success", "Your Mobile Token Account has been activated.", "OK");
+				}
+				else
+				{
+					statusMessage.Text = "Please see a UHCL Credential Authority for further assitance";
+				}
 			}
 			else
 			{
-				await DisplayAlert("Complete Setup", "Please go to the Human Resources Office to add credentials to your account", "OK");				
+				await DisplayAlert("Account Not Found", "Sorry, we could not find your information in the school system. You cannot make a Mobile Account as this time.", "OK");
+				statusMessage.Text = "Please see a UHCL Credential Authority for further assitance";
 			}
+
+			// add logic to display information about credential authority
+			if (systemUser.UserType == UserType.Student)
+			{
+				statusMessage.Text = "Please go to the Office of Admissions to add credentials to your account";
+			}
+			else
+			{
+				statusMessage.Text = "Please go to the Human Resources Office to add credentials to your account";				
+			}
+		
 			AddTestData();
 		}
 
@@ -66,9 +92,7 @@ namespace QRCodeAuthMobile
 				Owner = schoolId.Text,
 				Issuer = "TEST_CA"
 			};
-
 			await CredentialRepository.AddCredentialAsync(testCredential);
-
 
 			// Add test Event to User Account
 			Event testEvent = new Event
