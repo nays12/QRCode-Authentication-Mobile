@@ -25,9 +25,8 @@ namespace QRCodeAuthMobile.Services
 		{
 			try
 			{
-				var response = await client.GetStringAsync(url + "api/Users/GetUserById");
+				var response = await client.GetStringAsync(url + "api/Users/GetUserWithId?id=" + id);
 				var user = JsonConvert.DeserializeObject<User>(response);
-
 				return user;
 			}
 			catch (Exception ex)

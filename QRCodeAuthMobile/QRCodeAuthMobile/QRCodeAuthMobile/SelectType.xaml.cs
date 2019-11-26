@@ -73,10 +73,10 @@ namespace QRCodeAuthMobile
 				statusMessage.Text = "Please go to the Human Resources Office to add credentials to your account";				
 			}
 		
-			AddTestData();
+			AddTestData(systemUser);
 		}
 
-		public  async void AddTestData() // Add test data to get user familiar with system 
+		public async void AddTestData(User u) // Add test data to get user familiar with system 
 		{
 
 			// Add Test Credential to User Account
@@ -87,7 +87,7 @@ namespace QRCodeAuthMobile
 				CredentialType = CredentialType.Name,
 				IssueDate = DateTime.UtcNow,
 				ExpirationDate = DateTime.UtcNow,
-				Value = firstName.Text,
+				Value = u.FirstName,
 				IsValid = false,
 				Owner = schoolId.Text,
 				Issuer = "TEST_CA"
@@ -103,7 +103,7 @@ namespace QRCodeAuthMobile
 				EventType = EventType.Meeting,
 				StartTime = DateTime.UtcNow,
 				EndTime = DateTime.UtcNow,
-				Description = firstName.Text + "'s meeting with the Credential Authority to Add Credentials",
+				Description = u.FirstName + "'s meeting with the Credential Authority to Add Credentials",
 				Owner = schoolId.Text
 			};
 			await EventRepository.AddEventAsync(testEvent);

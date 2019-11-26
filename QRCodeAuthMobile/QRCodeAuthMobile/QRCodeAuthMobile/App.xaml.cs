@@ -32,7 +32,7 @@ namespace QRCodeAuthMobile
 			EventRepo = new EventRepository(dbPath);
 			MobileAccountRepo = new MobileAccountRepository(dbPath);
 
-			//MainPage = new MainPage();
+			MainPage = new MainPage();
 			//MainPage = new SelectType();
 			//MainPage = new Home();
 			//  MainPage = new ConfirmCredentials();
@@ -43,7 +43,7 @@ namespace QRCodeAuthMobile
 			//MainPage = new ManageCredentials();
 			//MainPage = new ManageAttendance();
 			// MainPage = new NavigationPage(new Home());
-			MainPage = new DatabaseTest();
+			//MainPage = new DatabaseTest();
 		}
 
         protected override void OnStart()
