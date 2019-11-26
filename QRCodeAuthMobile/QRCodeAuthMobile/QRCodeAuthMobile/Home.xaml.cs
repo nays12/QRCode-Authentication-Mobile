@@ -21,7 +21,7 @@ namespace QRCodeAuthMobile
 		public Home()
 		{
 			InitializeComponent();
-			PutUserinSessionState();
+			//PutUserinSessionState();
 		}
 
         private void BtnManagedCredentials_Clicked(object sender, EventArgs e)
@@ -34,8 +34,10 @@ namespace QRCodeAuthMobile
             App.Current.MainPage = new WebAppLogin();
         }
 
-        private void BtnRecordAttendance_Clicked(object sender, EventArgs e)
+        private async void BtnManageAttendance_Clicked(object sender, EventArgs e)
         {
+            //App.Current.MainPage = new ManageAttendance();
+            await Navigation.PushAsync(new ManageAttendance());
             
         }
 
