@@ -6,9 +6,7 @@
              mc:Ignorable="d"
              x:Class="QRCodeAuthMobile.WebAppLogin">
 
-
-
-    <ContentPage.Content>
+	<ContentPage.Content>
 
         <StackLayout BackgroundColor="#005073" Padding="50">
 
@@ -24,7 +22,12 @@
                            HorizontalOptions="Center"
                            FontSize="30"
                            TextColor="LimeGreen"/>
-                <!--</Frame>-->
+
+				<Label x:Name="StatusMessage" 
+                       Style="{StaticResource lblStyle}"
+                       HorizontalOptions="CenterAndExpand"/>
+				
+				<!--</Frame>-->
 
             </StackLayout>
 
