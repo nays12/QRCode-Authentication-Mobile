@@ -35,11 +35,11 @@ namespace QRCodeAuthMobile
 			//Check if Fingerprint ID is available on mobile device. 
 			if (await CrossFingerprint.Current.IsAvailableAsync())
 			{
-                //If avaialbe authenticate by Fingerprint ID. 
-                FingerprintAuthenticationResult result = await CrossFingerprint.Current.AuthenticateAsync("Provide fingerprint to sign in.");
+				//If avaialbe authenticate by Fingerprint ID. 
+				FingerprintAuthenticationResult result = await CrossFingerprint.Current.AuthenticateAsync("Provide fingerprint to sign in.");
 
-                //If authentication is successful continue to next page. 
-                if (result.Authenticated)
+				//If authentication is successful continue to next page. 
+				if (result.Authenticated)
 				{
 					List<User> userAccounts = new List<User>();
 					userAccounts = await UserRepository.GetAllUsersAsync();
@@ -47,27 +47,27 @@ namespace QRCodeAuthMobile
 					if (userAccounts.Count > 0) // If record count for User table is > 0 then an account exist
 					{
 						bool answer = await DisplayAlert("Account Found.", "Would you like to make another account?", "Yes", "No");
-						if (answer) 
-						{ 
-							await Navigation.PushAsync(new Home()); 
-						} 
-						else 
-						{ 
-							await Navigation.PushAsync(new SelectType()); 
-						}					
-                    }
+						if (answer)
+						{
+							await Navigation.PushAsync(new Home());
+						}
+						else
+						{
+							await Navigation.PushAsync(new SelectType());
+						}
+					}
 					else // If the record count is 0 then no User account exist
-					{               
-                        await Navigation.PushAsync(new SelectType());
-                    }
+					{
+						await Navigation.PushAsync(new SelectType());
+					}
 				}
 			}
-            else
-            {
-                // If FingerprintID is NOT availabe on mobile device, display appropriate error message. 
-                await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
-            }
-        }
+			else
+			{
+				// If FingerprintID is NOT availabe on mobile device, display appropriate error message. 
+				await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
+			}
+		}
 
 		private void BtnFaceID_Clicked(object sender, EventArgs e)
 		{
