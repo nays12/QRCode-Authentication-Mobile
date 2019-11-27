@@ -46,12 +46,14 @@ namespace QRCodeAuthMobile
 				{
 					if (count > 0) // If record count for User table is > 0 then an account exist
 					{
-						App.Current.MainPage = new Home();
-					}
+                        //App.Current.MainPage = new Home();
+                        await Navigation.PushAsync(new SelectType());
+                    }
 					else // If the record count is 0 then no User account exist
 					{
-						App.Current.MainPage = new SelectType();
-					}
+                        //App.Current.MainPage = new SelectType();
+                        await Navigation.PushAsync(new SelectType());
+                    }
 				}
 			}
             else

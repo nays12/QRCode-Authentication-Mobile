@@ -107,7 +107,9 @@ namespace QRCodeAuthMobile
 				Owner = schoolId.Text
 			};
 			await EventRepository.AddEventAsync(testEvent);
-		}
+
+            await Navigation.PushAsync(new Home());
+        }
 	
 	}
 }

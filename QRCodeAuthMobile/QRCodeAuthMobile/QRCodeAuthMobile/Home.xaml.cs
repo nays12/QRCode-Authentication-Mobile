@@ -24,14 +24,17 @@ namespace QRCodeAuthMobile
 			PutUserinSessionState();
 		}
 
-        private void BtnManagedCredentials_Clicked(object sender, EventArgs e)
+        private async void BtnManagedCredentials_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new ManageCredentials();
+            //App.Current.MainPage = new ManageCredentials();
+            await Navigation.PushAsync(new ManageCredentials());
         }
 
-		private void BtnWebLogIn_Clicked(object sender, EventArgs e)
+		private async void BtnWebLogIn_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new WebAppLogin();
+            //App.Current.MainPage = new WebAppLogin();
+            await Navigation.PushAsync(new WebAppLogin());
+
         }
 
         private async void BtnManageAttendance_Clicked(object sender, EventArgs e)
