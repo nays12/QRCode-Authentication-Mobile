@@ -44,16 +44,16 @@ namespace QRCodeAuthMobile
 					List<User> userAccounts = new List<User>();
 					userAccounts = await UserRepository.GetAllUsersAsync();
 
-					if (userAccounts.Count > 0) // If record count for User table is > 0 then an account exist
+					if (userAccounts != null && userAccounts.Count > 0) // If record count for User table is > 0 then an account exist
 					{
 						bool answer = await DisplayAlert("Account Found.", "Would you like to make another account?", "Yes", "No");
 						if (answer)
 						{
-							await Navigation.PushAsync(new Home());
+							await Navigation.PushAsync(new SelectType());
 						}
 						else
 						{
-							await Navigation.PushAsync(new SelectType());
+							await Navigation.PushAsync(new Home());				
 						}
 					}
 					else // If the record count is 0 then no User account exist
