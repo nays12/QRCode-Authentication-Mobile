@@ -20,7 +20,17 @@ namespace QRCodeAuthMobile
 	{
 		public Home()
 		{
-			InitializeComponent();
+			InitializeComponent(); 
+			GetUserAccounts();
+		}
+
+		private async void GetUserAccounts()
+		{
+			List<User> userAccounts = new List<User>();
+			userAccounts = await UserRepository.GetAllUsersAsync();
+
+			accountUserId.ItemsSource = userAccounts;
+
 			PutUserinSessionState();
 		}
 

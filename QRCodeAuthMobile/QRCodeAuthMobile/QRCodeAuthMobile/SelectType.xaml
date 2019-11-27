@@ -38,6 +38,7 @@
 
 				<Label x:Name="statusMessage"
 					   Style="{StaticResource lblStyle}"/>
+
 			</StackLayout>
 
 		</StackLayout>

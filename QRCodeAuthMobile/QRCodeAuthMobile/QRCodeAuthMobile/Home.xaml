@@ -17,6 +17,11 @@
 
             <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
+				<Picker x:Name="accountUserId"
+						Title="Select an Account"
+                        FontSize="Small" 
+						ItemsSource="{Binding accountsList}"
+						ItemDisplayBinding="{Binding UserId}"/>
 
 				<Label x:Name="welcomeUser" 
                        HorizontalOptions="CenterAndExpand"
