@@ -18,9 +18,10 @@ namespace QRCodeAuthMobile
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Home : ContentPage
 	{
+		protected string selectedId;
 		public Home()
 		{
-			InitializeComponent(); 
+			InitializeComponent();
 			GetUserAccounts();
 		}
 
@@ -29,12 +30,26 @@ namespace QRCodeAuthMobile
 			List<User> userAccounts = new List<User>();
 			userAccounts = await UserRepository.GetAllUsersAsync();
 
-			accountUserId.ItemsSource = userAccounts;
+			accountUserId.ItemsSource = userAccounts; // bind picker to accounts found from database
 
-			PutUserinSessionState();
+
 		}
 
-        private async void BtnManagedCredentials_Clicked(object sender, EventArgs e)
+		private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+		{
+			User u = new User();
+			Picker picker = sender as Picker;
+			var selectedItem = picker.SelectedItem; // This is the model selected in the picker
+
+			//selectedId = selectedItem;
+			u = (User)selectedItem;
+
+			System.Diagnostics.Debug.WriteLine(u.UserId);
+
+			PutUserinSessionState(u);
+		}
+
+		private async void BtnManagedCredentials_Clicked(object sender, EventArgs e)
         {
             //App.Current.MainPage = new ManageCredentials();
             await Navigation.PushAsync(new ManageCredentials());
@@ -59,14 +74,12 @@ namespace QRCodeAuthMobile
             
         }
 
-		private async void PutUserinSessionState()
+		private void PutUserinSessionState(User u)
 		{
-			User user = new User();
-			user = await UserRepository.GetAccountOwnerAsync();
 
-			Application.Current.Properties["LoggedInUser"] = user;
+			Application.Current.Properties["LoggedInUser"] = u;
 
-			welcomeUser.Text = string.Format("Welcome {0}!", user.FirstName);
+			welcomeUser.Text = string.Format("Welcome {0}!", u.FirstName);
 		}
 
 	}

@@ -21,7 +21,9 @@
 						Title="Select an Account"
                         FontSize="Small" 
 						ItemsSource="{Binding accountsList}"
-						ItemDisplayBinding="{Binding UserId}"/>
+						SelectedItem="{Binding UserId}"
+						ItemDisplayBinding="{Binding UserId}"
+						SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
 
 				<Label x:Name="welcomeUser" 
                        HorizontalOptions="CenterAndExpand"
