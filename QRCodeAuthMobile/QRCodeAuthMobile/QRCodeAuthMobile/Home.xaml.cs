@@ -23,20 +23,20 @@ namespace QRCodeAuthMobile
 			InitializeComponent();
 			PutUserinSessionState();
 		}
-
-        private void BtnManagedCredentials_Clicked(object sender, EventArgs e)
+        private async void BtnManagedCredentials_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new ManageCredentials();
+            await Navigation.PushAsync(new ManageCredentials());
         }
 
-		private void BtnWebLogIn_Clicked(object sender, EventArgs e)
+		private async void BtnWebLogIn_Clicked(object sender, EventArgs e)
         {
-            App.Current.MainPage = new WebAppLogin();
+            await Navigation.PushAsync(new WebAppLogin());
+
         }
 
-        private void BtnRecordAttendance_Clicked(object sender, EventArgs e)
+        private async void BtnManageAttendance_Clicked(object sender, EventArgs e)
         {
-            
+            await Navigation.PushAsync(new ManageAttendance());           
         }
 
         private void BtnShareCredentials_Clicked(object sender, EventArgs e)
@@ -46,17 +46,12 @@ namespace QRCodeAuthMobile
 
 		private async void PutUserinSessionState()
 		{
-			User user = new User();
-			user = await UserRepository.GetAccountOwnerAsync();
+			User user = await UserRepository.GetAccountOwnerAsync();
 
-			Application.Current.Properties["UserId"] = user.UserId;
-			Application.Current.Properties["LastName"] = user.LastName;
-			Application.Current.Properties["FirstName"] = user.FirstName;
-			Application.Current.Properties["UserType"] = user.UserType;
+			Application.Current.Properties["LoggedInUser"] = user;
 
-			welcomeUser.Text = string.Format("Welcome {0}!", user.FirstName);
+			lblWelcome.Text = string.Format("Welcome {0}!", user.FirstName);
 		}
-
 
 	}
 }

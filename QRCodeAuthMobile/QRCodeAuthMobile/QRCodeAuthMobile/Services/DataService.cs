@@ -12,12 +12,60 @@ namespace QRCodeAuthMobile.Services
 	{
 		protected static string url = "https://qrcodemobileauthenticationweb.azurewebsites.net/";
 		protected static HttpClient client = new HttpClient();
+
 		public static async Task<int> GetWebCode()
 		{
 			var response = await client.GetStringAsync(url + "api/Data/GetLoginCode"); 
 			var code = JsonConvert.DeserializeObject<int>(response);
 
 			return code;
+		}
+
+		public static async Task<User> GetUserAccount(string id)
+		{
+			try
+			{
+				var response = await client.GetStringAsync(url + "api/Users/GetUserWithId?id=" + id);
+				var user = JsonConvert.DeserializeObject<User>(response);
+				return user;
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex.Message);
+				return null;
+			}
+		}
+
+		public static async Task<HttpResponseMessage> SendAccountId(User user)
+		{
+			try
+			{
+				var content = JsonConvert.SerializeObject(user);			
+				var response = await client.PostAsync(url + "api/Data/RecieveAccountId", new StringContent(content));
+				System.Diagnostics.Debug.WriteLine(response);
+				return response;
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex.Message);
+				return null;
+			}
+		}
+
+		public static async Task<HttpResponseMessage> SendEventCredentials(List<Credential> credentials)
+		{
+			try
+			{
+				var content = JsonConvert.SerializeObject(credentials);
+				var response = await client.PostAsync(url + "api/Credentials/RecieveEventCredentials", new StringContent(content));
+				System.Diagnostics.Debug.WriteLine(response);
+				return response;
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex.Message);
+				return null;
+			}
 		}
 
 		public static async Task<List<Event>> GetAllEvents()
