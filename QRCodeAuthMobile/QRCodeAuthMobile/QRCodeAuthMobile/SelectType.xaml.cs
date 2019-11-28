@@ -70,7 +70,6 @@ namespace QRCodeAuthMobile
 
 		public async void AddOtherData(User u) // Add test data to get user familiar with system 
 		{
-
 			// Create a Mobile Account for the User
 			MobileAccount m = new MobileAccount()
 			{
@@ -109,7 +108,6 @@ namespace QRCodeAuthMobile
 				Owner = schoolId.Text
 			};
 			await EventRepository.AddEventAsync(testEvent);
-
             await Navigation.PushAsync(new Home());
         }
 	

@@ -146,7 +146,25 @@ namespace QRCodeAuthMobile.Data
 			}			
 		}
 
-        public static async Task DeleteAllCredentials()
+		public static async Task<Credential> GetCredentialByType(CredentialType ct)
+		{
+			Credential cred = new Credential();
+			try
+			{
+				cred = await db.Table<Credential>().Where(i => i.CredentialType == ct).FirstOrDefaultAsync();
+				StatusMessage = string.Format("Success! Found Credential {0} of Type {1}.", cred.Name, cred.CredentialType);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return cred;
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Could not get Credential of Type {0}. Error: {0}", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return null;
+			}
+		}
+
+		public static async Task DeleteAllCredentials()
         {
             int result = 0;
             try
