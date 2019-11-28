@@ -18,7 +18,7 @@
             <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
 
-				<Label x:Name="welcomeUser" 
+				<Label x:Name="lblWelcome" 
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
 				

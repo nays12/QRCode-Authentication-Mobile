@@ -23,7 +23,8 @@ namespace QRCodeAuthMobile
         public ManageAttendance ()
 		{
 			InitializeComponent();
-            GetAttendanceHistory();
+			GetAttendanceHistory();
+			ConfirmAttendance();
         }
 
         public async void GetAttendanceHistory()
@@ -33,6 +34,7 @@ namespace QRCodeAuthMobile
 			if (attendanceEvents.Count > 0)
 			{
 				AttendanceViewList.ItemsSource = attendanceEvents;
+				await DisplayAlert("test", "This is a test", "Ok");
 			}
 			else
 			{
@@ -69,33 +71,63 @@ namespace QRCodeAuthMobile
                     //Save the scanned event object into the eventObject variable. 
                     eventObject = JsonConvert.DeserializeObject<Event>(result.ToString());
 
-                    ConfirmAttendance(eventObject);
+                    //ConfirmAttendance(eventObject);
                 });
             };
         }
 
-        public async void ConfirmAttendance(Event e1)
+        public async void ConfirmAttendance() //Event e2)
         {
-			// Show user event details
-            var message = "EventID:  " + e1.EventId + "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description;
-            bool answer = await DisplayAlert("Attend Event?", message, "Yes", "No");
+			List<CredentialType> credentialsNeeded = new List<CredentialType>();
+			credentialsNeeded.Add(CredentialType.Name);
+			credentialsNeeded.Add(CredentialType.Major);
 
-			// Add event to database if user chooses to attend
-			if (answer)
+			Event e1 = new Event
 			{
-				//Add new attendace event to List and database and refresh ListView. 
-				await EventRepository.AddEventAsync(e1);
-				attendanceEvents.Add(e1);				
-				AttendanceViewList.ItemsSource = attendanceEvents;
+				Name = "Delta Waffle Day",
+				Location = "Delta Building Lobby",
+				EventType = EventType.Campus,
+				Description = "Free Waffles at the Delta building!",
+				StartTime = Convert.ToDateTime("10/30/2019 02:30pm"),
+				EndTime = Convert.ToDateTime("10/30/2019 06:30pm"),
+				CredentialsNeeded = credentialsNeeded,
+				Owner = "8764710"
+			};
 
-				// Send user Credentials to Web App
-				SendCredentials(e1);
+			// Show user event details
+			var message = "EventID:  " + e1.EventId + "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description;
+			//bool answer = await DisplayAlert("Attend Event?", message, "Yes", "No");
+			await DisplayAlert("test", "This is a test", "Ok");
 
+			if (e1.CredentialsNeeded != null && e1.CredentialsNeeded.Count > 0)
+			{
+
+				foreach (CredentialType c in e1.CredentialsNeeded)
+				{
+					System.Diagnostics.Debug.WriteLine(c);
+				}
 			}
 			else
 			{
-				await DisplayAlert("Declined Attendance", "You have decided not to attend this event", "OK");
+				await DisplayAlert("Required Credentials", "This Event does not require any credentials to attendance.", "OK");
 			}
+
+			//// Add event to database if user chooses to attend
+			//if (answer)
+			//{
+			//	//Add new attendace event to List and database and refresh ListView. 
+			//	await EventRepository.AddEventAsync(e1);
+			//	attendanceEvents.Add(e1);				
+			//	AttendanceViewList.ItemsSource = attendanceEvents;
+
+			//	// Send user Credentials to Web App
+			//	SendCredentials(e1);
+
+			//}
+			//else
+			//{
+			//	await DisplayAlert("Declined Attendance", "You have decided not to attend this event", "OK");
+			//}
 
 		}
 

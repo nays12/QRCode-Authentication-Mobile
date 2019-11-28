@@ -23,7 +23,6 @@ namespace QRCodeAuthMobile
 			InitializeComponent();
 			PutUserinSessionState();
 		}
-
         private async void BtnManagedCredentials_Clicked(object sender, EventArgs e)
         {
             //App.Current.MainPage = new ManageCredentials();
@@ -56,7 +55,7 @@ namespace QRCodeAuthMobile
 
 			Application.Current.Properties["LoggedInUser"] = user;
 
-			welcomeUser.Text = string.Format("Welcome {0}!", user.FirstName);
+			lblWelcome.Text = string.Format("Welcome {0}!", user.FirstName);
 		}
 
 	}
