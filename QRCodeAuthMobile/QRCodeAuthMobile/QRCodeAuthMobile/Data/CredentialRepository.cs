@@ -19,13 +19,13 @@ namespace QRCodeAuthMobile.Data
 {
 	public class CredentialRepository
 	{
-		protected static SQLiteAsyncConnection dbconn;
+		protected static SQLiteAsyncConnection db;
 		public static string StatusMessage { get; set; }
 
 		public CredentialRepository(string dbPath)
 		{
-			dbconn = new SQLiteAsyncConnection(dbPath);
-			dbconn.CreateTableAsync<Credential>();
+			db = new SQLiteAsyncConnection(dbPath);
+			db.CreateTableAsync<Credential>();
 		}
 
 		public static async Task AddCredentialAsync(Credential cred)
@@ -33,17 +33,7 @@ namespace QRCodeAuthMobile.Data
 			int result = 0;
 			try
 			{
-				result = await dbconn.InsertAsync(new Credential
-				{
-					Name = cred.Name,
-					CredentialType = cred.CredentialType,
-					IssueDate = cred.IssueDate,
-					ExpirationDate = cred.ExpirationDate,
-					Value = cred.Value,
-					IsValid = cred.IsValid,
-					Issuer = cred.Issuer,
-					Owner = cred.Owner
-				});
+				result = await db.InsertAsync(cred);
 
 				StatusMessage = string.Format("Success! Added credential {0}. You now have {1} credentials.", cred.Name, result);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
@@ -61,8 +51,8 @@ namespace QRCodeAuthMobile.Data
 			Credential cred = new Credential();
 			try
 			{
-				cred = await dbconn.FindAsync<Credential>(id);
-				result = await dbconn.DeleteAsync<Credential>(id);
+				cred = await db.FindAsync<Credential>(id);
+				result = await db.DeleteAsync<Credential>(id);
 
 				StatusMessage = string.Format("Success! Deleted Credential '{0}' in Mobile Account belonging to {1}.", cred.Name, cred.Owner);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
@@ -83,7 +73,7 @@ namespace QRCodeAuthMobile.Data
 				{
 					try
 					{
-						result = await dbconn.InsertAsync(new Credential
+						result = await db.InsertAsync(new Credential
 						{
 							CredentialId = c.CredentialId,
 							Name = c.Name,
@@ -116,7 +106,7 @@ namespace QRCodeAuthMobile.Data
 				{
 					try
 					{
-						oldCredential = await dbconn.FindAsync<Credential>(c.CredentialId);
+						oldCredential = await db.FindAsync<Credential>(c.CredentialId);
 
 						// Update old credential with new credential values
 						oldCredential.CredentialId = c.CredentialId;
@@ -129,7 +119,7 @@ namespace QRCodeAuthMobile.Data
 						oldCredential.Issuer = c.Issuer;
 						oldCredential.Owner = c.Owner;
 
-						result = await dbconn.UpdateAsync(oldCredential);
+						result = await db.UpdateAsync(oldCredential);
 
 						StatusMessage = string.Format("Success! Updated Credential {0}.", oldCredential.Name);
 						System.Diagnostics.Debug.WriteLine(StatusMessage);
@@ -146,7 +136,7 @@ namespace QRCodeAuthMobile.Data
 		{
 			try
 			{
-				return await dbconn.Table<Credential>().ToListAsync();
+				return await db.Table<Credential>().ToListAsync();
 			}
 			catch (Exception ex)
 			{
@@ -161,7 +151,7 @@ namespace QRCodeAuthMobile.Data
             int result = 0;
             try
             {
-                result = await dbconn.DeleteAllAsync<Credential>();
+                result = await db.DeleteAllAsync<Credential>();
             }
             catch (Exception ex)
             {

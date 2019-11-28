@@ -41,8 +41,10 @@ namespace QRCodeAuthMobile
                 //If authentication is successful continue to next page. 
                 if (result.Authenticated)
 				{
+					UserRepository.DeleteUserbyId("1304693");
 					int count = 0;
 					count = await UserRepository.GetRowCount();
+					
 
 					if (count > 0) // If record count for User table is > 0 then an account exist
 					{

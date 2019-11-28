@@ -33,16 +33,7 @@ namespace QRCodeAuthMobile.Data
 			int result = 0;
 			try
 			{
-				result = await dbconn.InsertAsync(new Event
-				{
-					Name = ev.Name,
-					Location = ev.Location,
-					EventType = ev.EventType,
-					Description = ev.Description,
-					StartTime = ev.StartTime,
-					EndTime = ev.EndTime,
-					Owner = ev.Owner,
-				});
+				result = await dbconn.InsertAsync(ev);
 
 				StatusMessage = string.Format("Success! Added event {0}. You now have {1} past events.", ev.Name, result);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);

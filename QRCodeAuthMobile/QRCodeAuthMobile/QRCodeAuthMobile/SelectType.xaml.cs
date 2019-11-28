@@ -77,6 +77,7 @@ namespace QRCodeAuthMobile
 				MobileId = u.UserId,
 				IsActive = true
 			};
+
 			await MobileAccountRepository.AddAccountAsync(m);
 			await DisplayAlert("Success", "Your Mobile Token Account has been activated.", "OK");
 

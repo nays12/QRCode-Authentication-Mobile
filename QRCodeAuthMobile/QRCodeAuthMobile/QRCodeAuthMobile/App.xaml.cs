@@ -32,7 +32,6 @@ namespace QRCodeAuthMobile
 			EventRepo = new EventRepository(dbPath);
 			MobileAccountRepo = new MobileAccountRepository(dbPath);
 
-
 			MainPage = new NavigationPage(new MainPage());
 			//MainPage = new MainPage();
 			//MainPage = new SelectType();

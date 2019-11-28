@@ -10,21 +10,21 @@ namespace QRCodeAuthMobile.Data
 	public class MobileAccountRepository
 	{
 
-		protected static SQLiteAsyncConnection dbconn;
+		protected static SQLiteAsyncConnection db;
 		public static string StatusMessage { get; set; }
 
 		public MobileAccountRepository(string dbPath)
 		{
-			dbconn = new SQLiteAsyncConnection(dbPath);
-			dbconn.CreateTableAsync<MobileAccount>();
+			db = new SQLiteAsyncConnection(dbPath);
+			db.CreateTableAsync<MobileAccount>();
 		}
 
 		public static async Task AddAccountAsync(MobileAccount m)
 		{
 			int result = 0;
 			try
-			{
-				result = await dbconn.InsertAsync(m);
+			{				
+				result = await db.InsertAsync(m);
 
 				StatusMessage = string.Format("Success! Added Mobile Token Account belonging to user {0}", m.MobileId);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
@@ -40,7 +40,7 @@ namespace QRCodeAuthMobile.Data
 		{
 			try
 			{
-				return await dbconn.Table<MobileAccount>().FirstAsync();
+				return await db.Table<MobileAccount>().FirstAsync();
 			}
 			catch (Exception ex)
 			{

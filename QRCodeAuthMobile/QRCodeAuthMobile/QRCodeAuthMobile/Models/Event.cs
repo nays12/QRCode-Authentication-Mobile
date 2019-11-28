@@ -12,7 +12,7 @@ namespace QRCodeAuthMobile.Models
 		}
 
 		// Primary Key
-		[PrimaryKey]
+		[PrimaryKey, AutoIncrement]]
 		public int EventId { get; set; }
 		public string Name { get; set; }
 		public string Location { get; set; }
