@@ -93,7 +93,7 @@ namespace QRCodeAuthMobile
 				Owner = schoolId.Text,
 				Issuer = "TEST_CA"
 			};
-			CredentialRepository.AddCredentialAsync(testCredential);
+			await CredentialRepository.AddCredentialAsync(testCredential);
 
 			// Add test Event to User Account
 			Event testEvent = new Event
@@ -107,7 +107,7 @@ namespace QRCodeAuthMobile
 				Description = u.FirstName + "'s meeting with the Credential Authority to Add Credentials",
 				Owner = schoolId.Text
 			};
-			EventRepository.AddEventAsync(testEvent);
+			await EventRepository.AddEventAsync(testEvent);
             await Navigation.PushAsync(new Home());
         }
 	

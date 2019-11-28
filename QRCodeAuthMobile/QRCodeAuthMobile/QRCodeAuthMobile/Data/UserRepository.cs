@@ -15,15 +15,28 @@ namespace QRCodeAuthMobile.Data
 		public UserRepository(string dbPath)
 		{
 			db = new SQLiteAsyncConnection(dbPath);
-			db.CreateTableAsync<User>();
+			//db.CreateTableAsync<User>();
+		}
+		public static async Task InitializeTableAsync()
+		{
+			try
+			{
+				await db.CreateTableAsync<User>();
+				StatusMessage = string.Format("Success! Created a table for Users.");
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failure. Could not create the Users table. Error: {0}", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+			}
 		}
 
 		public static async Task AddUserAsync(User mobileUser)
 		{
-            int result = 0;
             try
             {
-				result = await db.InsertAsync(mobileUser);
+				await db.InsertAsync(mobileUser);
 
                 StatusMessage = string.Format("Success. Added new User {0}!", mobileUser.FirstName);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
@@ -55,10 +68,9 @@ namespace QRCodeAuthMobile.Data
 
         public static async Task<int> GetRowCount()
 		{
-			int count = 0;
 			try
 			{
-				count = await db.Table<User>().CountAsync();
+				int count = await db.Table<User>().CountAsync();
 				StatusMessage = string.Format("Success. There are {0} records in the Users table.", count);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 				return count;
@@ -103,12 +115,11 @@ namespace QRCodeAuthMobile.Data
 			}
 		}
 
-		public static async void DeleteUserbyId(string id)
+		public static async Task DeleteUserbyId(string id)
 		{
-			int result = 0;
 			try
 			{
-				result = await db.DeleteAsync<User>(id);
+				await db.DeleteAsync<User>(id);
 
 				StatusMessage = string.Format("Successfully deleted {0}!", id);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);

@@ -25,17 +25,31 @@ namespace QRCodeAuthMobile.Data
 		public CredentialRepository(string dbPath)
 		{
 			db = new SQLiteAsyncConnection(dbPath);
-			db.CreateTableAsync<Credential>();
+			//db.CreateTableAsync<Credential>();
 		}
 
-		public static async void AddCredentialAsync(Credential cred)
+		public static async Task InitializeTableAsync()
 		{
-			int result = 0;
 			try
 			{
-				result = await db.InsertAsync(cred);
+				await db.CreateTableAsync<Credential>();
+				StatusMessage = string.Format("Success! Created a table for Credentials.");
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failure. Could not create the Credentials table. Error: {0}", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+			}			
+		}
 
-				StatusMessage = string.Format("Success! Added credential {0}. You now have {1} credentials.", cred.Name, result);
+		public static async Task AddCredentialAsync(Credential cred)
+		{
+			try
+			{
+				await db.InsertAsync(cred);
+
+				StatusMessage = string.Format("Success! Added credential {0}.", cred.Name);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 			catch (Exception ex)
@@ -45,7 +59,7 @@ namespace QRCodeAuthMobile.Data
 			}
 		}
 
-		public static async void DeleteCredentialById(int id)
+		public static async Task DeleteCredentialById(int id)
 		{
 			int result = 0;
 			Credential cred = new Credential();
@@ -64,16 +78,13 @@ namespace QRCodeAuthMobile.Data
 			}
 		}
 
-		public static async void AddNewCredentialsAsync(List<Credential> creds)
+		public static async Task AddNewCredentialsAsync(List<Credential> creds)
 		{
-			int result = 0;
-
-
 				foreach (Credential c in creds)
 				{
 					try
 					{
-						result = await db.InsertAsync(new Credential
+						await db.InsertAsync(new Credential
 						{
 							CredentialId = c.CredentialId,
 							Name = c.Name,
@@ -86,7 +97,7 @@ namespace QRCodeAuthMobile.Data
 							Owner = c.Owner
 						});
 
-						StatusMessage = string.Format("Success! Added Credential {0}. You now have {1} credentials.", c.Name, result);
+						StatusMessage = string.Format("Success! Added Credential {0}.", c.Name);
 						System.Diagnostics.Debug.WriteLine(StatusMessage);
 					}
 			
@@ -98,10 +109,9 @@ namespace QRCodeAuthMobile.Data
 				}
 		}
 
-		public static async void UpdateCredentialsAsync(List<Credential> creds)
+		public static async Task UpdateCredentialsAsync(List<Credential> creds)
 		{
 			Credential oldCredential = new Credential();
-			int result = 0;
 				foreach (Credential c in creds)
 				{
 					try
@@ -119,7 +129,7 @@ namespace QRCodeAuthMobile.Data
 						oldCredential.Issuer = c.Issuer;
 						oldCredential.Owner = c.Owner;
 
-						result = await db.UpdateAsync(oldCredential);
+						await db.UpdateAsync(oldCredential);
 
 						StatusMessage = string.Format("Success! Updated Credential {0}.", oldCredential.Name);
 						System.Diagnostics.Debug.WriteLine(StatusMessage);
@@ -140,7 +150,7 @@ namespace QRCodeAuthMobile.Data
 			}
 			catch (Exception ex)
 			{
-				StatusMessage = string.Format("Failed to get credentials. {0}", ex.Message);
+				StatusMessage = string.Format("Failed to get credentials. Error: {0}", ex.Message);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 				return null;
 			}			
@@ -166,10 +176,9 @@ namespace QRCodeAuthMobile.Data
 
 		public static async Task DeleteAllCredentials()
         {
-            int result = 0;
             try
             {
-                result = await db.DeleteAllAsync<Credential>();
+                await db.DeleteAllAsync<Credential>();
             }
             catch (Exception ex)
             {
