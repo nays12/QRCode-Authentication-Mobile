@@ -19,32 +19,36 @@ namespace QRCodeAuthMobile.Data
 {
 	public class EventRepository
 	{
-		protected static SQLiteAsyncConnection dbconn;
+		protected static SQLiteAsyncConnection db;
 		public static string StatusMessage { get; set; }
 
 		public EventRepository(string dbPath)
 		{
-			dbconn = new SQLiteAsyncConnection(dbPath);
-			dbconn.CreateTableAsync<Event>();
+			db = new SQLiteAsyncConnection(dbPath);
+			//db.CreateTableAsync<Event>();
+		}
+
+		public static async Task InitializeTableAsync()
+		{
+			try
+			{
+				await db.CreateTableAsync<Event>();
+				StatusMessage = string.Format("Success! Created a table for Events.");
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failure. Could not create the Events table. Error: {0}", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+			}
 		}
 
 		public static async Task AddEventAsync(Event ev)
 		{
-			int result = 0;
 			try
 			{
-				result = await dbconn.InsertAsync(new Event
-				{
-					Name = ev.Name,
-					Location = ev.Location,
-					EventType = ev.EventType,
-					Description = ev.Description,
-					StartTime = ev.StartTime,
-					EndTime = ev.EndTime,
-					Owner = ev.Owner,
-				});
-
-				StatusMessage = string.Format("Success! Added event {0}. You now have {1} past events.", ev.Name, result);
+				await db.InsertAsync(ev);
+				StatusMessage = string.Format("Success! Added event {0}.", ev.Name);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 			catch (Exception ex)
@@ -56,9 +60,13 @@ namespace QRCodeAuthMobile.Data
 
 		public static async Task<List<Event>> GetAllEventsAsync()
 		{
+			List<Event> events = new List<Event>();
 			try
 			{
-				return await dbconn.Table<Event>().ToListAsync();
+				events = await db.Table<Event>().ToListAsync();
+				StatusMessage = string.Format("Success! Retrieved all events.");
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return events;
 			}
 			catch (Exception ex)
 			{

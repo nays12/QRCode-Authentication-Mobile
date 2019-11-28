@@ -28,7 +28,7 @@ namespace QRCodeAuthMobile
         public async void displayCredentialList()
         {
 			userCredentials = await CredentialRepository.GetAllCredentialsAsync();
-			if (userCredentials.Count > 0)
+			if (userCredentials != null && userCredentials.Count > 0)
 			{
 				credentialList.ItemsSource = userCredentials;
 			}
@@ -48,7 +48,7 @@ namespace QRCodeAuthMobile
 
         private void BtnUpdateCredentials_Clicked(object sender, EventArgs e)
         {
-			if (userCredentials.Count > 0)
+			if (userCredentials != null && userCredentials.Count > 0)
 			{
 				DeletedCredentialsCheck();
 				UpdatedCredentialsCheck();
@@ -71,7 +71,7 @@ namespace QRCodeAuthMobile
 			List<Credential> newCredentials = new List<Credential>();
 			newCredentials = await DataService.GetIssuedCredentials(); // Call API
 
-			if (newCredentials.Count > 0)
+			if (newCredentials != null && newCredentials.Count > 0)
 			{
 				await CredentialRepository.AddNewCredentialsAsync(newCredentials); 
 				await DisplayAlert("New Credentials", "Success! Your new Credentials have been added to your account! Please restart the app to view them.", "OK");
@@ -87,7 +87,7 @@ namespace QRCodeAuthMobile
 			List<Credential> updatedCredentials = new List<Credential>();
 			updatedCredentials = await DataService.GetUpdatedCredentials(); // Call API
 
-			if (updatedCredentials.Count > 0)
+			if (updatedCredentials != null && updatedCredentials.Count > 0)
 			{
 				await CredentialRepository.UpdateCredentialsAsync(updatedCredentials); 
 				await DisplayAlert("Updated Credentials", "Success! Your Credentials have been updated! Please restart the app to see the new values.", "OK");
