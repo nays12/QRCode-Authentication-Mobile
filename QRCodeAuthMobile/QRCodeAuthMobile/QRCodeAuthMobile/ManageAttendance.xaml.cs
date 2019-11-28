@@ -44,30 +44,24 @@ namespace QRCodeAuthMobile
 
         private async void BtnRecordAttendance_Clicked(object sender, EventArgs e)
         {
-			bool isQRScanning = true;
-
 			Event eventQR = new Event();
 
 			//Create a scan page. 
 			var scanPage = new ZXingScannerPage();
 
-
 			// Navigate to scan page
-			//await Navigation.PushModalAsync(scanPage);
-
-			//Clear the list 
-			//AttendanceViewList.IsVisible = false;
+			await Navigation.PushModalAsync(scanPage);
 
 			//Event Handler
 			scanPage.OnScanResult += (result) =>
 			{
-				//// Stop scanning
-				//scanPage.IsScanning = false;
 
 				// Pop the page and show the result
 				Device.BeginInvokeOnMainThread(async () =>
 				{
-					//await Navigation.PopAsync();
+					// Stop scanning and dimiss the modal page
+					scanPage.IsScanning = false;
+					await Navigation.PopModalAsync();
 
 					//Save the scanned event object into the eventObject variable. 
 					eventQR = JsonConvert.DeserializeObject<Event>(Convert.ToString(result));
@@ -109,13 +103,11 @@ namespace QRCodeAuthMobile
 
 				// Send user Credentials to Web App
 				SendCredentials(e1);
-
 			}
 			else
 			{
 				await DisplayAlert("Declined Attendance", "You have decided not to attend this event", "OK");
 			}
-
 		}
 
 		public async void SendCredentials(Event ev)
