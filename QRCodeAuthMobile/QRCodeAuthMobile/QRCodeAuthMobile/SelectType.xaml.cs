@@ -34,7 +34,6 @@ namespace QRCodeAuthMobile
 			if (systemUser != null)
 			{
 				string userComfirmMsg = string.Format("Are you {0} {1}?", systemUser.FirstName, systemUser.LastName);
-
 				bool answer = await DisplayAlert("Account Found", userComfirmMsg, "Yes", "No");
 
 				if (answer)
