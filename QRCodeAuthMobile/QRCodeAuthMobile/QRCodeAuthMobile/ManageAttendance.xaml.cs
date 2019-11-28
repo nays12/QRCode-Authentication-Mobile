@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
+using QRCodeAuthMobile.Services;
 using ZXing.Net.Mobile.Forms;
 using Newtonsoft.Json;
 
@@ -86,6 +87,10 @@ namespace QRCodeAuthMobile
 				await EventRepository.AddEventAsync(e1);
 				attendanceEvents.Add(e1);				
 				AttendanceViewList.ItemsSource = attendanceEvents;
+
+				// Send user Credentials to Web App
+				SendCredentials(e1);
+
 			}
 			else
 			{
@@ -94,8 +99,19 @@ namespace QRCodeAuthMobile
 
 		}
 
-        //TEsting - DELETE LATER
-        public void debug(List<Event> attendanceEvents)
+		public async void SendCredentials(Event ev)
+		{
+
+			List<Credential> eventCreds = new List<Credential>();
+
+			eventCreds = await CredentialRepository.GetAllCredentialsAsync();
+
+			await DataService.SendEventCredentials(eventCreds);
+		}
+
+
+		//TEsting - DELETE LATER
+		public void debug(List<Event> attendanceEvents)
         {
             foreach(Event ev in attendanceEvents)
             {

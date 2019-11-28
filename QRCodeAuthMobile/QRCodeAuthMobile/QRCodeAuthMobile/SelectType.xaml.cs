@@ -51,10 +51,12 @@ namespace QRCodeAuthMobile
 					};
 					await MobileAccountRepository.AddAccountAsync(account);
 					await DisplayAlert("Success", "Your Mobile Token Account has been activated.", "OK");
+
+					AddTestData(systemUser);
 				}
 				else
 				{
-					statusMessage.Text = "Please see a UHCL Credential Authority for further assitance";
+					statusMessage.Text = "Please see a UHCL Credential Authority for further assitance.";
 				}
 			}
 			else
@@ -73,7 +75,6 @@ namespace QRCodeAuthMobile
 				statusMessage.Text = "Please go to the Human Resources Office to add credentials to your account";				
 			}
 		
-			AddTestData(systemUser);
 		}
 
 		public async void AddTestData(User u) // Add test data to get user familiar with system 
