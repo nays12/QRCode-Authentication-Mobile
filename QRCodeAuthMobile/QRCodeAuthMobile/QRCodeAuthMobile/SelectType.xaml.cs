@@ -52,7 +52,8 @@ namespace QRCodeAuthMobile
 					await MobileAccountRepository.AddAccountAsync(m);
 					await DisplayAlert("Success", "Your Mobile Token Account has been activated.", "OK");
 
-					App.Current.MainPage = new Home(); // We do not want to enable Users to navigate back to SelectType page
+					await Navigation.PushAsync(new Home());
+					//App.Current.MainPage = new Home(); // We do not want to enable Users to navigate back to SelectType page
 
 				}
 				else

@@ -110,7 +110,6 @@ namespace QRCodeAuthMobile
 			if (users != null && users.Count > 0)
 			{
 
-			{
 				try
 				{
 					foreach (User u in users)

@@ -25,19 +25,12 @@ namespace QRCodeAuthMobile
 
 		private async void GetUserAccounts()
 		{
-			lblOptions.Text = "Please select the Account you would like to Login with";
+			lblOptions.Text = "Please select the Account you would like to Login with.";
 
 			List<User> userAccounts = new List<User>();
 			userAccounts = await UserRepository.GetAllUsersAsync();
 
-			if (userAccounts.Count > 1)
-			{
-				accountUserId.ItemsSource = userAccounts; // bind picker to accounts found from database
-			}
-			else
-			{
-				SetUserPage();
-			}
+			accountUserId.ItemsSource = userAccounts; // bind picker to accounts found from database		
 
 		}
 
@@ -50,7 +43,7 @@ namespace QRCodeAuthMobile
 			u = (User)selectedItem;
 
 			PutUserinSessionState(u);
-			SetUserPage();
+			SetUserPage(u);
 		}
 
 		private async void BtnManagedCredentials_Clicked(object sender, EventArgs e)
@@ -73,21 +66,21 @@ namespace QRCodeAuthMobile
             
         }
 
-		private void PutUserinSessionState(User u)
+		private async void PutUserinSessionState(User u)
 		{
 			User user = await UserRepository.GetAccountOwnerAsync();
 
 			Application.Current.Properties["LoggedInUser"] = u;
-			lblGreeting.Text = string.Format("Welcome, {0}!", u.FirstName);
+			lblWelcome.Text = string.Format("Welcome, {0}!", u.FirstName);
 			lblOptions.Text = "What would you like to do?";
 		}
 
-		private void SetUserPage()
+		private void SetUserPage(User u)
 		{
 			// hide picker
 			accountUserId.IsVisible = false;
 
-			lblGreeting.Text = string.Format("Welcome {0}!", user.FirstName);
+			lblWelcome.Text = string.Format("Welcome {0}!", u.FirstName);
 			// show buttons
 			btnManageCredentials.IsVisible = true;
 			btnShareCredentials.IsVisible = true;
