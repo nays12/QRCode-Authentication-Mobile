@@ -32,9 +32,6 @@ namespace QRCodeAuthMobile
 
 		private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
 		{
-			int count = 0;
-			count = await UserRepository.GetRowCount();
-
 			//Check if Fingerprint ID is available on mobile device. 
 			if (await CrossFingerprint.Current.IsAvailableAsync())
 			{
@@ -44,14 +41,15 @@ namespace QRCodeAuthMobile
                 //If authentication is successful continue to next page. 
                 if (result.Authenticated)
 				{
+					int count = 0;
+					count = await UserRepository.GetRowCount();
+
 					if (count > 0) // If record count for User table is > 0 then an account exist
 					{
-                        //App.Current.MainPage = new Home();
-                        await Navigation.PushAsync(new SelectType());
+                        await Navigation.PushAsync(new Home());
                     }
 					else // If the record count is 0 then no User account exist
 					{
-                        //App.Current.MainPage = new SelectType();
                         await Navigation.PushAsync(new SelectType());
                     }
 				}
@@ -59,7 +57,7 @@ namespace QRCodeAuthMobile
             else
             {
                 // If FingerprintID is NOT availabe on mobile device, display appropriate error message. 
-                await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
+                await DisplayAlert("Authentication Not Possible", "Fingerprint authentication is not available on your device", "OK");
             }
         }
 

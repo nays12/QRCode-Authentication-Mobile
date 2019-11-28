@@ -35,7 +35,7 @@ namespace QRCodeAuthMobile
 			{
 				string userComfirmMsg = string.Format("Are you {0} {1}?", systemUser.FirstName, systemUser.LastName);
 
-				bool answer = await DisplayAlert("Account Found.", userComfirmMsg, "Yes", "No");
+				bool answer = await DisplayAlert("Account Found", userComfirmMsg, "Yes", "No");
 
 				if (answer)
 				{
@@ -43,16 +43,7 @@ namespace QRCodeAuthMobile
 					await UserRepository.AddUserAsync(systemUser);
 					System.Diagnostics.Debug.WriteLine(UserRepository.StatusMessage);
 
-					// Create a Mobile Account for the User
-					MobileAccount account = new MobileAccount()
-					{
-						MobileId = systemUser.UserId,
-						IsActive = true
-					};
-					await MobileAccountRepository.AddAccountAsync(account);
-					await DisplayAlert("Success", "Your Mobile Token Account has been activated.", "OK");
-
-					AddTestData(systemUser);
+					AddOtherData(systemUser);
 				}
 				else
 				{
@@ -77,8 +68,17 @@ namespace QRCodeAuthMobile
 		
 		}
 
-		public async void AddTestData(User u) // Add test data to get user familiar with system 
+		public async void AddOtherData(User u) // Add test data to get user familiar with system 
 		{
+
+			// Create a Mobile Account for the User
+			MobileAccount m = new MobileAccount()
+			{
+				MobileId = u.UserId,
+				IsActive = true
+			};
+			await MobileAccountRepository.AddAccountAsync(m);
+			await DisplayAlert("Success", "Your Mobile Token Account has been activated.", "OK");
 
 			// Add Test Credential to User Account
 			Credential testCredential = new Credential

@@ -23,20 +23,14 @@ namespace QRCodeAuthMobile.Data
             int result = 0;
             try
             {
-                result = await dbconn.InsertAsync(new User
-                {
-                    UserId = mobileUser.UserId,
-                    LastName = mobileUser.LastName,
-                    FirstName = mobileUser.FirstName,
-                    UserType = mobileUser.UserType,
-                });
+				result = await dbconn.InsertAsync(mobileUser);
 
-                StatusMessage = string.Format("Welcome to the mobile token app, {0}!", mobileUser.FirstName);
+                StatusMessage = string.Format("Success. Added new User {0}!", mobileUser.FirstName);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
             catch (Exception ex)
             {
-				StatusMessage = string.Format("Sorry we could not add you. Error: {0}.", ex.Message);
+				StatusMessage = string.Format("Failure. Could not add new User. Error: {0}.", ex.Message);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 		}
@@ -48,7 +42,20 @@ namespace QRCodeAuthMobile.Data
 
         public static async Task<int> GetRowCount()
 		{
-			return await dbconn.Table<User>().CountAsync();	     
+			int count = 0;
+			try
+			{
+				count = await dbconn.Table<User>().CountAsync();
+				StatusMessage = string.Format("Success. There are {0} records in the Users table.", count);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return count;
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failure. Could not Users table count. Error: ", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return 0;
+			}
 		}
 
 		public static async Task<List<User>> GetAllUsersAsync()
@@ -91,10 +98,5 @@ namespace QRCodeAuthMobile.Data
 				StatusMessage = string.Format("Failed to delete student with id {0}. Error: {1}", id, ex.Message);
 			}
 		}
-
-        public static async Task<User> GetUserbyIndex()
-        {
-            return await dbconn.Table<User>().FirstAsync();
-        }
     }
 }

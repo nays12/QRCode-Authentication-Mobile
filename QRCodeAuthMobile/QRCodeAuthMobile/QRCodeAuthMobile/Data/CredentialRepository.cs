@@ -152,7 +152,7 @@ namespace QRCodeAuthMobile.Data
 			{
 				StatusMessage = string.Format("Failed to get credentials. {0}", ex.Message);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
-				return await dbconn.Table<Credential>().ToListAsync();
+				return null;
 			}			
 		}
 
