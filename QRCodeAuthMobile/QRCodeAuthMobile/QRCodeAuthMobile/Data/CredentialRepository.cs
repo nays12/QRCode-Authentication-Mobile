@@ -28,7 +28,7 @@ namespace QRCodeAuthMobile.Data
 			db.CreateTableAsync<Credential>();
 		}
 
-		public static async Task AddCredentialAsync(Credential cred)
+		public static async void AddCredentialAsync(Credential cred)
 		{
 			int result = 0;
 			try
@@ -45,7 +45,7 @@ namespace QRCodeAuthMobile.Data
 			}
 		}
 
-		public static async Task DeleteCredentialById(int id)
+		public static async void DeleteCredentialById(int id)
 		{
 			int result = 0;
 			Credential cred = new Credential();
@@ -64,7 +64,7 @@ namespace QRCodeAuthMobile.Data
 			}
 		}
 
-		public static async Task AddNewCredentialsAsync(List<Credential> creds)
+		public static async void AddNewCredentialsAsync(List<Credential> creds)
 		{
 			int result = 0;
 
@@ -98,7 +98,7 @@ namespace QRCodeAuthMobile.Data
 				}
 		}
 
-		public static async Task UpdateCredentialsAsync(List<Credential> creds)
+		public static async void UpdateCredentialsAsync(List<Credential> creds)
 		{
 			Credential oldCredential = new Credential();
 			int result = 0;

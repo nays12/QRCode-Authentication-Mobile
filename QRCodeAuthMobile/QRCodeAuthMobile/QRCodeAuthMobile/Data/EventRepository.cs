@@ -28,14 +28,13 @@ namespace QRCodeAuthMobile.Data
 			dbconn.CreateTableAsync<Event>();
 		}
 
-		public static async Task AddEventAsync(Event ev)
+		public static async void AddEventAsync(Event ev)
 		{
 			int result = 0;
 			try
 			{
 				result = await dbconn.InsertAsync(ev);
-
-				StatusMessage = string.Format("Success! Added event {0}. You now have {1} past events.", ev.Name, result);
+				StatusMessage = string.Format("Success! Added event {0}.", ev.Name);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 			catch (Exception ex)
@@ -47,9 +46,13 @@ namespace QRCodeAuthMobile.Data
 
 		public static async Task<List<Event>> GetAllEventsAsync()
 		{
+			List<Event> events = new List<Event>();
 			try
 			{
-				return await dbconn.Table<Event>().ToListAsync();
+				events = await dbconn.Table<Event>().ToListAsync();
+				StatusMessage = string.Format("Success! Retrieved all events.");
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return events;
 			}
 			catch (Exception ex)
 			{

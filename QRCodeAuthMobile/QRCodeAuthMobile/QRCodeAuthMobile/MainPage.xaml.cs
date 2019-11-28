@@ -41,6 +41,9 @@ namespace QRCodeAuthMobile
                 //If authentication is successful continue to next page. 
                 if (result.Authenticated)
 				{
+					UserRepository.DeleteUserbyId("1304693");
+					await CredentialRepository.DeleteAllCredentials();
+
 					int count = 0;
 					count = await UserRepository.GetRowCount();
 					

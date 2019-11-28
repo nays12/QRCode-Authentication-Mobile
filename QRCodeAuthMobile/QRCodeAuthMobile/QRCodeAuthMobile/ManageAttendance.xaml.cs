@@ -78,11 +78,9 @@ namespace QRCodeAuthMobile
 			// Show user event details
 			var message = "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description;
 			bool answer = await DisplayAlert("Attend Event?", message, "Yes", "No");
-			await DisplayAlert("test", "This is a test", "Ok");
 
 			if (e1.CredentialsNeeded != null && e1.CredentialsNeeded.Count > 0)
 			{
-
 				foreach (CredentialType c in e1.CredentialsNeeded)
 				{
 					System.Diagnostics.Debug.WriteLine(c);
@@ -97,7 +95,7 @@ namespace QRCodeAuthMobile
 			if (answer)
 			{
 				//Add new attendace event to List and database and refresh ListView. 
-				await EventRepository.AddEventAsync(e1);
+				EventRepository.AddEventAsync(e1);
 				attendanceEvents.Add(e1);
 				AttendanceViewList.ItemsSource = attendanceEvents;
 

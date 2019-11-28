@@ -73,7 +73,7 @@ namespace QRCodeAuthMobile
 
 			if (newCredentials != null && newCredentials.Count > 0)
 			{
-				await CredentialRepository.AddNewCredentialsAsync(newCredentials); 
+				CredentialRepository.AddNewCredentialsAsync(newCredentials); 
 				await DisplayAlert("New Credentials", "Success! Your new Credentials have been added to your account! Please restart the app to view them.", "OK");
 			}
 			else
@@ -89,7 +89,7 @@ namespace QRCodeAuthMobile
 
 			if (updatedCredentials != null && updatedCredentials.Count > 0)
 			{
-				await CredentialRepository.UpdateCredentialsAsync(updatedCredentials); 
+				CredentialRepository.UpdateCredentialsAsync(updatedCredentials); 
 				await DisplayAlert("Updated Credentials", "Success! Your Credentials have been updated! Please restart the app to see the new values.", "OK");
 			}
 			else
@@ -107,7 +107,7 @@ namespace QRCodeAuthMobile
 			}
 			else
 			{
-				await CredentialRepository.DeleteCredentialById(deletedCredentialId);
+				CredentialRepository.DeleteCredentialById(deletedCredentialId);
 				await DisplayAlert("Deleted Credential", CredentialRepository.StatusMessage + "Please restart to application to remove the Credential from your list.", "OK");
 			}
 		}
