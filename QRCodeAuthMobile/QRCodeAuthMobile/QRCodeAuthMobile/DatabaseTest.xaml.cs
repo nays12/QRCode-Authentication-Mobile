@@ -33,7 +33,7 @@ namespace QRCodeAuthMobile
 		{
 			List<Event> events = new List<Event>();
 			events = await EventRepository.GetAllEventsAsync();
-			if (events != null)
+			if (events != null && events.Count > 0)
 			{
 				try
 				{
@@ -70,7 +70,7 @@ namespace QRCodeAuthMobile
 		{
 			List<Credential> credentials = new List<Credential>();
 			credentials = await CredentialRepository.GetAllCredentialsAsync();
-			if (credentials!= null)
+			if (credentials != null && credentials.Count > 0)
 			{
 				try
 				{
@@ -107,8 +107,9 @@ namespace QRCodeAuthMobile
 		{
 			List<User> users = new List<User>();
 			users = await UserRepository.GetAllUsersAsync();
+			if (users != null && users.Count > 0)
+			{
 
-			if (users != null)
 			{
 				try
 				{
@@ -136,28 +137,6 @@ namespace QRCodeAuthMobile
 				System.Diagnostics.Debug.WriteLine("This User does not have a Mobile Account yet.");
 			}
 		}
-
-		//public void OnDeleteButtonClicked(object sender, EventArgs args)
-		//{
-		//	string userId = deleteUser.Text;
-
-		//	App.UserRepo.DeleteUserbyId(userId);
-		//	statusMessage.Text = App.UserRepo.StatusMessage;
-		//}
-
-		//public async void OnGetButtonClicked(object sender, EventArgs args)
-		//{
-		//	statusMessage.Text = "";
-
-		//	//List<Credential> credentials = await App.CredentialRepo.GetAllCredentialsAsync();
-		//	//credentialsList.ItemsSource = credentials;
-
-		//	List<User> users = await App.UserRepo.GetAllUsersAsync();
-		//	credentialsList.ItemsSource = users;
-
-		//	statusMessage.Text = App.UserRepo.StatusMessage;
-		//	RowCount.Text = App.UserRepo.GetRowCount().ToString();
-		//}
 
 
 	}

@@ -9,46 +9,78 @@ namespace QRCodeAuthMobile.Data
 {
 	public class UserRepository
 	{
-		protected static SQLiteAsyncConnection dbconn;
+		protected static SQLiteAsyncConnection db;
 		public static string StatusMessage { get; set; }
 
 		public UserRepository(string dbPath)
 		{
-			dbconn = new SQLiteAsyncConnection(dbPath);
-			dbconn.CreateTableAsync<User>();
+			db = new SQLiteAsyncConnection(dbPath);
+			//db.CreateTableAsync<User>();
+		}
+		public static async Task InitializeTableAsync()
+		{
+			try
+			{
+				await db.CreateTableAsync<User>();
+				StatusMessage = string.Format("Success! Created a table for Users.");
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failure. Could not create the Users table. Error: {0}", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+			}
 		}
 
 		public static async Task AddUserAsync(User mobileUser)
 		{
-            int result = 0;
             try
             {
-                result = await dbconn.InsertAsync(new User
-                {
-                    UserId = mobileUser.UserId,
-                    LastName = mobileUser.LastName,
-                    FirstName = mobileUser.FirstName,
-                    UserType = mobileUser.UserType,
-                });
+				await db.InsertAsync(mobileUser);
 
-                StatusMessage = string.Format("Welcome to the mobile token app, {0}!", mobileUser.FirstName);
+                StatusMessage = string.Format("Success. Added new User {0}!", mobileUser.FirstName);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
             catch (Exception ex)
             {
-				StatusMessage = string.Format("Sorry we could not add you. Error: {0}.", ex.Message);
+				StatusMessage = string.Format("Failure. Could not add new User. Error: {0}.", ex.Message);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 		}
 
 		public static async Task<User> GetUserbyId(string id)
 		{
-			return await dbconn.Table<User>().Where(i => i.UserId == id).FirstOrDefaultAsync();
+			User u = new User();
+			try
+			{
+				u = await db.Table<User>().Where(i => i.UserId == id).FirstOrDefaultAsync();
+				StatusMessage = string.Format("Success. Found User {0}!", u.FirstName);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return u;
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failure. Could not find User. Error: {0}.", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return null;
+			}
 		}
 
         public static async Task<int> GetRowCount()
 		{
-			return await dbconn.Table<User>().CountAsync();	     
+			try
+			{
+				int count = await db.Table<User>().CountAsync();
+				StatusMessage = string.Format("Success. There are {0} records in the Users table.", count);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return count;
+			}
+			catch (Exception ex)
+			{
+				StatusMessage = string.Format("Failure. Could not Users table count. Error: ", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return 0;
+			}
 		}
 
 		public static async Task<List<User>> GetAllUsersAsync()
@@ -56,10 +88,7 @@ namespace QRCodeAuthMobile.Data
 			List<User> users = new List<User>();
 			try
 			{
-				users = await dbconn.Table<User>().ToListAsync();
-				StatusMessage = string.Format("Success! Retrieved {0} to get users account", users.Count);
-				System.Diagnostics.Debug.WriteLine(StatusMessage);
-				return users; 
+				return await db.Table<User>().ToListAsync();
 			}
 			catch (Exception ex)
 			{
@@ -71,29 +100,35 @@ namespace QRCodeAuthMobile.Data
 
 		public static async Task<User> GetAccountOwnerAsync()
 		{
+			User u = new User();
 			try
 			{
-				return await dbconn.Table<User>().FirstAsync();
+				u = await db.Table<User>().FirstAsync();
+				StatusMessage = string.Format("Success. Retrieved User {0}!", u.FirstName);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
+				return u;
 			}
 			catch (Exception ex)
 			{
-				StatusMessage = string.Format("Failed to get the User account. {0}", ex.Message);
+				StatusMessage = string.Format("Failure. Could not retrieve User account. {0}", ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
 				return null;
 			}
 		}
 
-		public static async void DeleteUserbyId(string id)
+		public static async Task DeleteUserbyId(string id)
 		{
-			int result = 0;
 			try
 			{
-				result = await dbconn.DeleteAsync<User>(id);
+				await db.DeleteAsync<User>(id);
 
 				StatusMessage = string.Format("Successfully deleted {0}!", id);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 			catch (Exception ex)
 			{
 				StatusMessage = string.Format("Failed to delete student with id {0}. Error: {1}", id, ex.Message);
+				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 		}
 

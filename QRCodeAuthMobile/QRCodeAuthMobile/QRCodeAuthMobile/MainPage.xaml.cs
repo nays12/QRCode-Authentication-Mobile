@@ -22,12 +22,13 @@ using System.Collections.Generic;
 namespace QRCodeAuthMobile
 {
 
-	[DesignTimeVisible(false)]
+	//[DesignTimeVisible(false)]
 	public partial class MainPage : ContentPage
 	{
 		public MainPage()
 		{
 			InitializeComponent();
+
 		}
 
 		private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
@@ -65,7 +66,7 @@ namespace QRCodeAuthMobile
 			else
 			{
 				// If FingerprintID is NOT availabe on mobile device, display appropriate error message. 
-				await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
+				await DisplayAlert("Authentication Not Possible", "Fingerprint authentication is not available on your device", "OK");
 			}
 		}
 

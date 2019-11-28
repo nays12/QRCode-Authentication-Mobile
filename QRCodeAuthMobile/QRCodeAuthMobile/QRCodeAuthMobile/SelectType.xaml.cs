@@ -22,19 +22,19 @@ namespace QRCodeAuthMobile
 		public SelectType()
 		{
 			InitializeComponent();
+			InitializeDatabases();
 		}
 
 		public async void SubmitButtonClicked(object sender, EventArgs args)
 		{
 			statusMessage.Text = "";
-			User systemUser = new User();
 
-			systemUser = await DataService.GetUserAccount(schoolId.Text);
+			User systemUser = await DataService.GetUserAccount(schoolId.Text);
 
 			if (systemUser != null)
 			{
 				string userComfirmMsg = string.Format("Are you {0} {1}?", systemUser.FirstName, systemUser.LastName);
-				bool answer = await DisplayAlert("Account Found.", userComfirmMsg, "Yes", "No");
+				bool answer = await DisplayAlert("Account Found", userComfirmMsg, "Yes", "No");
 
 				if (answer)
 				{
@@ -43,17 +43,21 @@ namespace QRCodeAuthMobile
 					System.Diagnostics.Debug.WriteLine(UserRepository.StatusMessage);
 
 					// Create a Mobile Account for the User
-					MobileAccount account = new MobileAccount()
+					MobileAccount m = new MobileAccount()
 					{
 						MobileId = systemUser.UserId,
 						IsActive = true
 					};
-					await MobileAccountRepository.AddAccountAsync(account);
+
+					await MobileAccountRepository.AddAccountAsync(m);
 					await DisplayAlert("Success", "Your Mobile Token Account has been activated.", "OK");
+
+					App.Current.MainPage = new Home(); // We do not want to enable Users to navigate back to SelectType page
+
 				}
 				else
 				{
-					statusMessage.Text = "Please see a UHCL Credential Authority for further assitance";
+					statusMessage.Text = "Please see a UHCL Credential Authority for further assitance.";
 				}
 			}
 			else
@@ -72,43 +76,16 @@ namespace QRCodeAuthMobile
 				statusMessage.Text = "Please go to the Human Resources Office to add credentials to your account";				
 			}
 		
-			AddTestData(systemUser);
 		}
 
-		public async void AddTestData(User u) // Add test data to get user familiar with system 
+		private async void InitializeDatabases()
 		{
+			await UserRepository.InitializeTableAsync();
+			await MobileAccountRepository.InitializeTableAsync();
+			await CredentialRepository.InitializeTableAsync();
+			await EventRepository.InitializeTableAsync();
+		}
 
-			// Add Test Credential to User Account
-			Credential testCredential = new Credential
-			{
-				CredentialId = 1,
-				Name = "First Name",
-				CredentialType = CredentialType.Name,
-				IssueDate = DateTime.UtcNow,
-				ExpirationDate = DateTime.UtcNow,
-				Value = u.FirstName,
-				IsValid = false,
-				Owner = schoolId.Text,
-				Issuer = "TEST_CA"
-			};
-			await CredentialRepository.AddCredentialAsync(testCredential);
 
-			// Add test Event to User Account
-			Event testEvent = new Event
-			{
-				EventId = 1,
-				Name = "Test Event",
-				Location = "Credential Authority Office",
-				EventType = EventType.Meeting,
-				StartTime = DateTime.UtcNow,
-				EndTime = DateTime.UtcNow,
-				Description = u.FirstName + "'s meeting with the Credential Authority to Add Credentials",
-				Owner = schoolId.Text
-			};
-			await EventRepository.AddEventAsync(testEvent);
-
-            await Navigation.PushAsync(new Home());
-        }
-	
 	}
 }

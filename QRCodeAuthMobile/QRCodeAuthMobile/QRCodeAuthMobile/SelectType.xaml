@@ -16,7 +16,7 @@
 
             <Image Source="logo.jpg"/>
 
-            <Label Text="Please provide your student Id so that we can verify your affiliation with UHCL."
+            <Label Text="Please provide your School-issued Id Number so that we can verify your affiliation with UHCL."
                        HorizontalTextAlignment="Center"
                        TextColor="White"/>
 

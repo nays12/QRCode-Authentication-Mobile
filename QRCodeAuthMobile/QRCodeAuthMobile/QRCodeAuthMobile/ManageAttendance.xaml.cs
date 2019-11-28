@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
+using QRCodeAuthMobile.Services;
 using ZXing.Net.Mobile.Forms;
 using Newtonsoft.Json;
 
@@ -22,14 +23,14 @@ namespace QRCodeAuthMobile
         public ManageAttendance ()
 		{
 			InitializeComponent();
-            GetAttendanceHistory();
+			GetAttendanceHistory();
         }
 
         public async void GetAttendanceHistory()
         {
             //CORRECT code
             attendanceEvents = await EventRepository.GetAllEventsAsync();
-			if (attendanceEvents.Count > 0)
+			if (attendanceEvents != null && attendanceEvents.Count > 0)
 			{
 				AttendanceViewList.ItemsSource = attendanceEvents;
 			}
@@ -42,75 +43,87 @@ namespace QRCodeAuthMobile
 
         private async void BtnRecordAttendance_Clicked(object sender, EventArgs e)
         {
+			//Create a scan page. 
+			var scanPage = new ZXingScannerPage();
+			scanPage.DefaultOverlayShowFlashButton = true;
+			scanPage.HasTorch = true;
 
-            Event eventObject = new Event();
+			// Navigate to scan page
+			await Navigation.PushModalAsync(scanPage);
 
-            //Create a scan page. 
-            var scanPage = new ZXingScannerPage();
+			//Event Handler
+			scanPage.OnScanResult += (result) =>
+			{
 
-            // Navigate to scan page
-            await Navigation.PushAsync(scanPage);
+				// Pop the page and show the result
+				Device.BeginInvokeOnMainThread(async () =>
+				{
+					// Stop scanning and dimiss the modal page
+					scanPage.IsScanning = false;
+					await Navigation.PopModalAsync();
 
-            //Clear the list 
-            AttendanceViewList.ItemsSource = null;
-           
-            //Event Handler
-            scanPage.OnScanResult += (result) =>
-            {
-                // Stop scanning
-                scanPage.IsScanning = false;
+					//Save the scanned event object into the eventObject variable. 
+					Event eventQR = JsonConvert.DeserializeObject<Event>(Convert.ToString(result));
+					System.Diagnostics.Debug.WriteLine(eventQR);
 
-                // Pop the page and show the result
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await Navigation.PopAsync();
+					ConfirmAttendance(eventQR);
+				});
+			};
+		}
 
-                    //Save the scanned event object into the eventObject variable. 
-                    eventObject = JsonConvert.DeserializeObject<Event>(result.ToString());
-
-                    ConfirmAttendance(eventObject);
-                });
-            };
-        }
-
-        public async void ConfirmAttendance(Event e1)
+        public async void ConfirmAttendance(Event e1) 
         {
+
 			// Show user event details
-            var message = "EventID:  " + e1.EventId + "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description;
-            bool answer = await DisplayAlert("Attend Event?", message, "Yes", "No");
+			var message = "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description;
+			bool answer = await DisplayAlert("Attend Event?", message, "Yes", "No");
+
+			if (e1.CredentialsNeeded != null && e1.CredentialsNeeded.Count > 0)
+			{
+				foreach (CredentialType c in e1.CredentialsNeeded)
+				{
+					System.Diagnostics.Debug.WriteLine(c);
+				}
+			}
+			else
+			{
+				await DisplayAlert("Required Credentials", "This Event does not require any credentials to attendance.", "OK");
+			}
 
 			// Add event to database if user chooses to attend
 			if (answer)
 			{
 				//Add new attendace event to List and database and refresh ListView. 
 				await EventRepository.AddEventAsync(e1);
-				attendanceEvents.Add(e1);				
+				attendanceEvents.Add(e1);
 				AttendanceViewList.ItemsSource = attendanceEvents;
+
+				// Send user Credentials to Web App
+				SendCredentials(e1);
 			}
 			else
 			{
 				await DisplayAlert("Declined Attendance", "You have decided not to attend this event", "OK");
 			}
-
 		}
 
-        //TEsting - DELETE LATER
-        public void debug(List<Event> attendanceEvents)
-        {
-            foreach(Event ev in attendanceEvents)
-            {
-                System.Diagnostics.Debug.WriteLine("AFTER ADD");
-                System.Diagnostics.Debug.WriteLine("Event ID Number: " + ev.EventId);
-                System.Diagnostics.Debug.WriteLine("Name: " + ev.Name);
-                System.Diagnostics.Debug.WriteLine("Location: " + ev.Location);
-                System.Diagnostics.Debug.WriteLine("Type: " + ev.EventType);
-                System.Diagnostics.Debug.WriteLine("Start Time: " + ev.StartTime);
-                System.Diagnostics.Debug.WriteLine("End Time: " + ev.EndTime);
-                System.Diagnostics.Debug.WriteLine("Description: " + ev.Description);
-                System.Diagnostics.Debug.WriteLine("Owner: " + ev.Owner);
-                System.Diagnostics.Debug.WriteLine("-----------------------");
-            }
-        }
+		public async void SendCredentials(Event ev)
+		{
+			List<Credential> eventCreds = new List<Credential>();
+			Credential cred = new Credential();
+
+			foreach (CredentialType ct in ev.CredentialsNeeded) // get credentials of type requested in event
+			{
+				cred = await CredentialRepository.GetCredentialByType(ct);
+				if (cred != null)
+				{
+					eventCreds.Add(cred);
+				}
+			};
+
+			await DataService.SendEventCredentials(eventCreds);
+		}
+
 
     }
 }

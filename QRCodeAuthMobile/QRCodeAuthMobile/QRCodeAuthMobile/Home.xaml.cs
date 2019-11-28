@@ -65,7 +65,7 @@ namespace QRCodeAuthMobile
 
         private async void BtnManageAttendance_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ManageAttendance());          
+            await Navigation.PushAsync(new ManageAttendance());           
         }
 
         private void BtnShareCredentials_Clicked(object sender, EventArgs e)
@@ -75,6 +75,8 @@ namespace QRCodeAuthMobile
 
 		private void PutUserinSessionState(User u)
 		{
+			User user = await UserRepository.GetAccountOwnerAsync();
+
 			Application.Current.Properties["LoggedInUser"] = u;
 			lblGreeting.Text = string.Format("Welcome, {0}!", u.FirstName);
 			lblOptions.Text = "What would you like to do?";
@@ -85,6 +87,7 @@ namespace QRCodeAuthMobile
 			// hide picker
 			accountUserId.IsVisible = false;
 
+			lblGreeting.Text = string.Format("Welcome {0}!", user.FirstName);
 			// show buttons
 			btnManageCredentials.IsVisible = true;
 			btnShareCredentials.IsVisible = true;
