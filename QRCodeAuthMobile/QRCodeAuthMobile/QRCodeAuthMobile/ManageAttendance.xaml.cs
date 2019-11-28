@@ -94,8 +94,8 @@ namespace QRCodeAuthMobile
 			if (answer)
 			{
 				//Add new attendace event to List and database and refresh ListView. 
-				//await EventRepository.AddEventAsync(e1);
-				//attendanceEvents.Add(e1);
+				await EventRepository.AddEventAsync(e1);
+				attendanceEvents.Add(e1);
 				AttendanceViewList.ItemsSource = attendanceEvents;
 
 				// Send user Credentials to Web App
