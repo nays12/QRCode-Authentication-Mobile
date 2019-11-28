@@ -45,35 +45,36 @@ namespace QRCodeAuthMobile
 
         private async void BtnRecordAttendance_Clicked(object sender, EventArgs e)
         {
+			await Navigation.PushAsync(new FullScreenScanning());
 
-            Event eventObject = new Event();
+            //Event eventObject = new Event();
 
-            //Create a scan page. 
-            var scanPage = new ZXingScannerPage();
+            ////Create a scan page. 
+            //var scanPage = new ZXingScannerPage();
 
-            // Navigate to scan page
-            await Navigation.PushAsync(scanPage);
+            //// Navigate to scan page
+            //await Navigation.PushAsync(scanPage);
 
-            //Clear the list 
-            AttendanceViewList.ItemsSource = null;
+            ////Clear the list 
+            //AttendanceViewList.ItemsSource = null;
            
-            //Event Handler
-            scanPage.OnScanResult += (result) =>
-            {
-                // Stop scanning
-                scanPage.IsScanning = false;
+            ////Event Handler
+            //scanPage.OnScanResult += (result) =>
+            //{
+            //    // Stop scanning
+            //    scanPage.IsScanning = false;
 
-                // Pop the page and show the result
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    await Navigation.PopAsync();
+            //    // Pop the page and show the result
+            //    Device.BeginInvokeOnMainThread(async () =>
+            //    {
+            //        await Navigation.PopAsync();
 
-                    //Save the scanned event object into the eventObject variable. 
-                    eventObject = JsonConvert.DeserializeObject<Event>(result.ToString());
+            //        //Save the scanned event object into the eventObject variable. 
+            //        eventObject = JsonConvert.DeserializeObject<Event>(result.ToString());
 
-                    //ConfirmAttendance(eventObject);
-                });
-            };
+            //        //ConfirmAttendance(eventObject);
+            //    });
+            //};
         }
 
         public async void ConfirmAttendance() //Event e2)
