@@ -28,7 +28,7 @@ namespace QRCodeAuthMobile
 		public MainPage()
 		{
 			InitializeComponent();
-			InitializeDatabases();
+
 		}
 
 		private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
@@ -42,8 +42,6 @@ namespace QRCodeAuthMobile
 				//If authentication is successful continue to next page. 
 				if (result.Authenticated)
 				{
-					await UserRepository.DeleteUserbyId("1304693");
-					await CredentialRepository.DeleteAllCredentials();
 
 					int count = await UserRepository.GetRowCount();
 
@@ -70,14 +68,6 @@ namespace QRCodeAuthMobile
 			// If face ID authentification is selected handle the action with platform specific code. 
 			// See Android and iOS project implementation folders for code. 
 			DependencyService.Get<IFaceAuth>().FaceAuthentication();
-		}
-
-		private async void InitializeDatabases()
-		{
-			await UserRepository.InitializeTableAsync();
-			await MobileAccountRepository.InitializeTableAsync();
-			await CredentialRepository.InitializeTableAsync();
-			await EventRepository.InitializeTableAsync();
 		}
 
 	}

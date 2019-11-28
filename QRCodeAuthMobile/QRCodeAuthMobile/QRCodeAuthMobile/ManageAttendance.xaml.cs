@@ -33,7 +33,6 @@ namespace QRCodeAuthMobile
 			if (attendanceEvents != null && attendanceEvents.Count > 0)
 			{
 				AttendanceViewList.ItemsSource = attendanceEvents;
-				await DisplayAlert("test", "This is a test", "Ok");
 			}
 			else
 			{
@@ -44,10 +43,10 @@ namespace QRCodeAuthMobile
 
         private async void BtnRecordAttendance_Clicked(object sender, EventArgs e)
         {
-			Event eventQR = new Event();
-
 			//Create a scan page. 
 			var scanPage = new ZXingScannerPage();
+			scanPage.DefaultOverlayShowFlashButton = true;
+			scanPage.HasTorch = true;
 
 			// Navigate to scan page
 			await Navigation.PushModalAsync(scanPage);
@@ -64,7 +63,7 @@ namespace QRCodeAuthMobile
 					await Navigation.PopModalAsync();
 
 					//Save the scanned event object into the eventObject variable. 
-					eventQR = JsonConvert.DeserializeObject<Event>(Convert.ToString(result));
+					Event eventQR = JsonConvert.DeserializeObject<Event>(Convert.ToString(result));
 					System.Diagnostics.Debug.WriteLine(eventQR);
 
 					ConfirmAttendance(eventQR);
@@ -72,7 +71,7 @@ namespace QRCodeAuthMobile
 			};
 		}
 
-        public async void ConfirmAttendance(Event e1) //Event e2)
+        public async void ConfirmAttendance(Event e1) 
         {
 
 			// Show user event details
@@ -95,8 +94,8 @@ namespace QRCodeAuthMobile
 			if (answer)
 			{
 				//Add new attendace event to List and database and refresh ListView. 
-				await EventRepository.AddEventAsync(e1);
-				attendanceEvents.Add(e1);
+				//await EventRepository.AddEventAsync(e1);
+				//attendanceEvents.Add(e1);
 				AttendanceViewList.ItemsSource = attendanceEvents;
 
 				// Send user Credentials to Web App
@@ -121,27 +120,10 @@ namespace QRCodeAuthMobile
 					eventCreds.Add(cred);
 				}
 			};
+
 			await DataService.SendEventCredentials(eventCreds);
 		}
 
-
-		//TEsting - DELETE LATER
-		public void debug(List<Event> attendanceEvents)
-        {
-            foreach(Event ev in attendanceEvents)
-            {
-                System.Diagnostics.Debug.WriteLine("AFTER ADD");
-                System.Diagnostics.Debug.WriteLine("Event ID Number: " + ev.EventId);
-                System.Diagnostics.Debug.WriteLine("Name: " + ev.Name);
-                System.Diagnostics.Debug.WriteLine("Location: " + ev.Location);
-                System.Diagnostics.Debug.WriteLine("Type: " + ev.EventType);
-                System.Diagnostics.Debug.WriteLine("Start Time: " + ev.StartTime);
-                System.Diagnostics.Debug.WriteLine("End Time: " + ev.EndTime);
-                System.Diagnostics.Debug.WriteLine("Description: " + ev.Description);
-                System.Diagnostics.Debug.WriteLine("Owner: " + ev.Owner);
-                System.Diagnostics.Debug.WriteLine("-----------------------");
-            }
-        }
 
     }
 }

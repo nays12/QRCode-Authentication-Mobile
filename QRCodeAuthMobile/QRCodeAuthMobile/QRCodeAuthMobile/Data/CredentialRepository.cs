@@ -158,10 +158,9 @@ namespace QRCodeAuthMobile.Data
 
 		public static async Task<Credential> GetCredentialByType(CredentialType ct)
 		{
-			Credential cred = new Credential();
 			try
 			{
-				cred = await db.Table<Credential>().Where(i => i.CredentialType == ct).FirstOrDefaultAsync();
+				Credential cred = await db.Table<Credential>().Where(i => i.CredentialType == ct).FirstOrDefaultAsync();
 				StatusMessage = string.Format("Success! Found Credential {0} of Type {1}.", cred.Name, cred.CredentialType);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 				return cred;
