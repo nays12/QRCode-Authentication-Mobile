@@ -156,12 +156,11 @@ namespace QRCodeAuthMobile.Data
 			}			
 		}
 
-        public static async Task DeleateAllCredentials()
+        public static async Task DeleteAllCredentials()
         {
             int result = 0;
             try
             {
-                //result = await dbconn.DeleteAsync<User>(id);
                 result = await dbconn.DeleteAllAsync<Credential>();
             }
             catch (Exception ex)

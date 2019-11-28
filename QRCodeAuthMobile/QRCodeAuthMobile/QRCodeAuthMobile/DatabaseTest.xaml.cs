@@ -23,6 +23,7 @@ namespace QRCodeAuthMobile
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DatabaseTest : ContentPage
 	{
+		public static string StatusMessage { get; set; }
 		public DatabaseTest()
 		{
 			InitializeComponent();
@@ -32,20 +33,32 @@ namespace QRCodeAuthMobile
 		{
 			List<Event> events = new List<Event>();
 			events = await EventRepository.GetAllEventsAsync();
-			if (events.Count > 0)
+			if (events != null)
 			{
-				foreach (Event ev in events)
+				try
 				{
-					System.Diagnostics.Debug.WriteLine("Event ID Number: " + ev.EventId);
-					System.Diagnostics.Debug.WriteLine("Name: " + ev.Name);
-					System.Diagnostics.Debug.WriteLine("Location: " + ev.Location);
-					System.Diagnostics.Debug.WriteLine("Type: " + ev.EventType);
-					System.Diagnostics.Debug.WriteLine("Start Time: " + ev.StartTime);
-					System.Diagnostics.Debug.WriteLine("End Time: " + ev.EndTime);
-					System.Diagnostics.Debug.WriteLine("Description: " + ev.Description);
-					System.Diagnostics.Debug.WriteLine("Owner: " + ev.Owner);
-					System.Diagnostics.Debug.WriteLine("-----------------------");
-				};
+					foreach (Event ev in events)
+					{
+						System.Diagnostics.Debug.WriteLine("-----------------------");
+						System.Diagnostics.Debug.WriteLine("Event ID Number: " + ev.EventId);
+						System.Diagnostics.Debug.WriteLine("Name: " + ev.Name);
+						System.Diagnostics.Debug.WriteLine("Location: " + ev.Location);
+						System.Diagnostics.Debug.WriteLine("Type: " + ev.EventType);
+						System.Diagnostics.Debug.WriteLine("Start Time: " + ev.StartTime);
+						System.Diagnostics.Debug.WriteLine("End Time: " + ev.EndTime);
+						System.Diagnostics.Debug.WriteLine("Description: " + ev.Description);
+						System.Diagnostics.Debug.WriteLine("Owner: " + ev.Owner);
+						System.Diagnostics.Debug.WriteLine("-----------------------");
+
+						StatusMessage = string.Format("Success! Found Event {0}.", ev.Name);
+						System.Diagnostics.Debug.WriteLine(StatusMessage);
+					};
+				}
+				catch (Exception ex)
+				{
+					StatusMessage = string.Format("Failure. Could not find any Events. Error: {0}.", ex.Message);
+					System.Diagnostics.Debug.WriteLine(StatusMessage);
+				}			
 			}
 			else
 			{
@@ -57,10 +70,13 @@ namespace QRCodeAuthMobile
 		{
 			List<Credential> credentials = new List<Credential>();
 			credentials = await CredentialRepository.GetAllCredentialsAsync();
-			if (credentials.Count > 0)
+			if (credentials!= null)
 			{
-				foreach (Credential cred in credentials)
+				try
 				{
+					foreach (Credential cred in credentials)
+					{
+					System.Diagnostics.Debug.WriteLine("-----------------------");
 					System.Diagnostics.Debug.WriteLine("Credential ID Number: " + cred.CredentialId);
 					System.Diagnostics.Debug.WriteLine("Name: " + cred.Name);
 					System.Diagnostics.Debug.WriteLine("Issue Date: " + cred.IssueDate);
@@ -70,7 +86,16 @@ namespace QRCodeAuthMobile
 					System.Diagnostics.Debug.WriteLine("Owner: " + cred.Owner);
 					System.Diagnostics.Debug.WriteLine("Issuer: " + cred.Issuer);
 					System.Diagnostics.Debug.WriteLine("-----------------------");
-				};
+
+					StatusMessage = string.Format("Success! Found Credential {0}.", cred.Name);
+					System.Diagnostics.Debug.WriteLine(StatusMessage);
+					};
+				}
+				catch (Exception ex)
+				{
+					StatusMessage = string.Format("Failure. Could not find any Credentials. Error: {0}.", ex.Message);
+					System.Diagnostics.Debug.WriteLine(StatusMessage);
+				}
 			}
 			else
 			{
@@ -83,16 +108,28 @@ namespace QRCodeAuthMobile
 			List<User> users = new List<User>();
 			users = await UserRepository.GetAllUsersAsync();
 
-			if (users.Count > 0)
+			if (users != null)
 			{
-				foreach (User u in users)
-			{
-				System.Diagnostics.Debug.WriteLine("User Id: " + u.UserId);
-				System.Diagnostics.Debug.WriteLine("Last Name: " + u.LastName);
-				System.Diagnostics.Debug.WriteLine("First Name: " + u.FirstName);
-				System.Diagnostics.Debug.WriteLine("Type: " + u.UserType);
-				System.Diagnostics.Debug.WriteLine("-----------------------");
-			};
+				try
+				{
+					foreach (User u in users)
+					{
+						System.Diagnostics.Debug.WriteLine("-----------------------");
+						System.Diagnostics.Debug.WriteLine("User Id: " + u.UserId);
+						System.Diagnostics.Debug.WriteLine("Last Name: " + u.LastName);
+						System.Diagnostics.Debug.WriteLine("First Name: " + u.FirstName);
+						System.Diagnostics.Debug.WriteLine("Type: " + u.UserType);
+						System.Diagnostics.Debug.WriteLine("-----------------------");
+
+						StatusMessage = string.Format("Success! Found User with Id {0}.", u.UserId);
+						System.Diagnostics.Debug.WriteLine(StatusMessage);
+					};
+				}
+				catch (Exception ex)
+				{
+					StatusMessage = string.Format("Failure. Could not find any Users. Error: {0}.", ex.Message);
+					System.Diagnostics.Debug.WriteLine(StatusMessage);
+				}
 			}
 			else
 			{

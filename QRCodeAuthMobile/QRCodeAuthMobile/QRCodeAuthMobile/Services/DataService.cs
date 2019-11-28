@@ -11,14 +11,29 @@ namespace QRCodeAuthMobile.Services
 	public class DataService
 	{
 		protected static string url = "https://qrcodemobileauthenticationweb.azurewebsites.net/";
-		protected static string url2 = "https://localhost:44312/";
 		protected static HttpClient client = new HttpClient();
+
 		public static async Task<int> GetWebCode()
 		{
 			var response = await client.GetStringAsync(url + "api/Data/GetLoginCode"); 
 			var code = JsonConvert.DeserializeObject<int>(response);
 
 			return code;
+		}
+
+		public static async Task<User> GetUserAccount(string id)
+		{
+			try
+			{
+				var response = await client.GetStringAsync(url + "api/Users/GetUserWithId?id=" + id);
+				var user = JsonConvert.DeserializeObject<User>(response);
+				return user;
+			}
+			catch (Exception ex)
+			{
+				System.Diagnostics.Debug.WriteLine(ex.Message);
+				return null;
+			}
 		}
 
 		public static async Task<HttpResponseMessage> SendAccountId(User user)

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QRCodeAuthMobile.ManageAttendance">
+    <ContentPage.Content>
+        <StackLayout BackgroundColor="#005073">
+
+            <StackLayout BackgroundColor="#005073" Padding="10">
+                <Label Text="Attendance History"
+                   Style="{StaticResource lblStyle}"/>
+            </StackLayout>
+
+            <Frame CornerRadius="10" Padding="10,10,10,10" Margin="10,0,10,0"  BorderColor="#051e3e" BackgroundColor="#bdeaee">
+                <StackLayout>
+                    <ListView x:Name="AttendanceViewList" ItemsSource="{Binding Event}"
+                              HasUnevenRows="True"            
+                              SeparatorVisibility="None">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell IsEnabled="False">
+                                    <Frame  CornerRadius="10" BackgroundColor="White" BorderColor="#051e3e"  Padding="10" Margin="0,5,0,5">
+                                        <StackLayout Orientation="Vertical">
+
+                                            <Frame CornerRadius="5" BackgroundColor="#005073" BorderColor="#051e3e" Padding="5">
+                                                <Label Text="{Binding Name}" 
+                                                       Style="{StaticResource lvTitleLabelStyle}"/>
+                                            </Frame>
+
+                                            <Label Text="Location:" 
+                                                   Style="{StaticResource lvSubLabelStyle}"/>
+                                            <Label Text="{Binding Location}"
+                                                   Style="{StaticResource lvValueLabelStyle}"/>
+
+                                            <Label Text="Event Type:" 
+                                               Style="{StaticResource lvSubLabelStyle}"/>
+                                            <Label Text="{Binding EventType}"
+                                                   Style="{StaticResource lvValueLabelStyle}"/>
+
+                                            <Label Text="Start Time:" 
+                                                   Style="{StaticResource lvSubLabelStyle}"/>
+                                            <Label Text="{Binding StartTime}"
+                                                   Style="{StaticResource lvValueLabelStyle}"/>
+
+                                            <Label Text="End Time:" 
+                                                   Style="{StaticResource lvSubLabelStyle}"/>
+                                            <Label Text="{Binding EndTime}"
+                                                   Style="{StaticResource lvValueLabelStyle}"/>
+
+                                            <Label Text="Description:" 
+                                                   Style="{StaticResource lvSubLabelStyle}"/>
+                                            <Label Text="{Binding Description}"
+                                                   Style="{StaticResource lvValueLabelStyle}"/>
+
+                                            <Label Text="Issued By:" 
+                                                   Style="{StaticResource lvSubLabelStyle}"/>
+                                            <Label Text="{Binding Owner}"
+                                                   Style="{StaticResource lvValueLabelStyle}"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout Orientation="Vertical" Margin="10">
+                <Button Text="Record Attendance"
+                        Style="{StaticResource buttonStyle}"
+                        Clicked="BtnRecordAttendance_Clicked"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

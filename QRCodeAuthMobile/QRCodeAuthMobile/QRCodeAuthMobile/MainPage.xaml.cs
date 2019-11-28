@@ -17,7 +17,7 @@ using QRCodeAuthMobile.Interfaces;
 using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
 using SQLite;
-
+using System.Collections.Generic;
 
 namespace QRCodeAuthMobile
 {
@@ -28,47 +28,52 @@ namespace QRCodeAuthMobile
 		public MainPage()
 		{
 			InitializeComponent();
-			//UserRepository.DeleteUserbyId("1304693"); Call this method with your User account Id to delete your account and setup new tables
 		}
 
 		private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
 		{
-
-			int count = 0;
-			count = await UserRepository.GetRowCount();
-
 			//Check if Fingerprint ID is available on mobile device. 
 			if (await CrossFingerprint.Current.IsAvailableAsync())
 			{
-                //If avaialbe authenticate by Fingerprint ID. 
-                FingerprintAuthenticationResult result = await CrossFingerprint.Current.AuthenticateAsync("Provide fingerprint to sign in.");
+				//If avaialbe authenticate by Fingerprint ID. 
+				FingerprintAuthenticationResult result = await CrossFingerprint.Current.AuthenticateAsync("Provide fingerprint to sign in.");
 
-                //If authentication is successful continue to next page. 
-                if (result.Authenticated)
+				//If authentication is successful continue to next page. 
+				if (result.Authenticated)
 				{
-					if (count > 0) // If record count for User table is > 0 then an account exist
+					List<User> userAccounts = new List<User>();
+					userAccounts = await UserRepository.GetAllUsersAsync();
+
+					if (userAccounts != null && userAccounts.Count > 0) // If record count for User table is > 0 then an account exist
 					{
-						App.Current.MainPage = new Home();
+						bool answer = await DisplayAlert("Account Found.", "Would you like to make another account?", "Yes", "No");
+						if (answer)
+						{
+							await Navigation.PushAsync(new SelectType());
+						}
+						else
+						{
+							await Navigation.PushAsync(new Home());				
+						}
 					}
 					else // If the record count is 0 then no User account exist
 					{
-						App.Current.MainPage = new SelectType();
+						await Navigation.PushAsync(new SelectType());
 					}
 				}
 			}
-            else
-            {
-                //If FingerprintID is NOT availabe on mobile device, display appropriate error message. 
-                await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
-            }
-        }
+			else
+			{
+				// If FingerprintID is NOT availabe on mobile device, display appropriate error message. 
+				await DisplayAlert("Authentication Failed", "Fingerprint Authentication Failed", "OK");
+			}
+		}
 
 		private void BtnFaceID_Clicked(object sender, EventArgs e)
 		{
-			//If face ID authentification is selected handle the action with platform specific code. 
+			// If face ID authentification is selected handle the action with platform specific code. 
 			// See Android and iOS project implementation folders for code. 
 			DependencyService.Get<IFaceAuth>().FaceAuthentication();
-
 		}
 
 	}

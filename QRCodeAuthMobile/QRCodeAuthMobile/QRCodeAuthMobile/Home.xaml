@@ -15,29 +15,45 @@
 
             <Image Source="logo.jpg"/>
 
-            <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
+			<StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
 
-
-				<Label x:Name="welcomeUser" 
-                       HorizontalOptions="CenterAndExpand"
-                       Style="{StaticResource lblStyle}"/>
-				
-				<Label Text="What would you like to do?"
+				<Label x:Name="lblGreeting"
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
 
-                <Button Text="Manage Credentials"
+				<Label x:Name="lblOptions"
+                       HorizontalOptions="CenterAndExpand"
+                       Style="{StaticResource lblStyle}"/>
+
+				<Picker x:Name="accountUserId"
+						Title="Select an Account"
+                        FontSize="Small" 
+						ItemsSource="{Binding accountsList}"
+						SelectedItem="{Binding UserId}"
+						ItemDisplayBinding="{Binding UserId, StringFormat='Account with Id: {0:}'}"
+						SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
+
+				<Button x:Name="btnManageCredentials"
+						IsVisible="false"
+						Text="Manage Credentials"
                         Clicked="BtnManagedCredentials_Clicked"
                         Style="{StaticResource buttonStyle}"/>
 
-                <Button Text="Share Credentials"
+				<Button x:Name="btnShareCredentials"
+						IsVisible="false"
+						Text="Share Credentials"
                         Clicked="BtnShareCredentials_Clicked"
                         Style="{StaticResource buttonStyle}"/>
-                <Button Text="Record Attendance"
-                        Clicked="BtnRecordAttendance_Clicked"
+
+				<Button x:Name="btnManageAttendance"
+						IsVisible="false"
+						Text="Manage Attendance"
+                        Clicked="BtnManageAttendance_Clicked"
                         Style="{StaticResource buttonStyle}"/>
- 
-                <Button Text="Web App Login"
+
+				<Button x:Name="btnWebLogin"
+						IsVisible="false"
+						Text="Web App Login"
                         Clicked="BtnWebLogIn_Clicked"
                         Style="{StaticResource buttonStyle}"/>
 
