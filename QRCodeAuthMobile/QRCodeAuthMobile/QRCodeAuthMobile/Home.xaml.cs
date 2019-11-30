@@ -14,6 +14,7 @@ using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
 using ZXing.Net.Mobile.Forms;
 using Newtonsoft.Json;
+using QRCodeAuthMobile.Services;
 
 namespace QRCodeAuthMobile
 {
@@ -50,60 +51,61 @@ namespace QRCodeAuthMobile
             {
                 informationCollector = "",
                 department = "",
-                requestedCredentials = new[] { "", "", "", "", "", "", "" }
+                requestedCredentials = new List<CredentialType>() { },
             };
 
 
-            //Create a scan page. 
-            var scanPage = new ZXingScannerPage();
-            scanPage.DefaultOverlayShowFlashButton = true;
-            scanPage.HasTorch = true;
+            ////Create a scan page. 
+            //var scanPage = new ZXingScannerPage();
+            //scanPage.DefaultOverlayShowFlashButton = true;
+            //scanPage.HasTorch = true;
 
-            // Navigate to scan page
-            await Navigation.PushModalAsync(scanPage);
+            //// Navigate to scan page
+            //await Navigation.PushModalAsync(scanPage);
 
-            //Event Handler
-            scanPage.OnScanResult += (result) =>
+            ////Event Handler
+            //scanPage.OnScanResult += (result) =>
+            //{
+
+            //    // Pop the page and show the result
+            //    Device.BeginInvokeOnMainThread(async () =>
+            //    {
+            //        // Stop scanning and dimiss the modal page
+            //        scanPage.IsScanning = false;
+            //        await Navigation.PopModalAsync();
+
+            //        //Save the scanned anonymous object into the obj variable. 
+            //        var obj = JsonConvert.DeserializeAnonymousType(result.ToString(), defenition);
+            //        string message = "Information Collector : \n" + obj.informationCollector + "\n\nDepartment: \n" + obj.department + "\n\nRequesting Credentials:\n" + getStringOfRequestedCredentials(obj.requestedCredentials) + "\n\nWould you like to share your credentials?";
+
+            //        var decision = await DisplayAlert("Share Credentials", message, "Yes", "No");
+            //        if (decision)
+            //        {
+            //            //Code - send information to the information collector 
+
+            //            await DisplayAlert("Successful!!!", "Your credentials have been shared with " + obj.informationCollector, "ok");
+            //        }
+            //        else
+            //        {
+            //            await DisplayAlert("Cancelled", "You have chosen not to share your credentials. ", "ok");
+            //        }
+            //    });
+            //};
+
+            //TESTING - DELETE LATER 
+            var obj = JsonConvert.DeserializeAnonymousType(getCredentialRequest(), defenition);
+            string message = "Information Collector: \n" + obj.informationCollector + "\n\nDepartment: \n" + obj.department + "\n\nRequesting Credentials:\n" + getRequestedCredentials(obj.requestedCredentials) + "\n\nWould you like to share your credentials?";
+
+            var decision = await DisplayAlert("Share Credentials", message, "Yes", "No");
+            if (decision)
             {
-
-                // Pop the page and show the result
-                Device.BeginInvokeOnMainThread(async () =>
-                {
-                    // Stop scanning and dimiss the modal page
-                    scanPage.IsScanning = false;
-                    await Navigation.PopModalAsync();
-
-                    //Save the scanned anonymous object into the obj variable. 
-                    var obj = JsonConvert.DeserializeAnonymousType(result.ToString(), defenition);
-                    string message = "Information Collector : \n" + obj.informationCollector + "\n\nDepartment: \n" + obj.department + "\n\nRequesting Credentials:\n" + getListOfRequestedCredentials(obj.requestedCredentials) + "\n\nWould you like to share your credentials?";
-
-                    var decision = await DisplayAlert("Share Credentials", message, "Yes", "No");
-                    if (decision)
-                    {
-                        //Code - send information to the information collector 
-
-                        await DisplayAlert("Successful!!!", "Your credentials have been shared with " + obj.informationCollector, "ok");
-                    }
-                    else
-                    {
-                        await DisplayAlert("Cancelled", "You have chosen not to share your credentials. ", "ok");
-                    }
-                });
-            };
-
-            ////TESTING - DELETE LATER 
-            //var obj = JsonConvert.DeserializeAnonymousType(getCredentialRequest(), defenition);
-            //string message = "Information Collector: \n" + obj.informationCollector + "\n\nDepartment: \n" + obj.department + "\n\nRequesting Credentials:\n" + getListOfRequestedCredentials(obj.requestedCredentials) + "\n\nWould you like to share your credentials?";
-
-            //var decision = await DisplayAlert("Share Credentials", message, "Yes", "No");
-            //if (decision)
-            //{
-            //    await DisplayAlert("Successful!!!", "Your credentials have been shared with " + obj.informationCollector, "ok");
-            //}
-            //else
-            //{
-            //    await DisplayAlert("Cancelled", "You have chosen not to share your credentials. ", "ok");
-            //}
+                sendRequestedCredentials(obj.requestedCredentials);
+                await DisplayAlert("Successful!!!", "Your credentials have been shared with " + obj.informationCollector, "ok");
+            }
+            else
+            {
+                await DisplayAlert("Cancelled", "You have chosen not to share your credentials. ", "ok");
+            }
 
 
         }
@@ -118,19 +120,35 @@ namespace QRCodeAuthMobile
 		}
 
 
-        public string getListOfRequestedCredentials(string[] a)
+        public string getRequestedCredentials(List<CredentialType> types)
         {
             string str = "";
-            for(int i = 0; i < a.Length; i++)
+            foreach(CredentialType ct in types)
             {
-                if(a[i] != "")
-                {
-                    str += a[i] + "\n";
-                }
+                str += ct.ToString() + "\n";
             }
             return str;
-
         }
+
+        public async void sendRequestedCredentials(List<CredentialType> types)
+        {
+            List<Credential> requestedCredentials = new List<Credential>();
+            Credential cred = new Credential();
+
+            foreach (CredentialType credentialType in types)
+            {
+                cred = await CredentialRepository.GetCredentialByType(credentialType);
+                if (cred != null)
+                {
+                    requestedCredentials.Add(cred);
+                    System.Diagnostics.Debug.WriteLine(cred + "\n");
+                }
+
+                //await DataService.SendRequestedCredentials(requestedCredentials);
+            }
+        }
+
+
 
         //Testing - DELETE LATER (This will be in the web app code) 
         public string getCredentialRequest()
@@ -139,7 +157,7 @@ namespace QRCodeAuthMobile
             {
                 informationCollector = "Alredo Davila",
                 department = "College of Science and Engineering",
-                requestedCredentials = new[] { "Name", "Major", "Email", "", "", "", "" }
+                requestedCredentials = new List<CredentialType>() { CredentialType.Name, CredentialType.Major },
             };
 
             var result = JsonConvert.SerializeObject(credentialRequest);
