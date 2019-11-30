@@ -82,7 +82,7 @@ namespace QRCodeAuthMobile
             //        if (decision)
             //        {
             //            //Code - send information to the information collector 
-
+                          //sendRequestedCredentials(obj.requestedCredentials);
             //            await DisplayAlert("Successful!!!", "Your credentials have been shared with " + obj.informationCollector, "ok");
             //        }
             //        else
@@ -100,7 +100,7 @@ namespace QRCodeAuthMobile
             if (decision)
             {
                 sendRequestedCredentials(obj.requestedCredentials);
-                await DisplayAlert("Successful!!!", "Your credentials have been shared with " + obj.informationCollector, "ok");
+                //await DisplayAlert("Successful!!!", "Your credentials have been shared with " + obj.informationCollector, "ok");
             }
             else
             {
@@ -142,10 +142,19 @@ namespace QRCodeAuthMobile
                 {
                     requestedCredentials.Add(cred);
                     System.Diagnostics.Debug.WriteLine(cred + "\n");
-                }
-
-                //await DataService.SendRequestedCredentials(requestedCredentials);
+                }            
             }
+
+            if(requestedCredentials != null && requestedCredentials.Count == types.Count)
+            {
+                //await DataService.SendRequestedCredentials(requestedCredentials); 
+                await DisplayAlert("Successful!!!", "Your credentials have been shared", "ok");
+            }
+            else
+            {
+                await DisplayAlert("Unsuccessfull", "You do not hold one or more of the requested credentials. Therefore, cannot share credentials with information collector. ", "ok");
+            }
+
         }
 
 
