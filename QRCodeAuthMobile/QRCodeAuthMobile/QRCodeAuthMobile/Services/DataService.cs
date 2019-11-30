@@ -148,21 +148,21 @@ namespace QRCodeAuthMobile.Services
 			}
 		}
 
-        //public static async Task<HttpResponseMessage> SendRequestedCredentials(List<Credential> credentials)
-        //{
-        //    try
-        //    {
-        //        var content = JsonConvert.SerializeObject(credentials);
-        //        var response = await client.PostAsync(url + "api/Credentials/RecieveEventCredentials", new StringContent(content));
-        //        System.Diagnostics.Debug.WriteLine(response);
-        //        return response;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        System.Diagnostics.Debug.WriteLine(ex.Message);
-        //        return null;
-        //    }
-        //}
+        public static async Task<HttpResponseMessage> SendRequestedCredentials(List<Credential> credentials)
+        {
+            try
+            {
+                var content = JsonConvert.SerializeObject(credentials);
+                var response = await client.PostAsync(url + "api/SharedCredentials/RecieveSharedCredentials", new StringContent(content));
+                //System.Diagnostics.Debug.WriteLine(response);
+                return response;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
 
 
     }
