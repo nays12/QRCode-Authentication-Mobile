@@ -67,6 +67,10 @@ namespace QRCodeAuthMobile
 			if (newCredentials != null && newCredentials.Count > 0)
 			{
 				await CredentialRepository.AddNewCredentialsAsync(newCredentials);
+				foreach (Credential c in newCredentials)
+				{
+					userCredentials.Add(c);
+				}				
 				credentialList.ItemsSource = userCredentials;
 				await DisplayAlert("New Credentials", "Success! Your new Credentials have been added to your account! Please restart the app to view them.", "OK");
 			}

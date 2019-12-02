@@ -89,12 +89,12 @@ namespace QRCodeAuthMobile
 
                     //Save the scanned anonymous object into the obj variable. 
                     var obj = JsonConvert.DeserializeAnonymousType(result.ToString(), defenition);
-                    string message = "Information Collector : \n" + obj.informationCollector + "\n\nDepartment: \n" + obj.department + "\n\nRequesting Credentials:\n" + getRequestedCredentials(obj.requestedCredentials) + "\n\nWould you like to share your credentials?";
+                    string message = "Information Collector : \n" + obj.informationCollector + "\n\nDepartment: \n" + obj.department + "\n\nRequesting Credentials:\n" + obj.requestedCredentials + "\n\nWould you like to share your credentials?";
 
                     var decision = await DisplayAlert("Share Credentials", message, "Yes", "No");
                     if (decision)
                     {
-                        //Code - send information to the information collector 
+                        // send information to the information collector 
                         sendRequestedCredentials(obj.requestedCredentials);
                     }
                     else
@@ -105,42 +105,31 @@ namespace QRCodeAuthMobile
             };
         }
 
-        public string getRequestedCredentials(List<CredentialType> types)
-        {
-            string str = "";
-            foreach(CredentialType ct in types)
-            {
-                str += ct.ToString() + "\n";
-            }
-            return str;
-        }
-
         public async void sendRequestedCredentials(List<CredentialType> types)
         {
             List<Credential> requestedCredentials = new List<Credential>();
-            Credential cred = new Credential();
 
             foreach (CredentialType credentialType in types)
             {
-                cred = await CredentialRepository.GetCredentialByType(credentialType);
+                Credential cred = await CredentialRepository.GetCredentialByType(credentialType);
                 if (cred != null)
                 {
                     requestedCredentials.Add(cred);
-                    System.Diagnostics.Debug.WriteLine(cred + "\n");
+                    System.Diagnostics.Debug.WriteLine(cred.CredentialType);
                 }            
             }
 
-            if(requestedCredentials != null && requestedCredentials.Count == types.Count)
+            if(requestedCredentials != null && requestedCredentials.Count > 0)
             {
-                //await DataService.SendRequestedCredentials(requestedCredentials); 
+                await DataService.SendRequestedCredentials(requestedCredentials); 
                 await DisplayAlert("Successful!!!", "Your credentials have been shared", "ok");
             }
             else
             {
                 await DisplayAlert("Unsuccessful", "You do not hold one or more of the requested credentials. Therefore, unable to share credentials with information collector. ", "ok");
             }
-
         }
+
 
     }
 }
