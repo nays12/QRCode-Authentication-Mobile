@@ -85,14 +85,13 @@ namespace QRCodeAuthMobile.Data
 
 		public static async Task<List<User>> GetAllUsersAsync()
 		{
-			List<User> users = new List<User>();
 			try
 			{
 				return await db.Table<User>().ToListAsync();
 			}
 			catch (Exception ex)
 			{
-				StatusMessage = string.Format("Failure. Could not retrieve user accounts. Error: {0}", ex.Message);
+				StatusMessage = string.Format("Failed to get users. {0}", ex.Message);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 				return null;
 			}
@@ -131,6 +130,5 @@ namespace QRCodeAuthMobile.Data
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 			}
 		}
-
     }
 }

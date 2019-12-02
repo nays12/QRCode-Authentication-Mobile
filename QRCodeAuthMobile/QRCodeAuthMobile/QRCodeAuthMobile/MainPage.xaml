@@ -21,17 +21,14 @@
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
 
-			<Button x:Name="btnFaceId"
-					Text="Face ID"
+			<Button Text="Face ID"
                     Style="{StaticResource buttonStyle}"
 					Clicked="BtnFaceID_Clicked"/>
-
-			<Button x:Name="btnFingerprintId"
-					Text="Fingerprint ID"
+			<Button Text="Finger Print ID"
                     Style="{StaticResource buttonStyle}"
 					Clicked="BtnFingerPrint_Clicked"/>
 
-		</StackLayout>
+        </StackLayout>
 
     </StackLayout>
 

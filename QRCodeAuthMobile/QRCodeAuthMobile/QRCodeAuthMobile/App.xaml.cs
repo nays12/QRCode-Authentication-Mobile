@@ -36,7 +36,6 @@ namespace QRCodeAuthMobile
 			//MainPage = new SelectType();
 			//MainPage = new NavigationPage(new Home());
 			//MainPage = new NavigationPage(new DatabaseTest());
-
 		}
 
 		protected override void OnStart()

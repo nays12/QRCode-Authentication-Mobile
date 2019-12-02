@@ -17,7 +17,7 @@ using QRCodeAuthMobile.Interfaces;
 using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
 using SQLite;
-using System.Collections.Generic;
+
 
 namespace QRCodeAuthMobile
 {
@@ -42,20 +42,13 @@ namespace QRCodeAuthMobile
 				//If authentication is successful continue to next page. 
 				if (result.Authenticated)
 				{
-					List<User> userAccounts = new List<User>();
-					userAccounts = await UserRepository.GetAllUsersAsync();
 
-					if (userAccounts != null && userAccounts.Count > 0) // If record count for User table is > 0 then an account exist
+					int count = await UserRepository.GetRowCount();
+
+
+					if (count > 0) // If record count for User table is > 0 then an account exist
 					{
-						bool answer = await DisplayAlert("Account Found.", "Would you like to make another account?", "Yes", "No");
-						if (answer)
-						{
-							await Navigation.PushAsync(new SelectType());
-						}
-						else
-						{
-							await Navigation.PushAsync(new Home());				
-						}
+						await Navigation.PushAsync(new Home());
 					}
 					else // If the record count is 0 then no User account exist
 					{
