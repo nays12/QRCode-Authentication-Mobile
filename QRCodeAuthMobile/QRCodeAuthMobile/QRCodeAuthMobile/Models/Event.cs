@@ -20,6 +20,7 @@ namespace QRCodeAuthMobile.Models
 		public DateTime StartTime { get; set; }
 		public DateTime EndTime { get; set; }
 		public string Description { get; set; }
+		public bool isPassed { get; set; }
 		[Ignore]
 		public List<CredentialType> CredentialsNeeded { get; set; }
 

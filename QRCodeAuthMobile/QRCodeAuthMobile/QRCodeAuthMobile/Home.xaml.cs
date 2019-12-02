@@ -32,7 +32,6 @@ namespace QRCodeAuthMobile
         {
             //await Navigation.PushAsync(new ManageCredentials());
 			Application.Current.MainPage = new NavigationPage(new ManageCredentials());
-
 		}
 
 		private async void BtnWebLogIn_Clicked(object sender, EventArgs e)
