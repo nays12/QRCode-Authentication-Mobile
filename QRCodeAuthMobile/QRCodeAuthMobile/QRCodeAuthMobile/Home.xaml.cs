@@ -30,24 +30,27 @@ namespace QRCodeAuthMobile
 
         private async void BtnManagedCredentials_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ManageCredentials());
-        }
+            //await Navigation.PushAsync(new ManageCredentials());
+			Application.Current.MainPage = new NavigationPage(new ManageCredentials());
+
+		}
 
 		private async void BtnWebLogIn_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new WebAppLogin());
-        }
+            //await Navigation.PushAsync(new WebAppLogin());
+			Application.Current.MainPage = new NavigationPage(new WebAppLogin());
+		}
 
         private async void BtnManageAttendance_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new ManageAttendance());           
-        }
+            //await Navigation.PushAsync(new ManageAttendance());
+			Application.Current.MainPage = new NavigationPage(new ManageAttendance());
+		}
 
         private void BtnShareCredentials_Clicked(object sender, EventArgs e)
         {
             scanQRCode();
         }
-
 
         private async void PutUserinSessionState()
         {
@@ -58,7 +61,6 @@ namespace QRCodeAuthMobile
             lblWelcome.Text = string.Format("Welcome {0}!", user.FirstName);
         }
 
-
         public async void scanQRCode()
         {
             var defenition = new
@@ -67,7 +69,6 @@ namespace QRCodeAuthMobile
                 department = "",
                 requestedCredentials = new List<CredentialType>() { },
             };
-
 
             //Create a scan page. 
             var scanPage = new ZXingScannerPage();
