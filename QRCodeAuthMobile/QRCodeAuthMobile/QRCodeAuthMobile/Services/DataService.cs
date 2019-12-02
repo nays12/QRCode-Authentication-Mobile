@@ -12,6 +12,7 @@ namespace QRCodeAuthMobile.Services
 	{
 		protected static string url = "https://qrcodemobileauthenticationweb.azurewebsites.net/";
 		protected static HttpClient client = new HttpClient();
+		
 
 		public static async Task<int> GetWebCode()
 		{
@@ -25,8 +26,9 @@ namespace QRCodeAuthMobile.Services
 		{
 			try
 			{
-				var response = await client.GetStringAsync(url + "api/Users/GetUserWithId?id=" + id);
+				var response = await client.GetStringAsync(url + "api/Users/GetUserbyId?id=" + id);
 				var user = JsonConvert.DeserializeObject<User>(response);
+				System.Diagnostics.Debug.WriteLine(response);
 				return user;
 			}
 			catch (Exception ex)
@@ -40,8 +42,8 @@ namespace QRCodeAuthMobile.Services
 		{
 			try
 			{
-				var content = JsonConvert.SerializeObject(user);			
-				var response = await client.PostAsync(url + "api/Data/RecieveAccountId", new StringContent(content));
+				var content = JsonConvert.SerializeObject(user);
+				var response = await client.PostAsync(url + "api/Users/RecieveUserAccount", new StringContent(content, Encoding.UTF8, "application/json"));
 				System.Diagnostics.Debug.WriteLine(response);
 				return response;
 			}
@@ -57,7 +59,7 @@ namespace QRCodeAuthMobile.Services
 			try
 			{
 				var content = JsonConvert.SerializeObject(credentials);
-				var response = await client.PostAsync(url + "api/Credentials/RecieveEventCredentials", new StringContent(content));
+				var response = await client.PostAsync(url + "api/Credentials/RecieveEventCredentials", new StringContent(content, Encoding.UTF8, "application/json"));
 				System.Diagnostics.Debug.WriteLine(response);
 				return response;
 			}
@@ -148,6 +150,22 @@ namespace QRCodeAuthMobile.Services
 			}
 		}
 
+        public static async Task<HttpResponseMessage> SendRequestedCredentials(List<Credential> credentials)
+        {
+            try
+            {
+                var content = JsonConvert.SerializeObject(credentials);
+                var response = await client.PostAsync(url + "api/Credentials/RecieveSharedCredentials", new StringContent(content, Encoding.UTF8, "application/json"));
+				System.Diagnostics.Debug.WriteLine(response);
+				return response;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.Message);
+                return null;
+            }
+        }
 
-	}
+
+    }
 }

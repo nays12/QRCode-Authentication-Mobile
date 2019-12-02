@@ -48,17 +48,10 @@ namespace QRCodeAuthMobile
 
         private void BtnUpdateCredentials_Clicked(object sender, EventArgs e)
         {
-			if (userCredentials != null && userCredentials.Count > 0)
-			{
 				DeletedCredentialsCheck();
 				UpdatedCredentialsCheck();
 				NewCredentialsCheck();
 				displayCredentialList();
-			}
-			else
-			{
-				displayCredentialList();
-			}
 		}
 
 		public void GetLoggedInUserInfo()
@@ -73,7 +66,8 @@ namespace QRCodeAuthMobile
 
 			if (newCredentials != null && newCredentials.Count > 0)
 			{
-				await CredentialRepository.AddNewCredentialsAsync(newCredentials); 
+				await CredentialRepository.AddNewCredentialsAsync(newCredentials);
+				credentialList.ItemsSource = userCredentials;
 				await DisplayAlert("New Credentials", "Success! Your new Credentials have been added to your account! Please restart the app to view them.", "OK");
 			}
 			else
@@ -89,7 +83,8 @@ namespace QRCodeAuthMobile
 
 			if (updatedCredentials != null && updatedCredentials.Count > 0)
 			{
-				await CredentialRepository.UpdateCredentialsAsync(updatedCredentials); 
+				await CredentialRepository.UpdateCredentialsAsync(updatedCredentials);
+				credentialList.ItemsSource = userCredentials;
 				await DisplayAlert("Updated Credentials", "Success! Your Credentials have been updated! Please restart the app to see the new values.", "OK");
 			}
 			else
@@ -108,6 +103,7 @@ namespace QRCodeAuthMobile
 			else
 			{
 				await CredentialRepository.DeleteCredentialById(deletedCredentialId);
+				credentialList.ItemsSource = userCredentials;
 				await DisplayAlert("Deleted Credential", CredentialRepository.StatusMessage + "Please restart to application to remove the Credential from your list.", "OK");
 			}
 		}
