@@ -34,6 +34,7 @@ namespace QRCodeAuthMobile
 			if (systemUser != null)
 			{
 				string userComfirmMsg = string.Format("Are you {0} {1}?", systemUser.FirstName, systemUser.LastName);
+
 				bool answer = await DisplayAlert("Account Found", userComfirmMsg, "Yes", "No");
 
 				if (answer)
@@ -52,8 +53,7 @@ namespace QRCodeAuthMobile
 					await MobileAccountRepository.AddAccountAsync(m);
 					await DisplayAlert("Success", "Your Mobile Token Account has been activated.", "OK");
 
-					await Navigation.PushAsync(new Home());
-					//App.Current.MainPage = new Home(); // We do not want to enable Users to navigate back to SelectType page
+					App.Current.MainPage = new Home(); // We do not want to enable Users to navigate back to SelectType page
 
 				}
 				else

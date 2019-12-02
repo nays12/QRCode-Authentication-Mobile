@@ -15,45 +15,30 @@
 
             <Image Source="logo.jpg"/>
 
-			<StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
+            <StackLayout BackgroundColor="Transparent" VerticalOptions="CenterAndExpand">
+
 
 				<Label x:Name="lblWelcome" 
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
-
-				<Label x:Name="lblOptions"
+				
+				<Label Text="What would you like to do?"
                        HorizontalOptions="CenterAndExpand"
                        Style="{StaticResource lblStyle}"/>
 
-				<Picker x:Name="accountUserId"
-						Title="Select an Account"
-                        FontSize="Small" 
-						ItemsSource="{Binding accountsList}"
-						SelectedItem="{Binding UserId}"
-						ItemDisplayBinding="{Binding UserId, StringFormat='Account with Id: {0:}'}"
-						SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
-
-				<Button x:Name="btnManageCredentials"
-						IsVisible="false"
-						Text="Manage Credentials"
+                <Button Text="Manage Credentials"
                         Clicked="BtnManagedCredentials_Clicked"
                         Style="{StaticResource buttonStyle}"/>
 
-				<Button x:Name="btnShareCredentials"
-						IsVisible="false"
-						Text="Share Credentials"
+                <Button Text="Share Credentials"
                         Clicked="BtnShareCredentials_Clicked"
                         Style="{StaticResource buttonStyle}"/>
-
-				<Button x:Name="btnManageAttendance"
-						IsVisible="false"
-						Text="Manage Attendance"
+                
+                <Button Text="Manage Attendance"
                         Clicked="BtnManageAttendance_Clicked"
                         Style="{StaticResource buttonStyle}"/>
-
-				<Button x:Name="btnWebLogin"
-						IsVisible="false"
-						Text="Web App Login"
+ 
+                <Button Text="Web App Login"
                         Clicked="BtnWebLogIn_Clicked"
                         Style="{StaticResource buttonStyle}"/>
 

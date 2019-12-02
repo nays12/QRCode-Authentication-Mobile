@@ -54,6 +54,7 @@ namespace QRCodeAuthMobile
 			//Event Handler
 			scanPage.OnScanResult += (result) =>
 			{
+
 				// Pop the page and show the result
 				Device.BeginInvokeOnMainThread(async () =>
 				{
