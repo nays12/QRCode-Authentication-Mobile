@@ -93,7 +93,6 @@ namespace QRCodeAuthMobile
 				}
 				catch (Exception ex)
 				{
-					await DisplayAlert("Could Not Update Credentials", "Failure. Your Credentials could not be updated!", "OK");
 					System.Diagnostics.Debug.WriteLine(ex.Message);
 				}
 			}
