@@ -61,8 +61,7 @@ namespace QRCodeAuthMobile
 
 		private async void NewCredentialsCheck()
 		{
-			List<Credential> newCredentials = new List<Credential>();
-			newCredentials = await DataService.GetIssuedCredentials(); // Call API
+			List<Credential> newCredentials = await DataService.GetIssuedCredentials(); // Call API
 
 			if (newCredentials != null && newCredentials.Count > 0)
 			{
@@ -81,15 +80,22 @@ namespace QRCodeAuthMobile
 		}
 
 		private async void UpdatedCredentialsCheck()
-		{
-			List<Credential> updatedCredentials = new List<Credential>();
-			updatedCredentials = await DataService.GetUpdatedCredentials(); // Call API
+		{	
+			List<Credential> updatedCredentials = await DataService.GetUpdatedCredentials(); // Call API
 
 			if (updatedCredentials != null && updatedCredentials.Count > 0)
 			{
-				await CredentialRepository.UpdateCredentialsAsync(updatedCredentials);
-				credentialList.ItemsSource = userCredentials;
-				await DisplayAlert("Updated Credentials", "Success! Your Credentials have been updated! Please restart the app to see the new values.", "OK");
+				try
+				{
+					await CredentialRepository.UpdateCredentialsAsync(updatedCredentials);
+					credentialList.ItemsSource = userCredentials;
+					await DisplayAlert("Updated Credentials", "Success! Your Credentials have been updated!", "OK");
+				}
+				catch (Exception ex)
+				{
+					await DisplayAlert("Could Not Update Credentials", "Failure. Your Credentials could not be updated!", "OK");
+					System.Diagnostics.Debug.WriteLine(ex.Message);
+				}
 			}
 			else
 			{
@@ -106,9 +112,16 @@ namespace QRCodeAuthMobile
 			}
 			else
 			{
-				await CredentialRepository.DeleteCredentialById(deletedCredentialId);
-				credentialList.ItemsSource = userCredentials;
-				await DisplayAlert("Deleted Credential", CredentialRepository.StatusMessage + "Please restart to application to remove the Credential from your list.", "OK");
+				try
+				{
+					await CredentialRepository.DeleteCredentialById(deletedCredentialId);
+					credentialList.ItemsSource = userCredentials;
+					await DisplayAlert("Deleted Credential", CredentialRepository.StatusMessage + "Please restart to application to remove the Credential from your list.", "OK");
+				}
+				catch (Exception ex)
+				{
+					System.Diagnostics.Debug.WriteLine(ex.Message);
+				}
 			}
 		}
 
