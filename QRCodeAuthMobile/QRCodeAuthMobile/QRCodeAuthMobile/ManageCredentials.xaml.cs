@@ -34,7 +34,7 @@ namespace QRCodeAuthMobile
 			}
 			else
 			{
-				await DisplayAlert("No Credentials Found", "Looks like you don't have any Credential yet. Visit your Credential Authority to add some!", "OK");
+				//await DisplayAlert("No Credentials Found", "Looks like you don't have any Credential yet. Visit your Credential Authority to add some!", "OK");
 			}
 		}
 
@@ -51,7 +51,7 @@ namespace QRCodeAuthMobile
 				DeletedCredentialsCheck();
 				UpdatedCredentialsCheck();
 				NewCredentialsCheck();
-				displayCredentialList();
+				userCredentials.Clear();
 		}
 
 		public void GetLoggedInUserInfo()
