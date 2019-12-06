@@ -89,7 +89,7 @@ namespace QRCodeAuthMobile
 
                     //Save the scanned anonymous object into the obj variable. 
                     var obj = JsonConvert.DeserializeAnonymousType(result.ToString(), defenition);
-                    string message = "Information Collector : \n" + obj.informationCollector + "\n\nDepartment: \n" + obj.department + "\n\nRequesting Credentials:\n" + obj.requestedCredentials + "\n\nWould you like to share your credentials?";
+                    string message = "Information Collector : \n" + obj.informationCollector + "\n\nDepartment: \n" + obj.department + "\n\nRequesting Credentials:\n" + "Name\nEmail\nWorkType" + "\n\nWould you like to share your credentials?";
 
                     var decision = await DisplayAlert("Share Credentials", message, "Yes", "No");
                     if (decision)
