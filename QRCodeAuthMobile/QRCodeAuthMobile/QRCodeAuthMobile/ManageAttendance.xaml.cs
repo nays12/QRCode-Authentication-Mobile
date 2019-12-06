@@ -40,9 +40,25 @@ namespace QRCodeAuthMobile
 			}
         }
 
-
         private async void BtnRecordAttendance_Clicked(object sender, EventArgs e)
         {
+			// define anonoymous object
+			var defenition = new
+			{
+				attendaceManager = "",
+				department = "",
+				eventId = "",
+				eventName = "",
+				eventLocation = "",
+				eventType = "",
+				eventDate = "",
+				eventStart = "",
+				eventEnd = "",
+				evDescription = "",
+				evOwner = "",
+				requestedCredentials = new List<CredentialType>() { },
+			};
+
 			//Create a scan page. 
 			var scanPage = new ZXingScannerPage();
 			scanPage.DefaultOverlayShowFlashButton = true;
@@ -62,25 +78,47 @@ namespace QRCodeAuthMobile
 					scanPage.IsScanning = false;
 					await Navigation.PopModalAsync();
 
-					//Save the scanned event object into the eventObject variable. 
-					Event eventQR = JsonConvert.DeserializeObject<Event>(Convert.ToString(result));
-					System.Diagnostics.Debug.WriteLine(eventQR);
+					//Save the scanned anonymous object into the obj variable. 
+					var obj = JsonConvert.DeserializeAnonymousType(result.ToString(), defenition);
 
-					ConfirmAttendance(eventQR);
+					// Get the Event object
+					Event ev = new Event
+					{
+						EventId = Convert.ToInt32(obj.eventId),
+						Name = obj.eventName,
+						Location = obj.eventLocation,
+						EventType = (EventType)Convert.ToInt32(obj.eventType),
+						Date = DateTime.Parse(obj.eventDate),
+						StartTime = DateTime.Parse(obj.eventStart),
+						EndTime = DateTime.Parse(obj.eventEnd),
+						Description = obj.evDescription,
+						Owner = obj.evOwner
+					};
+
+					// Get Other Info
+					string amName = obj.attendaceManager;
+					string amDepartment = obj.department;
+					List<CredentialType> requestedCredentials = obj.requestedCredentials;
+
+					System.Diagnostics.Debug.WriteLine(obj);
+
+					ConfirmAttendance(ev, amName, amDepartment, requestedCredentials);
 				});
 			};
 		}
 
-        public async void ConfirmAttendance(Event e1) 
-        {
-
+		public async void ConfirmAttendance(Event ev, string amName, string amDepartment, List<CredentialType> requestedCredentials)
+		{
 			// Show user event details
-			var message = "Name: " + e1.Name + "\n Location: " + e1.Location + "\n Event Type: " + e1.EventType + "\n Start Time: " + e1.StartTime.ToString() + "\n End Time: " + e1.EndTime.ToString() + "\n Description : " + e1.Description;
-			bool answer = await DisplayAlert("Attend Event?", message, "Yes", "No");
+			var message = "Attendance Manager: " + amName + "\n Department: " + amDepartment + "\n Event Name: " + ev.Name + "\n Event Location: " + ev.Location + "\n Event Type: " + ev.EventType +
+						  "\n Date: " + ev.Date + "\n Start Time: " + ev.StartTime + "\n End Time: " + ev.EndTime + "\n Description : " + ev.Description;
+			var message2 = "Name \nEmail";
+			await DisplayAlert("Event Details", message, "OK");
+			bool answer = await DisplayAlert("Send Credentials?", message2, "Yes", "No");
 
-			if (e1.CredentialsNeeded != null && e1.CredentialsNeeded.Count > 0)
+			if (requestedCredentials != null && requestedCredentials.Count > 0)
 			{
-				foreach (CredentialType c in e1.CredentialsNeeded)
+				foreach (CredentialType c in requestedCredentials)
 				{
 					System.Diagnostics.Debug.WriteLine(c);
 				}
@@ -94,12 +132,12 @@ namespace QRCodeAuthMobile
 			if (answer)
 			{
 				//Add new attendace event to List and database and refresh ListView. 
-				await EventRepository.AddEventAsync(e1);
-				attendanceEvents.Add(e1);
+				await EventRepository.AddEventAsync(ev);
+				attendanceEvents.Add(ev);
 				AttendanceViewList.ItemsSource = attendanceEvents;
 
 				// Send user Credentials to Web App
-				SendCredentials(e1);
+				SendCredentials(requestedCredentials);
 			}
 			else
 			{
@@ -107,23 +145,22 @@ namespace QRCodeAuthMobile
 			}
 		}
 
-		public async void SendCredentials(Event ev)
+
+		public async void SendCredentials(List<CredentialType> creds)
 		{
 			List<Credential> eventCreds = new List<Credential>();
-			Credential cred = new Credential();
 
-			foreach (CredentialType ct in ev.CredentialsNeeded) // get credentials of type requested in event
+			foreach (CredentialType ct in creds) // get credentials of type requested in event
 			{
-				cred = await CredentialRepository.GetCredentialByType(ct);
+				Credential cred = await CredentialRepository.GetCredentialByType(ct);
 				if (cred != null)
 				{
 					eventCreds.Add(cred);
 				}
 			};
-
 			await DataService.SendEventCredentials(eventCreds);
+			GetAttendanceHistory();
 		}
-
 
     }
 }
