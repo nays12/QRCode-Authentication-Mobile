@@ -30,20 +30,20 @@ namespace QRCodeAuthMobile
 
         private async void BtnManagedCredentials_Clicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new ManageCredentials());
-			Application.Current.MainPage = new NavigationPage(new ManageCredentials());
+			await Navigation.PushAsync(new ManageCredentials());
+			//Application.Current.MainPage = new NavigationPage(new ManageCredentials());
 		}
 
 		private async void BtnWebLogIn_Clicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new WebAppLogin());
-			Application.Current.MainPage = new NavigationPage(new WebAppLogin());
+			await Navigation.PushAsync(new WebAppLogin());
+			//Application.Current.MainPage = new NavigationPage(new WebAppLogin());
 		}
 
         private async void BtnManageAttendance_Clicked(object sender, EventArgs e)
         {
-            //await Navigation.PushAsync(new ManageAttendance());
-			Application.Current.MainPage = new NavigationPage(new ManageAttendance());
+			await Navigation.PushAsync(new ManageAttendance());
+			//Application.Current.MainPage = new NavigationPage(new ManageAttendance());
 		}
 
         private void BtnShareCredentials_Clicked(object sender, EventArgs e)
