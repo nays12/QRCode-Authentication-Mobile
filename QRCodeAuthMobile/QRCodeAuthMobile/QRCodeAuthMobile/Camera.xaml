@@ -6,15 +6,18 @@
              mc:Ignorable="d"
              x:Class="QRCodeAuthMobile.Camera">
     <ContentPage.Content>
-		
-		<Grid>
+       
+
+            <Grid BackgroundColor="#005073">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="*" />
 				<RowDefinition Height="Auto" />
 			</Grid.RowDefinitions>
 
 			<Image x:Name="PhotoImage" />
-			<Button x:Name="CameraButton" Text="Take Photo" Grid.Row="1" />
+			<Button x:Name="CameraButton" Text="Take Photo" Grid.Row="1" 
+                    Style="{StaticResource buttonStyle}"/>
 		</Grid>
-	</ContentPage.Content>
+
+    </ContentPage.Content>
 </ContentPage>

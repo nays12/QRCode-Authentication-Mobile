@@ -17,9 +17,13 @@ namespace QRCodeAuthMobile.Models
 		public string Name { get; set; }
 		public string Location { get; set; }
 		public EventType EventType { get; set; }
+		public DateTime Date { get; set; }
 		public DateTime StartTime { get; set; }
 		public DateTime EndTime { get; set; }
 		public string Description { get; set; }
+		public bool isPassed { get; set; }
+		[Ignore]
+		public List<CredentialType> CredentialsNeeded { get; set; }
 
 		// Foreign Keys
 		public string Owner { get; set; }

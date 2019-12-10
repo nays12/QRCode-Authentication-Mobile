@@ -21,16 +21,30 @@ namespace QRCodeAuthMobile
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class WebAppLogin : ContentPage
 	{
+		protected User accountOwner = new User();
 		public WebAppLogin()
 		{
 			InitializeComponent();
-			GetCodeFromService();		
+			GetLoggedInUserInfo();
+			GetCodeFromService();
+			SendUserInfo();
 		}
 
 		public async void GetCodeFromService()
 		{
 			var code = await DataService.GetWebCode();
 			WebCode.Text = code.ToString();
+		}
+
+		public async void SendUserInfo()
+		{
+			await DataService.SendAccountId(accountOwner);
+			//await DataService.SendAccountId(accountOwner.UserId);
+		}
+
+		public void GetLoggedInUserInfo()
+		{
+			accountOwner = (User)(Application.Current.Properties["LoggedInUser"]);
 		}
 
 	}
