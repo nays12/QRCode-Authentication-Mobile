@@ -30,8 +30,7 @@ namespace QRCodeAuthMobile
 
 		public async void GetEventsButtonClicked(object sender, EventArgs args)
 		{
-			List<Event> events = new List<Event>();
-			events = await EventRepository.GetAllEventsAsync();
+			List<Event> events = await EventRepository.GetAllEventsAsync();
 			if (events != null && events.Count > 0)
 			{
 				foreach (Event ev in events)
@@ -55,8 +54,7 @@ namespace QRCodeAuthMobile
 
 		public async void GetCredentialsButtonClicked(object sender, EventArgs args)
 		{
-			List<Credential> credentials = new List<Credential>();
-			credentials = await CredentialRepository.GetAllCredentialsAsync();
+			List<Credential> credentials = await CredentialRepository.GetAllCredentialsAsync();
 			if (credentials != null && credentials.Count > 0)
 			{
 				foreach (Credential cred in credentials)
@@ -80,8 +78,7 @@ namespace QRCodeAuthMobile
 
 		public async void GetUsersButtonClicked(object sender, EventArgs args)
 		{
-			List<User> users = new List<User>();
-			users = await UserRepository.GetAllUsersAsync();
+			List<User> users = await UserRepository.GetAllUsersAsync();
 
 			if (users != null && users.Count > 0)
 			{
