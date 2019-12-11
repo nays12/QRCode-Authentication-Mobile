@@ -22,13 +22,12 @@ using SQLite;
 namespace QRCodeAuthMobile
 {
 
-	//[DesignTimeVisible(false)]
+	[DesignTimeVisible(false)]
 	public partial class MainPage : ContentPage
 	{
 		public MainPage()
 		{
 			InitializeComponent();
-
 		}
 
 		private async void BtnFingerPrint_Clicked(object sender, EventArgs e)
