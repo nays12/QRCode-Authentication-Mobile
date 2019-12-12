@@ -2,6 +2,7 @@
  * Purpose: Displays generated Access code from Web Application
  * 
  * Contributors: 
+ * Marilin Ortuno
  * Naomi Wiggins
  * 
  */
