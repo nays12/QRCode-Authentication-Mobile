@@ -11,7 +11,6 @@ using ZXing.Net.Mobile.Forms;
 using Newtonsoft.Json;
 using QRCodeAuthMobile.Services;
 using QRCodeAuthMobile.Data;
-using System.Linq;
 
 namespace QRCodeAuthMobile
 {

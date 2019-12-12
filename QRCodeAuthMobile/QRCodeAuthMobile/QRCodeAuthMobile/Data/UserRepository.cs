@@ -1,7 +1,17 @@
-﻿using SQLite;
+﻿/*
+ * Purpose: 
+ * This is a Data Repository Class that is responsible for handling all the database operations invloving the
+ * Users Table in the local SQLite database in the User's mobile device
+ * 
+ * Contributors:
+ * Marilin Ortuno
+ * Naomi Wiggins 
+ * 
+ */
+
+using SQLite;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using QRCodeAuthMobile.Models;
 
@@ -15,7 +25,6 @@ namespace QRCodeAuthMobile.Data
 		public UserRepository(string dbPath)
 		{
 			db = new SQLiteAsyncConnection(dbPath);
-			//db.CreateTableAsync<User>();
 		}
 		public static async Task InitializeTableAsync()
 		{
@@ -50,10 +59,9 @@ namespace QRCodeAuthMobile.Data
 
 		public static async Task<User> GetUserbyId(string id)
 		{
-			User u = new User();
 			try
 			{
-				u = await db.Table<User>().Where(i => i.UserId == id).FirstOrDefaultAsync();
+				User u = await db.Table<User>().Where(i => i.UserId == id).FirstOrDefaultAsync();
 				StatusMessage = string.Format("Success. Found User {0}!", u.FirstName);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 				return u;
@@ -99,10 +107,9 @@ namespace QRCodeAuthMobile.Data
 
 		public static async Task<User> GetAccountOwnerAsync()
 		{
-			User u = new User();
 			try
 			{
-				u = await db.Table<User>().FirstAsync();
+				User u = await db.Table<User>().FirstAsync();
 				StatusMessage = string.Format("Success. Retrieved User {0}!", u.FirstName);
 				System.Diagnostics.Debug.WriteLine(StatusMessage);
 				return u;

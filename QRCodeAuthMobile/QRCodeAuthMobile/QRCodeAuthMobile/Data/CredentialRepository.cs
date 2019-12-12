@@ -1,12 +1,12 @@
 ﻿/*
- * Purpose: Contains all methods needed to perform CRUD operations on the objects in the "credentials" Table
+ * Purpose: 
+ * This is a Data Repository Class that is responsible for handling all the database operations invloving the
+ * Credentials Table in the local SQLite database in the User's mobile device
  * 
- * Algorithm: 
- * Construct class and pass in the database path and create an instance of the credentials table
- * Add a Credential object to the table
- * Get all Credential objects from the table and convert them to a list
+ * Contributors:
+ * Marilin Ortuno
+ * Naomi Wiggins 
  * 
- * Notes: All methods in this class are asynchronous
  */
 
 using SQLite;
@@ -25,7 +25,6 @@ namespace QRCodeAuthMobile.Data
 		public CredentialRepository(string dbPath)
 		{
 			db = new SQLiteAsyncConnection(dbPath);
-			//db.CreateTableAsync<Credential>();
 		}
 
 		public static async Task InitializeTableAsync()

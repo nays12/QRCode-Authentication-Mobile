@@ -1,11 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿/*
+ * Purpose: To implement the FaceAuthorization interface to use iOS FaceID capabilities
+ * 
+ * Contributors:
+ * Marilin Ortuno
+ * 
+ */
 using Foundation;
-using UIKit;
 using QRCodeAuthMobile.Interfaces;
-using QRCodeAuthMobile;
 using QRCodeAuthMobile.Data;
 using QRCodeAuthMobile.iOS.Implementations;
 using Xamarin.Forms;

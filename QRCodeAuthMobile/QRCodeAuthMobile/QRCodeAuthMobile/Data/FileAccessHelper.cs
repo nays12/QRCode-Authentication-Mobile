@@ -1,8 +1,8 @@
 ﻿/*
- * Purpose: Used to map and create filepath for the SQLite database on a user's mobile device
+ * Purpose: Used to map and create filepath for the SQLite database on a User's mobile device
  * 
- * Algorithm: 
- * Get the local file path
+ * Contributors:
+ * Naomi Wiggins 
  */
 
 using Xamarin.Essentials;

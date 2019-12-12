@@ -1,8 +1,16 @@
-﻿using QRCodeAuthMobile.Models;
+﻿/*
+ * Purpose: 
+ * This is a Data Repository Class that is responsible for handling all the database operations invloving the
+ * MobileAccounts Table in the local SQLite database in the User's mobile device
+ * 
+ * Contributors:
+ * Naomi Wiggins 
+ * 
+ */
+
+using QRCodeAuthMobile.Models;
 using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace QRCodeAuthMobile.Data
@@ -16,7 +24,6 @@ namespace QRCodeAuthMobile.Data
 		public MobileAccountRepository(string dbPath)
 		{
 			db = new SQLiteAsyncConnection(dbPath);
-			// db.CreateTableAsync<MobileAccount>();
 		}
 
 		public static async Task InitializeTableAsync()
