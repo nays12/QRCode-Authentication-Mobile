@@ -1,7 +1,13 @@
-﻿using SQLite;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Purpose: 
+ * This is a model class for a MobileAccount object that has data annotations for its associated SQLite Table
+ * 
+ * Contributors: 
+ * Naomi Wiggins 
+ * 
+ */
+
+using SQLite;
 
 namespace QRCodeAuthMobile.Models
 {

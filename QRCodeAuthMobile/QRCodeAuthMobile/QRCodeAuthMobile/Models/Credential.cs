@@ -1,4 +1,13 @@
-﻿using System;
+﻿/*
+ * Purpose: 
+ * This is a model class for a Credential object that has data annotations for its associated SQLite Table
+ * 
+ * Contributors: 
+ * Naomi Wiggins 
+ * 
+ */
+
+using System;
 using SQLite;
 
 namespace QRCodeAuthMobile.Models

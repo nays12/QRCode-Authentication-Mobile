@@ -1,6 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Purpose: 
+ * This is an enumeration declaration for a EventType attribute that a Event object can have
+ * 
+ * Contributors: 
+ * Naomi Wiggins 
+ * 
+ */
 
 namespace QRCodeAuthMobile.Models
 {
