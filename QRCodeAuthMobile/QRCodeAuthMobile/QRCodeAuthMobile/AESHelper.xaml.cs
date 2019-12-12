@@ -1,10 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿/*
+ * Purpose: 
+ * This class using symmetric key cryptography to take an input and encrypt/decrypt it
+ * 
+ * Contributors: 
+ * Zhihao Gao 
+ * 
+ */
+
+using System;
 using System.Text;
-using System.Threading.Tasks;
 using System.Security.Cryptography;
-using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

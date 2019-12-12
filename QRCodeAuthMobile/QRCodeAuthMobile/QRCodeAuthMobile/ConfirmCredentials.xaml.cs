@@ -1,5 +1,11 @@
 ﻿/*
- * Purpose: Displays details about the Information Collector the user shared their credentials with.
+ * Purpose: 
+ * Displays details about the Information Collector the user shared their credentials with.
+ * 
+ * Contributors: 
+ * Marilin Ortuno
+ * Naomi Wiggins
+ * 
  */
 
 using Xamarin.Forms;

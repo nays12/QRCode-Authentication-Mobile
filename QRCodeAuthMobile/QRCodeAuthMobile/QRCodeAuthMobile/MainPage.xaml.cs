@@ -1,11 +1,9 @@
 ﻿/*
  * Purpose: Authenticates User and sends them to the appropiate screen once authenticated
  * 
- * Algorithm:
- * Check if fingerprint capability is available for device
- * Authenticate user via fingerprint
- * If user has a mobile account, direct them home page, else direct them to create account
- * Authenticate user via faceId
+ * Contributors: 
+ * Marilin Ortuno
+ * Naomi Wiggins
  */
 
 using System;
@@ -14,10 +12,7 @@ using Xamarin.Forms;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
 using QRCodeAuthMobile.Interfaces;
-using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
-using SQLite;
-
 
 namespace QRCodeAuthMobile
 {

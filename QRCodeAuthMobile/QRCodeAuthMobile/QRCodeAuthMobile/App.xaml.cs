@@ -1,12 +1,11 @@
 ﻿/*
- * Purpose: Startup class of the application that initializes global variables and
+ * Purpose: 
+ * Startup class of the application that initializes the application and global variables and 
  * passes them into other classes
  * 
- * Fields: 
- * dbPatn
- * CredentialRepository
- * EventRepository
- * 
+ * Contributors: 
+ * Marilin Ortuno
+ * Naomi Wiggins
  * 
  */
 
@@ -33,7 +32,6 @@ namespace QRCodeAuthMobile
 			MobileAccountRepo = new MobileAccountRepository(dbPath);
 
 			MainPage = new NavigationPage(new MainPage());
-			//MainPage = new NavigationPage(new DatabaseTest());
 		}
 
 		protected override void OnStart()

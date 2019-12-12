@@ -1,5 +1,10 @@
 ﻿/*
  * Purpose: First screen after login that allows user to select which action they would like to take
+ * 
+ * Contributors: 
+ * Marilin Ortuno
+ * Naomi Wiggins
+ * 
  */
 
 using System;

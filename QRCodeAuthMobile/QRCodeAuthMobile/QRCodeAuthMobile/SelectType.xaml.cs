@@ -1,12 +1,12 @@
 ﻿/*
- * Purpose: Gathers information from user to create a mobile account for them 
+ * Purpose: Gathers information from user to create a mobile account for them and also initialized the database
+ * tables in their SQLite database
+ * 
+ * Contributors: 
+ * Naomi Wiggins
  */
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using QRCodeAuthMobile.Models;
 using QRCodeAuthMobile.Data;
 using QRCodeAuthMobile.Services;
