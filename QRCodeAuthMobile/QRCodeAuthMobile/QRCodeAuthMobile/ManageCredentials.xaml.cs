@@ -1,9 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * Purpose: Allows the User to recieve new and updated Digital Credenital from a Credential Authority. Also
+ * displalys a list of all Digital Credentials owned by the User. 
+ * 
+ * Contributors: 
+ * Marilin Ortuno
+ * Naomi Wiggins
+ * 
+ */
 
+using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using QRCodeAuthMobile.Models;
@@ -32,10 +38,6 @@ namespace QRCodeAuthMobile
 			{
 				credentialList.ItemsSource = userCredentials;
 			}
-			else
-			{
-				//await DisplayAlert("No Credentials Found", "Looks like you don't have any Credential yet. Visit your Credential Authority to add some!", "OK");
-			}
 		}
 
         private async void BtnSetUpCredentials_Clicked(object sender, EventArgs e)
@@ -43,7 +45,6 @@ namespace QRCodeAuthMobile
 			var office = accountOwner.UserType == UserType.Student ? "Admissions Office" : "Human Resourses Office"; 
                                          
             await DisplayAlert("Set Up Credentials", "Please visit the " + office + " to set up your credentials.", "OK");
-
         }
 
         private void BtnUpdateCredentials_Clicked(object sender, EventArgs e)
@@ -123,7 +124,6 @@ namespace QRCodeAuthMobile
 				}
 			}
 		}
-
 
 	}
 }

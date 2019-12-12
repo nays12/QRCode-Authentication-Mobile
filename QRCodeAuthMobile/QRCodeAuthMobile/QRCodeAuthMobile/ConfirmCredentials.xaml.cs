@@ -1,5 +1,11 @@
 ﻿/*
- * Purpose: Displays details about the Information Collector the user shared their credentials with.
+ * Purpose: 
+ * Displays details about the Information Collector the user shared their credentials with.
+ * 
+ * Contributors: 
+ * Marilin Ortuno
+ * Naomi Wiggins
+ * 
  */
 
 using Xamarin.Forms;
@@ -11,7 +17,6 @@ using ZXing.Net.Mobile.Forms;
 using Newtonsoft.Json;
 using QRCodeAuthMobile.Services;
 using QRCodeAuthMobile.Data;
-using System.Linq;
 
 namespace QRCodeAuthMobile
 {

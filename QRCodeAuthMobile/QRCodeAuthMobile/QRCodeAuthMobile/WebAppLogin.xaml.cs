@@ -1,20 +1,16 @@
 ﻿/*
  * Purpose: Displays generated Access code from Web Application
+ * 
+ * Contributors: 
+ * Marilin Ortuno
+ * Naomi Wiggins
+ * 
  */
-
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using QRCodeAuthMobile.Services;
 using QRCodeAuthMobile.Models;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Newtonsoft.Json;
-using System.Net.Http;
 
 namespace QRCodeAuthMobile
 {
@@ -39,7 +35,6 @@ namespace QRCodeAuthMobile
 		public async void SendUserInfo()
 		{
 			await DataService.SendAccountId(accountOwner);
-			//await DataService.SendAccountId(accountOwner.UserId);
 		}
 
 		public void GetLoggedInUserInfo()

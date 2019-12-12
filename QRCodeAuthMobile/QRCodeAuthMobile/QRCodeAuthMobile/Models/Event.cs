@@ -1,4 +1,13 @@
-﻿using SQLite;
+﻿/*
+ * Purpose: 
+ * This is a model class for an Event object that has data annotations for its associated SQLite Table
+ * 
+ * Contributors: 
+ * Naomi Wiggins 
+ * 
+ */
+
+using SQLite;
 using System;
 using System.Collections.Generic;
 

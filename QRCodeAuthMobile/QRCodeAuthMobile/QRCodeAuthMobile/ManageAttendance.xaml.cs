@@ -1,9 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * Purpose: Allows the User to record their attendance at an event by scanning a QR Code. Also allows the User
+ * to see a list of the past Events they have attended
+ * 
+ * Contributors: 
+ * Marilin Ortuno
+ * Naomi Wiggins
+ * 
+ */
 
+using System;
+using System.Collections.Generic;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using QRCodeAuthMobile.Models;
@@ -144,7 +150,6 @@ namespace QRCodeAuthMobile
 				await DisplayAlert("Declined Attendance", "You have decided not to attend this event", "OK");
 			}
 		}
-
 
 		public async void SendCredentials(List<CredentialType> creds)
 		{

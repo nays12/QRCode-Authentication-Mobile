@@ -1,4 +1,15 @@
-﻿using System;
+﻿/*
+ * Purpose: 
+ * This Web Service is responsible for defining and performing the GET and POST request necessary to
+ * recieve and send data and objects between to and from the Web Application
+ * 
+ * Contributors: 
+ * Marilin Ortuno
+ * Naomi Wiggins 
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Net.Http;
@@ -11,8 +22,7 @@ namespace QRCodeAuthMobile.Services
 	public class DataService
 	{
 		protected static string url = "https://qrcodemobileauthenticationweb.azurewebsites.net/";
-		protected static HttpClient client = new HttpClient();
-		
+		protected static HttpClient client = new HttpClient();		
 
 		public static async Task<int> GetWebCode()
 		{
@@ -165,7 +175,5 @@ namespace QRCodeAuthMobile.Services
                 return null;
             }
         }
-
-
     }
 }

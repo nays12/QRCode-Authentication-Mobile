@@ -1,6 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿/*
+ * Purpose: 
+ * This is a model class for a WebAccount object
+ * 
+ * Contributors: 
+ * Naomi Wiggins 
+ * 
+ */
 
 namespace QRCodeAuthMobile.Models
 {
