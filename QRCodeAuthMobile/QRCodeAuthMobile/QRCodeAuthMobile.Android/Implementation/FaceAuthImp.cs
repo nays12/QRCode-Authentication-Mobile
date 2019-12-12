@@ -1,4 +1,12 @@
-﻿using System;
+/*
+ * Purpose: To implement the FaceAuthorization interface for Android
+ * 
+ * Contributors:
+ * Marilin Ortuno
+ * 
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
